@@ -1,0 +1,10 @@
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\bin\Debug\CommisVoyageur.exe.config
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\bin\Debug\CommisVoyageur.exe
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\bin\Debug\CommisVoyageur.pdb
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.csprojAssemblyReference.cache
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.MainForm.resources
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.Properties.Resources.resources
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.csproj.GenerateResource.cache
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.csproj.CoreCompileInputs.cache
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.exe
+C:\Users\Nikitos\Desktop\PiAPS\PiAPS-practice\CommisVoyageur\CommisVoyageur\obj\Debug\CommisVoyageur.pdb

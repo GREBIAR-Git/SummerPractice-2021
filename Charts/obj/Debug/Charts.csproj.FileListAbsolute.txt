@@ -1,0 +1,10 @@
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\bin\Debug\CommisVoyageur.exe.config
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\bin\Debug\CommisVoyageur.exe
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\bin\Debug\CommisVoyageur.pdb
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\Charts.csprojAssemblyReference.cache
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\CommisVoyageur.Properties.Resources.resources
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\Charts.csproj.GenerateResource.cache
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\Charts.csproj.CoreCompileInputs.cache
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\CommisVoyageur.exe
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\CommisVoyageur.pdb
+C:\Users\Nikitos\Desktop\summer_practice_2021\Charts\obj\Debug\Сhart.MainForm.resources
