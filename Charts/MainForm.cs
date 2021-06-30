@@ -7,6 +7,8 @@ namespace Сhart
     public partial class MainForm : Form
     {
 
+        int centralX, centralY;
+
         int plusM=1;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
@@ -14,6 +16,8 @@ namespace Сhart
         {
             InitializeComponent();
             AreaPaint.Refresh();
+            centralX = AreaPaint.Width / 2;
+            centralY = AreaPaint.Height / 2;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -31,9 +35,9 @@ namespace Сhart
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 3), new Point(AreaPaint.Width, AreaPaint.Height - 3));
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
             Сhart.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
-            Сhart.Paint.DrawPoint(e, Color.Brown, new Point(AreaPaint.Width / 2, AreaPaint.Height / 2));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(AreaPaint.Width / 2, 0), new Point(AreaPaint.Width / 2, AreaPaint.Height));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, AreaPaint.Height / 2), new Point(AreaPaint.Width, AreaPaint.Height / 2));
+            Сhart.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
+            Сhart.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
+            Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
             foreach (Point point in nearestNeighbor.GetPoints())
             {
                 Сhart.Paint.DrawPoint(e, Color.Blue, point);
@@ -112,6 +116,8 @@ namespace Сhart
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
+                CentralXChenged();
+                CentralYChenged();
             }
         }
 
@@ -123,6 +129,8 @@ namespace Сhart
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
+                CentralXChenged();
+                CentralYChenged();
             }
         }
 
@@ -159,7 +167,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < 650; i++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -168,7 +176,7 @@ namespace Сhart
                 graphics.DrawLines(pen, points);
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -181,7 +189,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(((i + offSetX) * plusM + AreaPaint.Width / 2), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -194,7 +202,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (-(float)Math.Sin(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF((i + offSetX) * plusM + centralX, (-(float)Math.Sin(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -204,7 +212,7 @@ namespace Сhart
                 points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (-(float)Math.Sin(-i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (-(float)Math.Sin(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -217,7 +225,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Cos(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Cos(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -227,7 +235,7 @@ namespace Сhart
                 points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Cos(-i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Cos(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -238,10 +246,10 @@ namespace Сhart
             else if (SelectingFunction.SelectedIndex == 5)
             {
                 pen = new Pen(Color.Black, 3f);
-                graphics.DrawArc(pen, AreaPaint.Width / 2 - 42, AreaPaint.Height / 2 - 30, 50, 50, 135, 180);
-                graphics.DrawArc(pen, -7 + AreaPaint.Width / 2, AreaPaint.Height / 2 - 30, 50, 50, 225, 180);
-                graphics.DrawLine(pen, AreaPaint.Width / 2 - 35, 12 + AreaPaint.Height / 2, 2 + AreaPaint.Width / 2, 49 + AreaPaint.Height / 2);
-                graphics.DrawLine(pen, 36 + AreaPaint.Width / 2, 12 + AreaPaint.Height / 2, AreaPaint.Width / 2 - 1, 49 + AreaPaint.Height / 2);
+                graphics.DrawArc(pen, centralX - 42, centralY - 30, 50, 50, 135, 180);
+                graphics.DrawArc(pen, -7 + centralX, centralY - 30, 50, 50, 225, 180);
+                graphics.DrawLine(pen, centralX - 35, 12 + centralY, 2 + centralX, 49 + centralY);
+                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
@@ -271,6 +279,37 @@ namespace Сhart
             }
         }
 
+        private void CentralX_TextChanged(object sender, EventArgs e)
+        {
+            CentralXChenged();
+        }
+
+        private void CentralY_TextChanged(object sender, EventArgs e)
+        {
+            CentralYChenged();
+        }
+
+        void CentralXChenged()
+        {
+            int byf;
+            if (Int32.TryParse(CentralX.Text, out byf))
+            {
+                centralX = AreaPaint.Width / 2 - byf * plusM;
+                AreaPaint.Refresh();
+            }
+        }
+
+        void CentralYChenged()
+        {
+            int byf;
+            if (Int32.TryParse(CentralY.Text, out byf))
+            {
+                centralY = AreaPaint.Height / 2 + byf * plusM;
+                AreaPaint.Refresh();
+            }
+        }
+
+
         private void PercentScrolling_Scroll(object sender, EventArgs e)
         {
             if(PercentScrolling.Value!=0)
@@ -278,12 +317,16 @@ namespace Сhart
                 plusM = PercentScrolling.Value * 11;
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
+                CentralXChenged();
+                CentralYChenged();
             }
             else
             {
                 plusM = 1;
                 AreaPaint.Refresh();
                 Percent.Text = "1:1";
+                CentralXChenged();
+                CentralYChenged();
             }
         }
     }

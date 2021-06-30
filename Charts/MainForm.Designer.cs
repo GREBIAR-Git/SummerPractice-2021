@@ -60,8 +60,8 @@
             this.button3 = new System.Windows.Forms.Button();
             this.Percent = new System.Windows.Forms.Label();
             this.PercentScrolling = new System.Windows.Forms.TrackBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.CentralY = new System.Windows.Forms.TextBox();
+            this.CentralX = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.CenterO = new System.Windows.Forms.Label();
@@ -408,19 +408,21 @@
             this.PercentScrolling.TabIndex = 29;
             this.PercentScrolling.Scroll += new System.EventHandler(this.PercentScrolling_Scroll);
             // 
-            // textBox1
+            // CentralY
             // 
-            this.textBox1.Location = new System.Drawing.Point(319, 696);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(33, 20);
-            this.textBox1.TabIndex = 30;
+            this.CentralY.Location = new System.Drawing.Point(319, 696);
+            this.CentralY.Name = "CentralY";
+            this.CentralY.Size = new System.Drawing.Size(33, 20);
+            this.CentralY.TabIndex = 30;
+            this.CentralY.TextChanged += new System.EventHandler(this.CentralY_TextChanged);
             // 
-            // textBox2
+            // CentralX
             // 
-            this.textBox2.Location = new System.Drawing.Point(280, 696);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(33, 20);
-            this.textBox2.TabIndex = 25;
+            this.CentralX.Location = new System.Drawing.Point(280, 696);
+            this.CentralX.Name = "CentralX";
+            this.CentralX.Size = new System.Drawing.Size(33, 20);
+            this.CentralX.TabIndex = 25;
+            this.CentralX.TextChanged += new System.EventHandler(this.CentralX_TextChanged);
             // 
             // label12
             // 
@@ -458,8 +460,8 @@
             this.Controls.Add(this.CenterO);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.CentralX);
+            this.Controls.Add(this.CentralY);
             this.Controls.Add(this.PercentScrolling);
             this.Controls.Add(this.Percent);
             this.Controls.Add(this.button3);
@@ -515,8 +517,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label Percent;
         private System.Windows.Forms.TrackBar PercentScrolling;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox CentralY;
+        private System.Windows.Forms.TextBox CentralX;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label CenterO;
