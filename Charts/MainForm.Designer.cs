@@ -75,7 +75,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.CenterO = new System.Windows.Forms.Label();
             this.viewTable = new System.Windows.Forms.Panel();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button6 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -507,12 +506,13 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.button3.Location = new System.Drawing.Point(892, 668);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(159, 49);
             this.button3.TabIndex = 27;
             this.button3.Text = "Открыть таблицу";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Percent
@@ -690,7 +690,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.Button button6;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

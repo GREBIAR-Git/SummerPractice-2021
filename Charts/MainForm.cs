@@ -32,7 +32,7 @@ namespace Сhart
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
         {
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(AreaPaint.Width, 0));
-            Сhart.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 3), new Point(AreaPaint.Width, AreaPaint.Height - 3));
+            Сhart.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 1), new Point(AreaPaint.Width, AreaPaint.Height - 1));
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
             Сhart.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
             Сhart.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
