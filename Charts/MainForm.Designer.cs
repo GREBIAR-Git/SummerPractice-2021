@@ -380,12 +380,13 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(682, 667);
+            this.button3.Location = new System.Drawing.Point(672, 668);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(159, 49);
             this.button3.TabIndex = 27;
             this.button3.Text = "Открыть таблицу";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Percent
             // 
@@ -405,7 +406,7 @@
             this.PercentScrolling.Location = new System.Drawing.Point(65, 667);
             this.PercentScrolling.Name = "PercentScrolling";
             this.PercentScrolling.Size = new System.Drawing.Size(149, 30);
-            this.PercentScrolling.TabIndex = 29;
+            this.PercentScrolling.TabIndex = 10;
             this.PercentScrolling.Scroll += new System.EventHandler(this.PercentScrolling_Scroll);
             // 
             // CentralY
