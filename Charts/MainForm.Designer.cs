@@ -384,7 +384,6 @@
             this.Percent.TabIndex = 28;
             this.Percent.Text = "1:1";
             this.Percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Percent.Click += new System.EventHandler(this.Percent_Click);
             // 
             // PercentScrolling
             // 
