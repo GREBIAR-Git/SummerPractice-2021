@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Сhart
@@ -8,7 +9,7 @@ namespace Сhart
     {
 
         int centralX, centralY, plusM;
-
+        bool slow;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -18,6 +19,7 @@ namespace Сhart
             centralX = AreaPaint.Width / 2;
             centralY = AreaPaint.Height / 2;
             plusM = 1;
+            slow = false;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -122,7 +124,7 @@ namespace Сhart
             }
         }
 
-        void PaintChart(Graphics graphics)
+        async void PaintChart(Graphics graphics)
         {
             int additionalParameter;
             if (!Int32.TryParse(AdditionalParameter.Text, out additionalParameter))
@@ -156,13 +158,27 @@ namespace Сhart
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
+                    if (points[i].Y <= -10000 || points[i].Y >= 10000)
                     {
-                        Array.Resize(ref points, i);
+                        Array.Resize(ref points, i+1);
                         break;
                     }
                 }
-                graphics.DrawLines(pen, points);
+                if (!slow)
+                {
+                    graphics.DrawLines(pen, points);
+                }
+                else
+                {
+                    for(int f=0;points.Length-1>f;f++)
+                    {
+                        await Task.Delay(10);
+                        graphics = AreaPaint.CreateGraphics();
+                        graphics.DrawLine(pen, points[f], points[f + 1]);
+                        
+                    }
+                }
+                
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
@@ -334,6 +350,11 @@ namespace Сhart
                 tableC.Visible = false;
                 freeC.Visible = true;
             }
+        }
+
+        private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
+        {
+            slow = SlowDrawing.Checked;
         }
 
         private void button3_Click(object sender, EventArgs e)

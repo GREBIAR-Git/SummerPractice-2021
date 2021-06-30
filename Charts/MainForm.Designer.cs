@@ -76,6 +76,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.CenterO = new System.Windows.Forms.Label();
+            this.SlowDrawing = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -599,6 +600,17 @@
             this.CenterO.Text = "Центр экрана";
             this.CenterO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // SlowDrawing
+            // 
+            this.SlowDrawing.AutoSize = true;
+            this.SlowDrawing.Location = new System.Drawing.Point(576, 685);
+            this.SlowDrawing.Name = "SlowDrawing";
+            this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
+            this.SlowDrawing.TabIndex = 31;
+            this.SlowDrawing.Text = "Медленый режим прорисовки";
+            this.SlowDrawing.UseVisualStyleBackColor = true;
+            this.SlowDrawing.CheckedChanged += new System.EventHandler(this.SlowDrawing_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -607,6 +619,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.Controls.Add(this.SlowDrawing);
             this.Controls.Add(this.CenterO);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -690,6 +703,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.CheckBox SlowDrawing;
     }
 }
 
