@@ -1,6 +1,8 @@
 *.vscode/
 *obj/
+*bin/
 *vs/
 *.bin
+*.vs/
 
 

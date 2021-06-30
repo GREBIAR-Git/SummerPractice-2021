@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3D358E03-BCD0-4B02-B0CA-DC1B2D406203}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CommisVoyageur</RootNamespace>
-    <AssemblyName>CommisVoyageur</AssemblyName>
+    <RootNamespace>Charts</RootNamespace>
+    <AssemblyName>Charts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
