@@ -7,9 +7,8 @@ namespace Сhart
     public partial class MainForm : Form
     {
 
-        int centralX, centralY;
+        int centralX, centralY, plusM;
 
-        int plusM=1;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -18,6 +17,7 @@ namespace Сhart
             AreaPaint.Refresh();
             centralX = AreaPaint.Width / 2;
             centralY = AreaPaint.Height / 2;
+            plusM = 1;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -29,6 +29,7 @@ namespace Сhart
         {
             AreaPaint.Refresh();
         }
+
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
         {
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(AreaPaint.Width, 0));
@@ -38,19 +39,6 @@ namespace Сhart
             Сhart.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
             Сhart.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
             Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
-            foreach (Point point in nearestNeighbor.GetPoints())
-            {
-                Сhart.Paint.DrawPoint(e, Color.Blue, point);
-            }
-            for (int i = 0; i < nearestNeighbor.GetpointsSorted().Count - 1; i++)
-            {
-                Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[i], nearestNeighbor.GetpointsSorted()[i + 1]);
-            }
-            if (nearestNeighbor.GetpointsSorted().Count > 2)
-            {
-                Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[nearestNeighbor.GetpointsSorted().Count - 1], nearestNeighbor.GetpointsSorted()[0]);
-                Сhart.Paint.BigRedPoint(e, Color.Red, nearestNeighbor.GetpointsSorted()[0]);
-            }
             if (plusM > 8)
             {
                 for (int i = AreaPaint.Width/2; i < AreaPaint.Width; i += plusM)
@@ -351,11 +339,8 @@ namespace Сhart
         private void button3_Click(object sender, EventArgs e)
         {
             viewTable.Visible = !viewTable.Visible;
-            AreaPaint.Refresh();
             CentralXChenged();
-            AreaPaint.Visible = true;
             CentralYChenged();
-            AreaPaint.Refresh();
         }
 
         private void PercentScrolling_Scroll(object sender, EventArgs e)
@@ -363,7 +348,6 @@ namespace Сhart
             if(PercentScrolling.Value!=0)
             {
                 plusM = PercentScrolling.Value * 11;
-                AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
                 CentralXChenged();
                 CentralYChenged();
@@ -371,7 +355,6 @@ namespace Сhart
             else
             {
                 plusM = 1;
-                AreaPaint.Refresh();
                 Percent.Text = "1:1";
                 CentralXChenged();
                 CentralYChenged();
