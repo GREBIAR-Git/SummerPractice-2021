@@ -164,12 +164,13 @@ namespace Сhart
             Pen pen = new Pen(Color.Black, 2f);
             if (SelectingFunction.SelectedIndex == 1)
             {
-                PointF[] points = new PointF[650];
-                for (int i = 0; i < 650; i++)
+                PointF[] points = new PointF[AreaPaint.Width];
+                for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
@@ -179,6 +180,7 @@ namespace Сhart
                     points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
@@ -186,12 +188,13 @@ namespace Сhart
             }
             else if (SelectingFunction.SelectedIndex == 2)
             {
-                PointF[] points = new PointF[650];
+                PointF[] points = new PointF[AreaPaint.Width];
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
@@ -199,22 +202,24 @@ namespace Сhart
             }
             else if (SelectingFunction.SelectedIndex == 3)
             {
-                PointF[] points = new PointF[650];
+                PointF[] points = new PointF[AreaPaint.Width];
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((i + offSetX) * plusM + centralX, (-(float)Math.Sin(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
                 graphics.DrawLines(pen, points);
-                points = new PointF[650];
+                points = new PointF[AreaPaint.Width];
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((-i + offSetX) * plusM + centralX, (-(float)Math.Sin(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
@@ -222,22 +227,24 @@ namespace Сhart
             }
             else if (SelectingFunction.SelectedIndex == 4)
             {
-                PointF[] points = new PointF[650];
+                PointF[] points = new PointF[AreaPaint.Width];
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Cos(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
                 graphics.DrawLines(pen, points);
-                points = new PointF[650];
+                points = new PointF[AreaPaint.Width];
                 for (int i = 0; i < points.Length; i++)
                 {
                     points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Cos(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
+                        Array.Resize(ref points, i);
                         break;
                     }
                 }
@@ -253,7 +260,7 @@ namespace Сhart
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
-                PointF[] points = new PointF[1500];
+                PointF[] points = new PointF[AreaPaint.Width];
                 float o = 0;
                 for (int i = 0; i < points.Length; i++)
                 {
