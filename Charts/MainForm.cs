@@ -297,6 +297,11 @@ namespace Сhart
                 centralX = AreaPaint.Width / 2 - byf * plusM;
                 AreaPaint.Refresh();
             }
+            else
+            {
+                centralX = AreaPaint.Width / 2;
+                AreaPaint.Refresh();
+            }
         }
 
         void CentralYChenged()
@@ -307,11 +312,43 @@ namespace Сhart
                 centralY = AreaPaint.Height / 2 + byf * plusM;
                 AreaPaint.Refresh();
             }
+            else
+            {
+                centralY = AreaPaint.Height / 2;
+                AreaPaint.Refresh();
+            }
+        }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if(radioButton1.Checked)
+            {
+                functionsС.Visible = true;
+                tableC.Visible = false;
+                freeC.Visible = false;
+            }
+            else if (radioButton2.Checked)
+            {
+                functionsС.Visible = false ;
+                tableC.Visible = true;
+                freeC.Visible = false;
+            }
+            else
+            {
+                functionsС.Visible = false;
+                tableC.Visible = false;
+                freeC.Visible = true;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            viewTable.Visible = !viewTable.Visible;
+            AreaPaint.Refresh();
+            CentralXChenged();
+            AreaPaint.Visible = true;
+            CentralYChenged();
+            AreaPaint.Refresh();
         }
 
         private void PercentScrolling_Scroll(object sender, EventArgs e)
