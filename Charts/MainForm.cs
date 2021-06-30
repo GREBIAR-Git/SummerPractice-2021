@@ -83,33 +83,13 @@ namespace Сhart
 
         private void SelectingFunction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectingFunction.SelectedIndex == 0)
+            if (SelectingFunction.SelectedIndex == 1)
             {
                 label2.Text = "Степень";
                 AdditionalParameter.Visible = true;
                 label2.Visible = true;
             }
-            else if (SelectingFunction.SelectedIndex == 1)
-            {
-                AdditionalParameter.Visible = false;
-                label2.Visible = false;
-            }
-            else if (SelectingFunction.SelectedIndex == 2)
-            {
-                AdditionalParameter.Visible = false;
-                label2.Visible = false;
-            }
-            else if (SelectingFunction.SelectedIndex == 3)
-            {
-                AdditionalParameter.Visible = false;
-                label2.Visible = false;
-            }
-            else if (SelectingFunction.SelectedIndex == 4)
-            {
-                AdditionalParameter.Visible = false;
-                label2.Visible = false;
-            }
-            else if (SelectingFunction.SelectedIndex == 5)
+            else 
             {
                 AdditionalParameter.Visible = false;
                 label2.Visible = false;
@@ -174,7 +154,7 @@ namespace Сhart
             }
 
             Pen pen = new Pen(Color.Black, 2f);
-            if (SelectingFunction.SelectedIndex == 0)
+            if (SelectingFunction.SelectedIndex == 1)
             {
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < 650; i++)
@@ -196,7 +176,7 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);
             }
-            else if (SelectingFunction.SelectedIndex == 1)
+            else if (SelectingFunction.SelectedIndex == 2)
             {
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
@@ -209,7 +189,7 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);
             }
-            else if (SelectingFunction.SelectedIndex == 2)
+            else if (SelectingFunction.SelectedIndex == 3)
             {
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
@@ -232,7 +212,7 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);
             }
-            else if (SelectingFunction.SelectedIndex == 3)
+            else if (SelectingFunction.SelectedIndex == 4)
             {
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
@@ -255,7 +235,7 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);
             }
-            else if (SelectingFunction.SelectedIndex == 4)
+            else if (SelectingFunction.SelectedIndex == 5)
             {
                 pen = new Pen(Color.Black, 3f);
                 graphics.DrawArc(pen, AreaPaint.Width / 2 - 42, AreaPaint.Height / 2 - 30, 50, 50, 135, 180);

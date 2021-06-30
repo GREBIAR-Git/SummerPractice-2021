@@ -32,7 +32,7 @@
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Draw = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.FinalExpression = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.limitationUpY = new System.Windows.Forms.TextBox();
             this.limitationUpX = new System.Windows.Forms.TextBox();
@@ -60,6 +60,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.Percent = new System.Windows.Forms.Label();
             this.PercentScrolling = new System.Windows.Forms.TrackBar();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.CenterO = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -102,7 +107,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Draw);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.FinalExpression);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.limitationUpY);
             this.groupBox1.Controls.Add(this.limitationUpX);
@@ -141,12 +146,13 @@
             this.Draw.UseVisualStyleBackColor = true;
             this.Draw.Click += new System.EventHandler(this.Draw_Click);
             // 
-            // textBox9
+            // FinalExpression
             // 
-            this.textBox9.Location = new System.Drawing.Point(8, 301);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(180, 20);
-            this.textBox9.TabIndex = 23;
+            this.FinalExpression.Enabled = false;
+            this.FinalExpression.Location = new System.Drawing.Point(8, 301);
+            this.FinalExpression.Name = "FinalExpression";
+            this.FinalExpression.Size = new System.Drawing.Size(180, 20);
+            this.FinalExpression.TabIndex = 23;
             // 
             // label11
             // 
@@ -310,6 +316,7 @@
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Степень";
+            this.label2.Visible = false;
             // 
             // AdditionalParameter
             // 
@@ -317,6 +324,7 @@
             this.AdditionalParameter.Name = "AdditionalParameter";
             this.AdditionalParameter.Size = new System.Drawing.Size(63, 20);
             this.AdditionalParameter.TabIndex = 3;
+            this.AdditionalParameter.Visible = false;
             // 
             // SelectingFunction
             // 
@@ -325,6 +333,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectingFunction.FormattingEnabled = true;
             this.SelectingFunction.Items.AddRange(new object[] {
+            "Не выбрано",
             "x^(Степень)",
             "√x",
             "sin(x)",
@@ -335,7 +344,7 @@
             this.SelectingFunction.Name = "SelectingFunction";
             this.SelectingFunction.Size = new System.Drawing.Size(121, 21);
             this.SelectingFunction.TabIndex = 2;
-            this.SelectingFunction.Text = "x^(Степень)";
+            this.SelectingFunction.Text = "Не выбрано";
             this.SelectingFunction.SelectedIndexChanged += new System.EventHandler(this.SelectingFunction_SelectedIndexChanged);
             // 
             // label1
@@ -399,12 +408,58 @@
             this.PercentScrolling.TabIndex = 29;
             this.PercentScrolling.Scroll += new System.EventHandler(this.PercentScrolling_Scroll);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(319, 696);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(33, 20);
+            this.textBox1.TabIndex = 30;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(280, 696);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(33, 20);
+            this.textBox2.TabIndex = 25;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(292, 680);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "x";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(331, 680);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(12, 13);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "y";
+            // 
+            // CenterO
+            // 
+            this.CenterO.Location = new System.Drawing.Point(275, 667);
+            this.CenterO.Name = "CenterO";
+            this.CenterO.Size = new System.Drawing.Size(85, 13);
+            this.CenterO.TabIndex = 25;
+            this.CenterO.Text = "Центр экрана";
+            this.CenterO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(872, 720);
+            this.Controls.Add(this.CenterO);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.PercentScrolling);
             this.Controls.Add(this.Percent);
             this.Controls.Add(this.button3);
@@ -422,6 +477,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -438,7 +494,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox AdditionalParameter;
         private System.Windows.Forms.Button Draw;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox FinalExpression;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox limitationUpY;
         private System.Windows.Forms.TextBox limitationUpX;
@@ -459,6 +515,11 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label Percent;
         private System.Windows.Forms.TrackBar PercentScrolling;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label CenterO;
     }
 }
 
