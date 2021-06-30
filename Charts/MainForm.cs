@@ -6,6 +6,8 @@ namespace Сhart
 {
     public partial class MainForm : Form
     {
+
+        int plusM=0,minusM=0;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -30,20 +32,32 @@ namespace Сhart
             Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
             Сhart.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
             Сhart.Paint.DrawPoint(e, Color.Brown, new Point(AreaPaint.Width / 2, AreaPaint.Height / 2));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(AreaPaint.Width/2, 0), new Point(AreaPaint.Width/2, AreaPaint.Height));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, AreaPaint.Height/2), new Point(AreaPaint.Width, AreaPaint.Height/2));
+            Сhart.Paint.DrawLine(e, Color.Brown, new Point(AreaPaint.Width / 2, 0), new Point(AreaPaint.Width / 2, AreaPaint.Height));
+            Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, AreaPaint.Height / 2), new Point(AreaPaint.Width, AreaPaint.Height / 2));
             foreach (Point point in nearestNeighbor.GetPoints())
             {
-                Сhart.Paint.DrawPoint(e, Color.Blue, point); 
+                Сhart.Paint.DrawPoint(e, Color.Blue, point);
             }
-            for(int i = 0; i < nearestNeighbor.GetpointsSorted().Count-1; i++)
+            for (int i = 0; i < nearestNeighbor.GetpointsSorted().Count - 1; i++)
             {
-                Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[i], nearestNeighbor.GetpointsSorted()[i+1]);
+                Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[i], nearestNeighbor.GetpointsSorted()[i + 1]);
             }
             if (nearestNeighbor.GetpointsSorted().Count > 2)
             {
                 Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[nearestNeighbor.GetpointsSorted().Count - 1], nearestNeighbor.GetpointsSorted()[0]);
                 Сhart.Paint.BigRedPoint(e, Color.Red, nearestNeighbor.GetpointsSorted()[0]);
+            }
+            if (plusM > 3)
+            {
+                for (int i = 0; i < AreaPaint.Width; i += plusM)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(i + plusM, 0), new Point(i + plusM, AreaPaint.Height));
+                }
+                for (int f = 0; f < AreaPaint.Height; f += plusM)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
+                }
+
             }
         }
 
@@ -125,19 +139,28 @@ namespace Сhart
             }
 
 
-            Pen pen = new Pen(Color.Black, 2f);
+            Pen pen = new Pen(Color.Black, 1f);
             if (SelectingFunction.SelectedIndex == 0)
             {
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(i + AreaPaint.Width/2 + offSetX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF(i * plusM + AreaPaint.Width / 2 + offSetX, (float)((-Math.Pow(i*plusM, additionalParameter) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
+                    if (points[i].Y < -10000 || points[i].Y > 10000)
+                    {
+                        break;
+                    }
+                }
+                for (int i = 0; i < points.Length; i++)
+                {
+                    points[i] = new PointF(i * plusM + AreaPaint.Width / 2 + offSetX, (float)((-Math.Pow(i, additionalParameter) * multiplierI)* plusM * CheckSign() + offSetY + AreaPaint.Height / 2));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
                     }
                 }
                 graphics.DrawLines(pen, points);
+
                 points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
@@ -242,6 +265,11 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);*/
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            plusM += 1;
         }
     }
 }
