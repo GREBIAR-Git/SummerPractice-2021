@@ -1,0 +1,8 @@
+﻿
+
+namespace Charts
+{
+    class Chart
+    {
+    }
+}

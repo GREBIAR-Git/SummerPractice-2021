@@ -7,7 +7,7 @@ namespace Сhart
     public partial class MainForm : Form
     {
 
-        int plusM=0,minusM=0;
+        int plusM=1;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -47,18 +47,26 @@ namespace Сhart
                 Сhart.Paint.DrawArrow(e, Color.Black, nearestNeighbor.GetpointsSorted()[nearestNeighbor.GetpointsSorted().Count - 1], nearestNeighbor.GetpointsSorted()[0]);
                 Сhart.Paint.BigRedPoint(e, Color.Red, nearestNeighbor.GetpointsSorted()[0]);
             }
-            if (plusM > 3)
+            if (plusM > 8)
             {
-                for (int i = 0; i < AreaPaint.Width; i += plusM)
+                for (int i = AreaPaint.Width/2; i < AreaPaint.Width; i += plusM)
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(i + plusM, 0), new Point(i + plusM, AreaPaint.Height));
                 }
-                for (int f = 0; f < AreaPaint.Height; f += plusM)
+                for (int i = AreaPaint.Width / 2; i > 0-plusM; i -= plusM)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(i + plusM, 0), new Point(i + plusM, AreaPaint.Height));
+                }
+                for (int f = AreaPaint.Height / 2; f < AreaPaint.Height; f += plusM)
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
-
+                for (int f = AreaPaint.Height / 2; f > 0-plusM; f -= plusM)
+                {
+                    e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
+                }
             }
+            PaintChart(e.Graphics);
         }
 
         int CheckSign()
@@ -113,8 +121,33 @@ namespace Сhart
             Graphics graphics = AreaPaint.CreateGraphics();
             graphics.Clear(Color.White);
             AreaPaint.Refresh();
+            PaintChart(graphics);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (plusM > 1)
+            {
+                plusM -= 1;
+                AreaPaint.Refresh();
+                Percent.Text = "1:" + plusM;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (plusM < 110)
+            {
+                plusM += 1;
+                AreaPaint.Refresh();
+                Percent.Text = "1:" + plusM;
+            }
+        }
+
+        void PaintChart(Graphics graphics)
+        {
             int additionalParameter;
-            if (!Int32.TryParse(AdditionalParameter.Text,out additionalParameter))
+            if (!Int32.TryParse(AdditionalParameter.Text, out additionalParameter))
             {
                 additionalParameter = 0;
                 AdditionalParameter.Text = "0";
@@ -138,33 +171,22 @@ namespace Сhart
                 offsetY.Text = "0";
             }
 
-
-            Pen pen = new Pen(Color.Black, 1f);
+            Pen pen = new Pen(Color.Black, 2f);
             if (SelectingFunction.SelectedIndex == 0)
             {
                 PointF[] points = new PointF[650];
-                for (int i = 0; i < points.Length; i++)
+                for (int i = 0; i < 650; i++)
                 {
-                    points[i] = new PointF(i * plusM + AreaPaint.Width / 2 + offSetX, (float)((-Math.Pow(i*plusM, additionalParameter) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        break;
-                    }
-                }
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i] = new PointF(i * plusM + AreaPaint.Width / 2 + offSetX, (float)((-Math.Pow(i, additionalParameter) * multiplierI)* plusM * CheckSign() + offSetY + AreaPaint.Height / 2));
+                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
                     }
                 }
                 graphics.DrawLines(pen, points);
-
-                points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(-i + AreaPaint.Width / 2 + offSetX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -177,7 +199,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF((i + AreaPaint.Width / 2 + offSetX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF(((i + offSetX) * plusM + AreaPaint.Width / 2), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -190,7 +212,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(i + AreaPaint.Width / 2 + offSetX, (-(float)Math.Sin(i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (-(float)Math.Sin(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -200,7 +222,7 @@ namespace Сhart
                 points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(-i + AreaPaint.Width / 2 + offSetX, (-(float)Math.Sin(-i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2);
+                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (-(float)Math.Sin(-i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2);
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -213,7 +235,7 @@ namespace Сhart
                 PointF[] points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(i + AreaPaint.Width / 2 + offSetX, (float)((-Math.Cos(i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Cos(i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -223,7 +245,7 @@ namespace Сhart
                 points = new PointF[650];
                 for (int i = 0; i < points.Length; i++)
                 {
-                    points[i] = new PointF(-i + AreaPaint.Width / 2 + offSetX, (float)((-Math.Cos(-i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2));
+                    points[i] = new PointF((-i + offSetX) * plusM + AreaPaint.Width / 2, (float)((-Math.Cos(-i) * multiplierI + offSetY) * plusM * CheckSign() + AreaPaint.Height / 2));
                     if (points[i].Y < -10000 || points[i].Y > 10000)
                     {
                         break;
@@ -234,19 +256,19 @@ namespace Сhart
             else if (SelectingFunction.SelectedIndex == 4)
             {
                 pen = new Pen(Color.Black, 3f);
-                graphics.DrawArc(pen, AreaPaint.Width / 2 - 42, AreaPaint.Height / 2 -30, 50 , 50, 135, 180);
-                graphics.DrawArc(pen, -7 + AreaPaint.Width / 2, AreaPaint.Height / 2 -30, 50, 50, 225, 180);
-                graphics.DrawLine(pen, AreaPaint.Width / 2 - 35, 12 + AreaPaint.Height / 2, 2 + AreaPaint.Width / 2, 49 + AreaPaint.Height/2);
-                graphics.DrawLine(pen, 36 + AreaPaint.Width / 2, 12 + AreaPaint.Height / 2,  AreaPaint.Width / 2 - 1, 49 + AreaPaint.Height/2); 
+                graphics.DrawArc(pen, AreaPaint.Width / 2 - 42, AreaPaint.Height / 2 - 30, 50, 50, 135, 180);
+                graphics.DrawArc(pen, -7 + AreaPaint.Width / 2, AreaPaint.Height / 2 - 30, 50, 50, 225, 180);
+                graphics.DrawLine(pen, AreaPaint.Width / 2 - 35, 12 + AreaPaint.Height / 2, 2 + AreaPaint.Width / 2, 49 + AreaPaint.Height / 2);
+                graphics.DrawLine(pen, 36 + AreaPaint.Width / 2, 12 + AreaPaint.Height / 2, AreaPaint.Width / 2 - 1, 49 + AreaPaint.Height / 2);
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
                 PointF[] points = new PointF[1500];
-                float o=0;
+                float o = 0;
                 for (int i = 0; i < points.Length; i++)
                 {
 
-                    points[i] = new PointF(o *1000 ,(float)((Math.Pow(-o,2/3)-Math.Sqrt(Math.Pow(o,4/3)-4*o*o+4))/2)*1000);
+                    points[i] = new PointF(o * 1000, (float)((Math.Pow(-o, 2 / 3) - Math.Sqrt(Math.Pow(o, 4 / 3) - 4 * o * o + 4)) / 2) * 1000);
                     /*if (points[o].Y < -10000 || points[o].Y > 10000)
                     {
                         break;
@@ -265,11 +287,6 @@ namespace Сhart
                 }
                 graphics.DrawLines(pen, points);*/
             }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            plusM += 1;
         }
     }
 }
