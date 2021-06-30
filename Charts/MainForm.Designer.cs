@@ -59,9 +59,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.Percent = new System.Windows.Forms.Label();
+            this.PercentScrolling = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -344,7 +346,7 @@
             // button2
             // 
             this.button2.Image = global::Charts.Properties.Resources._11;
-            this.button2.Location = new System.Drawing.Point(130, 668);
+            this.button2.Location = new System.Drawing.Point(220, 667);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(49, 49);
             this.button2.TabIndex = 26;
@@ -365,7 +367,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(185, 668);
+            this.button3.Location = new System.Drawing.Point(682, 667);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(159, 49);
             this.button3.TabIndex = 27;
@@ -374,13 +376,25 @@
             // 
             // Percent
             // 
-            this.Percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Percent.Location = new System.Drawing.Point(61, 668);
+            this.Percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Percent.Location = new System.Drawing.Point(65, 687);
+            this.Percent.Margin = new System.Windows.Forms.Padding(0);
             this.Percent.Name = "Percent";
-            this.Percent.Size = new System.Drawing.Size(67, 50);
+            this.Percent.Size = new System.Drawing.Size(149, 43);
             this.Percent.TabIndex = 28;
             this.Percent.Text = "1:1";
             this.Percent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Percent.Click += new System.EventHandler(this.Percent_Click);
+            // 
+            // PercentScrolling
+            // 
+            this.PercentScrolling.AutoSize = false;
+            this.PercentScrolling.BackColor = System.Drawing.SystemColors.Control;
+            this.PercentScrolling.Location = new System.Drawing.Point(65, 667);
+            this.PercentScrolling.Name = "PercentScrolling";
+            this.PercentScrolling.Size = new System.Drawing.Size(149, 30);
+            this.PercentScrolling.TabIndex = 29;
+            this.PercentScrolling.Scroll += new System.EventHandler(this.PercentScrolling_Scroll);
             // 
             // MainForm
             // 
@@ -388,6 +402,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(872, 720);
+            this.Controls.Add(this.PercentScrolling);
             this.Controls.Add(this.Percent);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -402,6 +417,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -439,6 +455,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label Percent;
+        private System.Windows.Forms.TrackBar PercentScrolling;
     }
 }
 

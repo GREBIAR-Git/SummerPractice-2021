@@ -139,6 +139,7 @@ namespace Сhart
             if (plusM < 110)
             {
                 plusM += 1;
+                PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
             }
@@ -286,6 +287,27 @@ namespace Сhart
                     }
                 }
                 graphics.DrawLines(pen, points);*/
+            }
+        }
+
+        private void Percent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PercentScrolling_Scroll(object sender, EventArgs e)
+        {
+            if(PercentScrolling.Value!=0)
+            {
+                plusM = PercentScrolling.Value * 11;
+                AreaPaint.Refresh();
+                Percent.Text = "1:" + plusM;
+            }
+            else
+            {
+                plusM = 1;
+                AreaPaint.Refresh();
+                Percent.Text = "1:1";
             }
         }
     }
