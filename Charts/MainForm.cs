@@ -10,6 +10,7 @@ namespace Сhart
 
         int centralX, centralY, plusM;
         bool slow;
+        int slowspeed;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -124,7 +125,7 @@ namespace Сhart
             }
         }
 
-        async void PaintChart(Graphics graphics)
+        void PaintChart(Graphics graphics)
         {
             int additionalParameter;
             if (!Int32.TryParse(AdditionalParameter.Text, out additionalParameter))
@@ -151,142 +152,126 @@ namespace Сhart
                 offsetY.Text = "0";
             }
 
-            Pen pen = new Pen(Color.Black, 2f);
             if (SelectingFunction.SelectedIndex == 1)
             {
                 PointF[] points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
+                PointF[] pointsDraw = new PointF[AreaPaint.Width];
+                int ip = 0;
+                int o = -AreaPaint.Width/2;
+                for (int i = 0; i < AreaPaint.Width; i++, o++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    if (points[i].Y <= -10000 || points[i].Y >= 10000)
-                    {
-                        Array.Resize(ref points, i+1);
-                        break;
-                    }
+                    points[i] = new PointF((o + offSetX) * plusM + centralX, (float)((-Math.Pow(o, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
+                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
                 }
-                if (!slow)
-                {
-                    graphics.DrawLines(pen, points);
-                }
-                else
-                {
-                    for(int f=0;points.Length-1>f;f++)
-                    {
-                        await Task.Delay(10);
-                        graphics = AreaPaint.CreateGraphics();
-                        graphics.DrawLine(pen, points[f], points[f + 1]);
-                        
-                    }
-                }
-                
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Pow(i, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
-                }
-                graphics.DrawLines(pen, points);
+                EndsGraphMax(ref points, ref ip, ref pointsDraw);
+                Array.Resize(ref pointsDraw, ip);
+                SpeedDrawing(pointsDraw);
             }
             else if (SelectingFunction.SelectedIndex == 2)
             {
                 PointF[] points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
+                PointF[] pointsDraw = new PointF[AreaPaint.Width];
+                int ip = 0;
+                int o = -AreaPaint.Width / 2;
+                for (int i = 0; i < AreaPaint.Width; i++, o++)
                 {
                     points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
+                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
                 }
-                graphics.DrawLines(pen, points);
+                EndsGraphMax(ref points, ref ip, ref pointsDraw);
+                Array.Resize(ref pointsDraw, ip);
+                SpeedDrawing(pointsDraw);
             }
             else if (SelectingFunction.SelectedIndex == 3)
             {
                 PointF[] points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
+                PointF[] pointsDraw = new PointF[AreaPaint.Width];
+                int ip = 0;
+                int o = -AreaPaint.Width / 2;
+                for (int i = 0; i < AreaPaint.Width; i++, o++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + centralX, (-(float)Math.Sin(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
+                    points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Sin(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
                 }
-                graphics.DrawLines(pen, points);
-                points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (-(float)Math.Sin(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
-                }
-                graphics.DrawLines(pen, points);
+                EndsGraphMax(ref points, ref ip, ref pointsDraw);
+                Array.Resize(ref pointsDraw, ip);
+                SpeedDrawing(pointsDraw);
             }
             else if (SelectingFunction.SelectedIndex == 4)
             {
                 PointF[] points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
+                PointF[] pointsDraw = new PointF[AreaPaint.Width];
+                int ip = 0;
+                int o = -AreaPaint.Width / 2;
+                for (int i = 0; i < AreaPaint.Width; i++, o++)
                 {
-                    points[i] = new PointF((i + offSetX) * plusM + centralX, (float)((-Math.Cos(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
+                    points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Cos(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
                 }
-                graphics.DrawLines(pen, points);
-                points = new PointF[AreaPaint.Width];
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i] = new PointF((-i + offSetX) * plusM + centralX, (float)((-Math.Cos(-i) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        Array.Resize(ref points, i);
-                        break;
-                    }
-                }
-                graphics.DrawLines(pen, points);
+                EndsGraphMax(ref points, ref ip, ref pointsDraw);
+                Array.Resize(ref pointsDraw, ip);
+                SpeedDrawing(pointsDraw);
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
-                pen = new Pen(Color.Black, 3f);
+                /*pen = new Pen(Color.Black, 3f);
                 graphics.DrawArc(pen, centralX - 42, centralY - 30, 50, 50, 135, 180);
                 graphics.DrawArc(pen, -7 + centralX, centralY - 30, 50, 50, 225, 180);
                 graphics.DrawLine(pen, centralX - 35, 12 + centralY, 2 + centralX, 49 + centralY);
-                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);
+                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);*/
             }
-            else if (SelectingFunction.SelectedIndex == 5)
-            {
-                PointF[] points = new PointF[AreaPaint.Width];
-                float o = 0;
-                for (int i = 0; i < points.Length; i++)
-                {
+        }
 
-                    points[i] = new PointF(o * 1000, (float)((Math.Pow(-o, 2 / 3) - Math.Sqrt(Math.Pow(o, 4 / 3) - 4 * o * o + 4)) / 2) * 1000);
-                    /*if (points[o].Y < -10000 || points[o].Y > 10000)
-                    {
-                        break;
-                    }*/
-                    o += 0.001f;
-                }
-                graphics.DrawLines(pen, points);
-                /*points = new PointF[650];
-                for (int i = 0; i < points.Length; i++)
+        void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
+        {
+            if ((points[i].Y < 0 || points[i].Y > AreaPaint.Height)&&(points[i].X < 0 || points[i].X > AreaPaint.Width))
+            {
+
+            }
+            else
+            {
+                if (ip == 0 && i > 0)
                 {
-                    points[i] = new PointF(-i + AreaPaint.Width / 2 + offSetX, (-(float)Math.Cos(-i) * multiplierI + offSetY) * CheckSign() + AreaPaint.Height / 2);
-                    if (points[i].Y < -10000 || points[i].Y > 10000)
-                    {
-                        break;
-                    }
+                    pointsDraw[ip] = points[i - 1];
+                    ip++;
                 }
-                graphics.DrawLines(pen, points);*/
+                else
+                {
+                    pointsDraw[ip] = points[i];
+                    ip++;
+                }
+            }
+        }
+
+        void EndsGraphMax(ref PointF[] points,ref int ip, ref PointF[] pointsDraw)
+        {
+            foreach (PointF point in points)
+            {
+                if (point.X == (pointsDraw[ip - 1].X + 1 * plusM))
+                {
+                    pointsDraw[ip] = point;
+                    ip++;
+                    break;
+                }
+            }
+        }
+
+        async void SpeedDrawing(PointF[] pointsDraw)
+        {
+            Pen pen = new Pen(Color.Black, 2f);
+            Graphics graphics = AreaPaint.CreateGraphics();
+            if (!slow)
+            {
+                graphics.DrawLines(pen, pointsDraw);
+            }
+            else
+            {
+                for (int f = 0; pointsDraw.Length - 1 > f; f++)
+                {
+                    await Task.Delay(slowspeed);
+                    graphics = AreaPaint.CreateGraphics();
+                    graphics.DrawLine(pen, pointsDraw[f], pointsDraw[f + 1]);
+                }
             }
         }
 
@@ -355,6 +340,38 @@ namespace Сhart
         private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
         {
             slow = SlowDrawing.Checked;
+            if (SlowDrawing.Checked)
+            {
+                Slow1.Visible = true;
+                Slow2.Visible = true;
+                Slow3.Visible = true;
+            }
+            else
+            {
+                Slow1.Visible = false;
+                Slow2.Visible = false;
+                Slow3.Visible = false;
+            }
+        }
+
+        private void Slow_CheckedChanged(object sender, EventArgs e)
+        {
+            if(Slow1.Checked)
+            {
+                slowspeed = 10;
+            }
+            else if(Slow2.Checked)
+            {
+                slowspeed = 100;
+            }
+            else if (Slow3.Checked)
+            {
+                slowspeed = 1000;
+            }
+            else
+            {
+                slowspeed = 0;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

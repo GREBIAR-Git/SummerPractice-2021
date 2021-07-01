@@ -77,6 +77,9 @@
             this.label13 = new System.Windows.Forms.Label();
             this.CenterO = new System.Windows.Forms.Label();
             this.SlowDrawing = new System.Windows.Forms.CheckBox();
+            this.Slow1 = new System.Windows.Forms.RadioButton();
+            this.Slow2 = new System.Windows.Forms.RadioButton();
+            this.Slow3 = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -364,8 +367,7 @@
             "√x",
             "sin(x)",
             "cos(x)",
-            "(x^2+y^2-1)^3 - x^2*y^3=0",
-            "Сердечки v2"});
+            "(x^2+y^2-1)^3 - x^2*y^3=0"});
             this.SelectingFunction.Location = new System.Drawing.Point(3, 25);
             this.SelectingFunction.Name = "SelectingFunction";
             this.SelectingFunction.Size = new System.Drawing.Size(112, 21);
@@ -559,7 +561,7 @@
             // 
             // CentralY
             // 
-            this.CentralY.Location = new System.Drawing.Point(340, 697);
+            this.CentralY.Location = new System.Drawing.Point(367, 701);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(33, 20);
             this.CentralY.TabIndex = 30;
@@ -567,7 +569,7 @@
             // 
             // CentralX
             // 
-            this.CentralX.Location = new System.Drawing.Point(295, 697);
+            this.CentralX.Location = new System.Drawing.Point(328, 701);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(33, 20);
             this.CentralX.TabIndex = 25;
@@ -576,7 +578,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(307, 680);
+            this.label12.Location = new System.Drawing.Point(337, 685);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 25;
@@ -585,7 +587,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(351, 681);
+            this.label13.Location = new System.Drawing.Point(379, 685);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(12, 13);
             this.label13.TabIndex = 25;
@@ -593,9 +595,9 @@
             // 
             // CenterO
             // 
-            this.CenterO.Location = new System.Drawing.Point(295, 667);
+            this.CenterO.Location = new System.Drawing.Point(325, 672);
             this.CenterO.Name = "CenterO";
-            this.CenterO.Size = new System.Drawing.Size(78, 13);
+            this.CenterO.Size = new System.Drawing.Size(90, 13);
             this.CenterO.TabIndex = 25;
             this.CenterO.Text = "Центр экрана";
             this.CenterO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -603,13 +605,51 @@
             // SlowDrawing
             // 
             this.SlowDrawing.AutoSize = true;
-            this.SlowDrawing.Location = new System.Drawing.Point(576, 685);
+            this.SlowDrawing.Location = new System.Drawing.Point(443, 672);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
             this.SlowDrawing.TabIndex = 31;
             this.SlowDrawing.Text = "Медленый режим прорисовки";
             this.SlowDrawing.UseVisualStyleBackColor = true;
             this.SlowDrawing.CheckedChanged += new System.EventHandler(this.SlowDrawing_CheckedChanged);
+            // 
+            // Slow1
+            // 
+            this.Slow1.AutoSize = true;
+            this.Slow1.Checked = true;
+            this.Slow1.Location = new System.Drawing.Point(453, 700);
+            this.Slow1.Name = "Slow1";
+            this.Slow1.Size = new System.Drawing.Size(36, 17);
+            this.Slow1.TabIndex = 32;
+            this.Slow1.TabStop = true;
+            this.Slow1.Text = "1x";
+            this.Slow1.UseVisualStyleBackColor = true;
+            this.Slow1.Visible = false;
+            this.Slow1.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
+            // 
+            // Slow2
+            // 
+            this.Slow2.AutoSize = true;
+            this.Slow2.Location = new System.Drawing.Point(514, 699);
+            this.Slow2.Name = "Slow2";
+            this.Slow2.Size = new System.Drawing.Size(36, 17);
+            this.Slow2.TabIndex = 33;
+            this.Slow2.Text = "2x";
+            this.Slow2.UseVisualStyleBackColor = true;
+            this.Slow2.Visible = false;
+            this.Slow2.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
+            // 
+            // Slow3
+            // 
+            this.Slow3.AutoSize = true;
+            this.Slow3.Location = new System.Drawing.Point(576, 700);
+            this.Slow3.Name = "Slow3";
+            this.Slow3.Size = new System.Drawing.Size(36, 17);
+            this.Slow3.TabIndex = 34;
+            this.Slow3.Text = "3x";
+            this.Slow3.UseVisualStyleBackColor = true;
+            this.Slow3.Visible = false;
+            this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
             // 
             // MainForm
             // 
@@ -619,6 +659,9 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.Controls.Add(this.Slow3);
+            this.Controls.Add(this.Slow2);
+            this.Controls.Add(this.Slow1);
             this.Controls.Add(this.SlowDrawing);
             this.Controls.Add(this.CenterO);
             this.Controls.Add(this.label13);
@@ -704,6 +747,9 @@
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.CheckBox SlowDrawing;
+        private System.Windows.Forms.RadioButton Slow1;
+        private System.Windows.Forms.RadioButton Slow2;
+        private System.Windows.Forms.RadioButton Slow3;
     }
 }
 
