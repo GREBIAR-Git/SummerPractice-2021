@@ -180,68 +180,7 @@ namespace Сhart
                 limitationUpY = int.MaxValue;
                 LimitationUpY.Text = "0";
             }
-
-            if (SelectingFunction.SelectedIndex == 1)
-            {
-                PointF[] points = new PointF[AreaPaint.Width];
-                PointF[] pointsDraw = new PointF[AreaPaint.Width];
-                int ip = 0;
-                int o = -AreaPaint.Width/2;
-                for (int i = 0; i < AreaPaint.Width; i++, o++)
-                {
-                    points[i] = new PointF((o + offSetX) * plusM + centralX, (float)((-Math.Pow(o, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
-                }
-                EndsGraphMax(ref points, ref ip, ref pointsDraw);
-                Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw, graphics);
-            }
-            else if (SelectingFunction.SelectedIndex == 2)
-            {
-                PointF[] points = new PointF[AreaPaint.Width];
-                PointF[] pointsDraw = new PointF[AreaPaint.Width];
-                int ip = 0;
-                int o = -AreaPaint.Width / 2;
-                for (int i = 0; i < AreaPaint.Width; i++, o++)
-                {
-                    points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
-                }
-                EndsGraphMax(ref points, ref ip, ref pointsDraw);
-                Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw, graphics);
-            }
-            else if (SelectingFunction.SelectedIndex == 3)
-            {
-                PointF[] points = new PointF[AreaPaint.Width];
-                PointF[] pointsDraw = new PointF[AreaPaint.Width];
-                int ip = 0;
-                int o = -AreaPaint.Width / 2;
-                for (int i = 0; i < AreaPaint.Width; i++, o++)
-                {
-                    points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Sin(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
-                }
-                EndsGraphMax(ref points, ref ip, ref pointsDraw);
-                Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw, graphics);
-            }
-            else if (SelectingFunction.SelectedIndex == 4)
-            {
-                PointF[] points = new PointF[AreaPaint.Width];
-                PointF[] pointsDraw = new PointF[AreaPaint.Width];
-                int ip = 0;
-                int o = -AreaPaint.Width / 2;
-                for (int i = 0; i < AreaPaint.Width; i++, o++)
-                {
-                    points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Cos(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
-                }
-                EndsGraphMax(ref points, ref ip, ref pointsDraw);
-                Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw, graphics);
-            }
-            else if (SelectingFunction.SelectedIndex == 5)
+            if(SelectingFunction.SelectedIndex == 5)
             {
                 Pen pen = new Pen(Color.Black, 3f);
                 graphics.DrawArc(pen, centralX - 42, centralY - 30, 50, 50, 135, 180);
@@ -249,7 +188,41 @@ namespace Сhart
                 graphics.DrawLine(pen, centralX - 35, 12 + centralY, 2 + centralX, 49 + centralY);
                 graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);
             }
+            else
+            {
+                int min = LimitationsMin();
+                int max = LimitationsMax();
+                PointF[] points = new PointF[Math.Abs(min) + max];
+                PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
+                int ip = 0;
+                int o = min;
+                for (int i = 0; i < points.Length; i++, o++)
+                {
+                    if (SelectingFunction.SelectedIndex == 1)
+                    {
+                        points[i] = new PointF((o + offSetX) * plusM + centralX, (float)((-Math.Pow(o, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
+                    }
+                    else if (SelectingFunction.SelectedIndex == 2)
+                    {
+                        points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                    }
+                    else if (SelectingFunction.SelectedIndex == 3)
+                    {
+                        points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Sin(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                    }
+                    else if (SelectingFunction.SelectedIndex == 4)
+                    {
+                        points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Cos(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                    }
+                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
+                }
+                EndsGraphMax(ref points, ref ip, ref pointsDraw);
+                Array.Resize(ref pointsDraw, ip);
+                SpeedDrawing(pointsDraw, graphics);
+            }
         }
+
+
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
         {
@@ -260,11 +233,8 @@ namespace Сhart
                     pointsDraw[ip] = points[i - 1];
                     ip++;
                 }
-                else
-                {
-                    pointsDraw[ip] = points[i];
-                    ip++;
-                }
+                pointsDraw[ip] = points[i];
+                ip++;
             }
         }
 
@@ -298,6 +268,16 @@ namespace Сhart
                 }
             }
         }
+
+        int LimitationsMin()
+        {
+            return -(centralX / plusM + 1) ;
+        }
+        int LimitationsMax()
+        {
+            return (AreaPaint.Width) / plusM + 2 + LimitationsMin();
+        }
+        
 
         private void CentralX_TextChanged(object sender, EventArgs e)
         {
