@@ -65,7 +65,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
-            this.button6 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -80,6 +79,7 @@
             this.Slow1 = new System.Windows.Forms.RadioButton();
             this.Slow2 = new System.Windows.Forms.RadioButton();
             this.Slow3 = new System.Windows.Forms.RadioButton();
+            this.nowTable = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -489,21 +489,12 @@
             // 
             this.viewTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.viewTable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.viewTable.Controls.Add(this.button6);
+            this.viewTable.Controls.Add(this.nowTable);
             this.viewTable.Location = new System.Drawing.Point(863, 3);
             this.viewTable.Name = "viewTable";
             this.viewTable.Size = new System.Drawing.Size(194, 645);
             this.viewTable.TabIndex = 26;
             this.viewTable.Visible = false;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(55, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(80, 23);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Таблица";
-            this.button6.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -651,6 +642,15 @@
             this.Slow3.Visible = false;
             this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
             // 
+            // nowTable
+            // 
+            this.nowTable.Location = new System.Drawing.Point(17, 15);
+            this.nowTable.Multiline = true;
+            this.nowTable.Name = "nowTable";
+            this.nowTable.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.nowTable.Size = new System.Drawing.Size(159, 613);
+            this.nowTable.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -690,6 +690,7 @@
             this.freeC.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
             this.viewTable.ResumeLayout(false);
+            this.viewTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -745,11 +746,11 @@
         private System.Windows.Forms.Panel freeC;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel viewTable;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.CheckBox SlowDrawing;
         private System.Windows.Forms.RadioButton Slow1;
         private System.Windows.Forms.RadioButton Slow2;
         private System.Windows.Forms.RadioButton Slow3;
+        private System.Windows.Forms.TextBox nowTable;
     }
 }
 

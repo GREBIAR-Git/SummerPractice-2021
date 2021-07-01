@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -7,13 +8,13 @@ namespace Сhart
 {
     public partial class MainForm : Form
     {
-
+        bool chart;
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
         bool redrawing;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
-        
+        List<PointF> nowPoints = new List<PointF>();
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Сhart
             slow = false;
             redrawing = true;
             slowspeed = 10;
+            chart = false;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -64,7 +66,10 @@ namespace Сhart
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
             }
-            PaintChart(e.Graphics);
+            if(chart)
+            {
+                PaintChart(e.Graphics);
+            }
         }
 
         int CheckSign()
@@ -81,16 +86,24 @@ namespace Сhart
 
         private void SelectingFunction_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (SelectingFunction.SelectedIndex == 1)
+            if(SelectingFunction.SelectedIndex == 0)
+            {
+                chart = false;
+                AreaPaint.Refresh();
+                nowTable.Clear();
+            }
+            else if (SelectingFunction.SelectedIndex == 1)
             {
                 label2.Text = "Степень";
                 AdditionalParameter.Visible = true;
                 label2.Visible = true;
+                chart = true;
             }
             else 
             {
                 AdditionalParameter.Visible = false;
                 label2.Visible = false;
+                chart = true;
             }
         }
 
@@ -204,7 +217,7 @@ namespace Сhart
                     }
                     else if (SelectingFunction.SelectedIndex == 2)
                     {
-                        points[i] = new PointF(((i + offSetX) * plusM + centralX), (float)(-Math.Sqrt(i) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
+                        points[i] = new PointF(((o + offSetX) * plusM + centralX), (float)(-Math.Sqrt(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
                     }
                     else if (SelectingFunction.SelectedIndex == 3)
                     {
@@ -218,8 +231,43 @@ namespace Сhart
                 }
                 EndsGraphMax(ref points, ref ip, ref pointsDraw);
                 Array.Resize(ref pointsDraw, ip);
+                PointF[] pointsDrawTemp = pointsDraw;
                 SpeedDrawing(pointsDraw, graphics);
+                nowPoints.Clear();
+                nowTable.Clear();
+                tableCompletion(pointsDraw);
+
             }
+        }
+
+
+        void tableCompletion(PointF[] pointsDraw)
+        {
+            for (int i = 0; i < pointsDraw.Length; i++)
+            {
+                pointsDraw[i].X -= 330;
+                pointsDraw[i].X /= plusM;
+                pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X, 1);
+                pointsDraw[i].X = pointsDraw[i].X;
+                pointsDraw[i].Y -= 326;
+                pointsDraw[i].Y /= plusM;
+                pointsDraw[i].Y = (float)Math.Round(pointsDraw[i].Y, 1);
+                pointsDraw[i].Y = -pointsDraw[i].Y;
+                if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
+                {
+                    nowPoints.Add(pointsDraw[i]);
+                }
+                else if (i == 0)
+                {
+                    nowPoints.Add(pointsDraw[i]);
+                }
+            }
+            string nowTableS = string.Empty;
+            foreach (PointF point in nowPoints)
+            {
+                nowTableS += "x = " + point.X + "; " + "y = " + point.Y + ";" + Environment.NewLine;
+            }
+            nowTable.Text += nowTableS;
         }
 
 
@@ -228,7 +276,7 @@ namespace Сhart
         {
             if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)
             {
-                if (ip == 0 && i > 0)
+                if (ip == 0 && i > 0 && points[i - 1].Y == double.NaN)
                 {
                     pointsDraw[ip] = points[i - 1];
                     ip++;
@@ -242,7 +290,8 @@ namespace Сhart
         {
             foreach (PointF point in points)
             {
-                if (point.X == (pointsDraw[ip - 1].X + 1 * plusM))
+
+                if (ip>0&&point.X == (pointsDraw[ip - 1].X + 1 * plusM))
                 {
                     pointsDraw[ip] = point;
                     ip++;
@@ -254,17 +303,22 @@ namespace Сhart
         async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics)
         {
             Pen pen = new Pen(Color.Black, 2f);
-            if (!slow || redrawing)
+            if (pointsDraw.Length > 1)
             {
-                graphics.DrawLines(pen, pointsDraw);
-            }
-            else
-            {
-                for (int f = 0; pointsDraw.Length - 1 > f; f++)
+                if (!slow || redrawing)
                 {
-                    await Task.Delay(slowspeed);
-                    graphics = AreaPaint.CreateGraphics();
-                    graphics.DrawLine(pen, pointsDraw[f], pointsDraw[f + 1]);
+                    graphics.DrawLines(pen, pointsDraw);
+                }
+                else
+                {
+                    PointF[] temppointsDraw = new PointF[pointsDraw.Length];
+                    Array.Copy(pointsDraw, temppointsDraw, pointsDraw.Length);
+                    for (int f = 0; temppointsDraw.Length - 1 > f; f++)
+                    {
+                        await Task.Delay(slowspeed);
+                        graphics = AreaPaint.CreateGraphics();
+                        graphics.DrawLine(pen, temppointsDraw[f], temppointsDraw[f + 1]);
+                    }
                 }
             }
         }
@@ -395,6 +449,14 @@ namespace Сhart
             else
             {
                 slowspeed = 0;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            foreach(PointF point in nowPoints)
+            {
+                nowTable.Text += "x=" + point.X + ";" + "y=" + point.Y + Environment.NewLine;
             }
         }
 
