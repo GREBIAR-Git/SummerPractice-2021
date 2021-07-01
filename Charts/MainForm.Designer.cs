@@ -65,6 +65,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
+            this.nowTable = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -79,7 +80,6 @@
             this.Slow1 = new System.Windows.Forms.RadioButton();
             this.Slow2 = new System.Windows.Forms.RadioButton();
             this.Slow3 = new System.Windows.Forms.RadioButton();
-            this.nowTable = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -168,6 +168,7 @@
             // 
             // Draw
             // 
+            this.Draw.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Draw.Location = new System.Drawing.Point(52, 325);
             this.Draw.Name = "Draw";
             this.Draw.Size = new System.Drawing.Size(79, 23);
@@ -445,6 +446,7 @@
             // 
             // button4
             // 
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(51, 3);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(80, 23);
@@ -465,6 +467,7 @@
             // 
             // button5
             // 
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Location = new System.Drawing.Point(52, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(80, 23);
@@ -496,8 +499,18 @@
             this.viewTable.TabIndex = 26;
             this.viewTable.Visible = false;
             // 
+            // nowTable
+            // 
+            this.nowTable.Location = new System.Drawing.Point(17, 15);
+            this.nowTable.Multiline = true;
+            this.nowTable.Name = "nowTable";
+            this.nowTable.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.nowTable.Size = new System.Drawing.Size(159, 613);
+            this.nowTable.TabIndex = 7;
+            // 
             // button2
             // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Charts.Properties.Resources._11;
             this.button2.Location = new System.Drawing.Point(220, 667);
             this.button2.Name = "button2";
@@ -509,6 +522,7 @@
             // 
             // button1
             // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Charts.Properties.Resources.minus;
             this.button1.Location = new System.Drawing.Point(11, 667);
             this.button1.Name = "button1";
@@ -521,6 +535,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(892, 668);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(159, 49);
@@ -641,15 +656,6 @@
             this.Slow3.UseVisualStyleBackColor = true;
             this.Slow3.Visible = false;
             this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
-            // 
-            // nowTable
-            // 
-            this.nowTable.Location = new System.Drawing.Point(17, 15);
-            this.nowTable.Multiline = true;
-            this.nowTable.Name = "nowTable";
-            this.nowTable.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.nowTable.Size = new System.Drawing.Size(159, 613);
-            this.nowTable.TabIndex = 7;
             // 
             // MainForm
             // 

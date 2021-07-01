@@ -276,7 +276,7 @@ namespace Сhart
         {
             if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)
             {
-                if (ip == 0 && i > 0 && points[i - 1].Y == double.NaN)
+                if (ip == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN))
                 {
                     pointsDraw[ip] = points[i - 1];
                     ip++;
