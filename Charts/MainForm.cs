@@ -219,21 +219,17 @@ namespace Сhart
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
-                /*pen = new Pen(Color.Black, 3f);
+                Pen pen = new Pen(Color.Black, 3f);
                 graphics.DrawArc(pen, centralX - 42, centralY - 30, 50, 50, 135, 180);
                 graphics.DrawArc(pen, -7 + centralX, centralY - 30, 50, 50, 225, 180);
                 graphics.DrawLine(pen, centralX - 35, 12 + centralY, 2 + centralX, 49 + centralY);
-                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);*/
+                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);
             }
         }
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
         {
-            if ((points[i].Y < 0 || points[i].Y > AreaPaint.Height))
-            {
-
-            }
-            else
+            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)
             {
                 if (ip == 0 && i > 0)
                 {
