@@ -27,20 +27,16 @@ namespace Сhart
             slowspeed = 10;
             chart = false;
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
+            nowTable.BorderStyle = BorderStyle.None;
+            nowTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            nowTable.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            nowTable.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            nowTable.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            nowTable.BackgroundColor = Color.White;
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Columns[0].Width = 97; //194/2 = 97
-            dataGridView1.Columns[1].Width = 97;
+            nowTable.EnableHeadersVisualStyles = false;
+            nowTable.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            nowTable.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
         }
 
@@ -106,7 +102,7 @@ namespace Сhart
             {
                 chart = false;
                 AreaPaint.Refresh();
-                //nowTable.Clear();
+                nowTable.Rows.Clear();
             }
             else if (SelectingFunction.SelectedIndex == 1)
             {
@@ -250,7 +246,7 @@ namespace Сhart
                 PointF[] pointsDrawTemp = pointsDraw;
                 SpeedDrawing(pointsDraw, graphics);
                 nowPoints.Clear();
-                //nowTable.Clear();
+                nowTable.Rows.Clear();
                 tableCompletion(pointsDraw);
 
             }
@@ -289,14 +285,13 @@ namespace Сhart
                     nowPoints.Add(pointsDraw[i]);
                 }
             }
-            string nowTableS = string.Empty;
+            nowTable.SuspendLayout();
             foreach (PointF point in nowPoints)
             {
-                nowTableS += "x = " + point.X + "; " + "y = " + point.Y + ";" + Environment.NewLine;
+                nowTable.Rows.Add(point.X, point.Y);
             }
-            //nowTable.Text += nowTableS;
+            nowTable.ResumeLayout();
         }
-
 
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)

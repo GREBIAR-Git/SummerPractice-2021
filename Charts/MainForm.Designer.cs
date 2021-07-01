@@ -64,7 +64,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nowTable = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -79,8 +79,8 @@
             this.Slow1 = new System.Windows.Forms.RadioButton();
             this.Slow2 = new System.Windows.Forms.RadioButton();
             this.Slow3 = new System.Windows.Forms.RadioButton();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -89,7 +89,7 @@
             this.freeC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             this.SuspendLayout();
             // 
@@ -482,25 +482,26 @@
             // 
             this.viewTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.viewTable.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.viewTable.Controls.Add(this.dataGridView1);
+            this.viewTable.Controls.Add(this.nowTable);
             this.viewTable.Location = new System.Drawing.Point(863, 3);
             this.viewTable.Name = "viewTable";
             this.viewTable.Size = new System.Drawing.Size(194, 645);
             this.viewTable.TabIndex = 26;
             this.viewTable.Visible = false;
             // 
-            // dataGridView1
+            // nowTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(192, 643);
-            this.dataGridView1.TabIndex = 8;
+            this.nowTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowTable.Location = new System.Drawing.Point(0, 0);
+            this.nowTable.Name = "nowTable";
+            this.nowTable.RowHeadersWidth = 20;
+            this.nowTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.nowTable.Size = new System.Drawing.Size(192, 643);
+            this.nowTable.TabIndex = 8;
             // 
             // button2
             // 
@@ -651,15 +652,25 @@
             this.Slow3.Visible = false;
             this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
             // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
             // Column1
             // 
-            this.Column1.HeaderText = "Column1";
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "X";
+            this.Column1.MinimumWidth = 76;
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 76;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column2.HeaderText = "Y";
+            this.Column2.MinimumWidth = 76;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 76;
             // 
             // MainForm
             // 
@@ -700,7 +711,7 @@
             this.freeC.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
             this.viewTable.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -759,7 +770,7 @@
         private System.Windows.Forms.RadioButton Slow1;
         private System.Windows.Forms.RadioButton Slow2;
         private System.Windows.Forms.RadioButton Slow3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView nowTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
