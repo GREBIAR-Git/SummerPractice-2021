@@ -11,6 +11,7 @@ namespace Сhart
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
+        bool redrawing;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         
         public MainForm()
@@ -21,6 +22,8 @@ namespace Сhart
             centralY = AreaPaint.Height / 2;
             plusM = 1;
             slow = false;
+            redrawing = true;
+            slowspeed = 10;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -95,8 +98,10 @@ namespace Сhart
         {
             Graphics graphics = AreaPaint.CreateGraphics();
             graphics.Clear(Color.White);
+            redrawing = false;
             AreaPaint.Refresh();
-            PaintChart(graphics);
+            redrawing = true;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -165,7 +170,7 @@ namespace Сhart
                 }
                 EndsGraphMax(ref points, ref ip, ref pointsDraw);
                 Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw);
+                SpeedDrawing(pointsDraw, graphics);
             }
             else if (SelectingFunction.SelectedIndex == 2)
             {
@@ -180,7 +185,7 @@ namespace Сhart
                 }
                 EndsGraphMax(ref points, ref ip, ref pointsDraw);
                 Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw);
+                SpeedDrawing(pointsDraw, graphics);
             }
             else if (SelectingFunction.SelectedIndex == 3)
             {
@@ -195,7 +200,7 @@ namespace Сhart
                 }
                 EndsGraphMax(ref points, ref ip, ref pointsDraw);
                 Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw);
+                SpeedDrawing(pointsDraw, graphics);
             }
             else if (SelectingFunction.SelectedIndex == 4)
             {
@@ -210,7 +215,7 @@ namespace Сhart
                 }
                 EndsGraphMax(ref points, ref ip, ref pointsDraw);
                 Array.Resize(ref pointsDraw, ip);
-                SpeedDrawing(pointsDraw);
+                SpeedDrawing(pointsDraw, graphics);
             }
             else if (SelectingFunction.SelectedIndex == 5)
             {
@@ -224,7 +229,7 @@ namespace Сhart
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
         {
-            if ((points[i].Y < 0 || points[i].Y > AreaPaint.Height)&&(points[i].X < 0 || points[i].X > AreaPaint.Width))
+            if ((points[i].Y < 0 || points[i].Y > AreaPaint.Height))
             {
 
             }
@@ -256,11 +261,10 @@ namespace Сhart
             }
         }
 
-        async void SpeedDrawing(PointF[] pointsDraw)
+        async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics)
         {
             Pen pen = new Pen(Color.Black, 2f);
-            Graphics graphics = AreaPaint.CreateGraphics();
-            if (!slow)
+            if (!slow || redrawing)
             {
                 graphics.DrawLines(pen, pointsDraw);
             }
