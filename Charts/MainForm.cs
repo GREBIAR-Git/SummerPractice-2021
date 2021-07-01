@@ -26,6 +26,22 @@ namespace Сhart
             redrawing = true;
             slowspeed = 10;
             chart = false;
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.Columns[0].Width = 97; //194/2 = 97
+            dataGridView1.Columns[1].Width = 97;
+
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -90,7 +106,7 @@ namespace Сhart
             {
                 chart = false;
                 AreaPaint.Refresh();
-                nowTable.Clear();
+                //nowTable.Clear();
             }
             else if (SelectingFunction.SelectedIndex == 1)
             {
@@ -234,7 +250,7 @@ namespace Сhart
                 PointF[] pointsDrawTemp = pointsDraw;
                 SpeedDrawing(pointsDraw, graphics);
                 nowPoints.Clear();
-                nowTable.Clear();
+                //nowTable.Clear();
                 tableCompletion(pointsDraw);
 
             }
@@ -278,7 +294,7 @@ namespace Сhart
             {
                 nowTableS += "x = " + point.X + "; " + "y = " + point.Y + ";" + Environment.NewLine;
             }
-            nowTable.Text += nowTableS;
+            //nowTable.Text += nowTableS;
         }
 
 
@@ -467,7 +483,7 @@ namespace Сhart
         {
             foreach(PointF point in nowPoints)
             {
-                nowTable.Text += "x=" + point.X + ";" + "y=" + point.Y + Environment.NewLine;
+                //nowTable.Text += "x=" + point.X + ";" + "y=" + point.Y + Environment.NewLine;
             }
         }
 
