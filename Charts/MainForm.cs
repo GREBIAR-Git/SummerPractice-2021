@@ -156,6 +156,30 @@ namespace Сhart
                 offSetY = 0;
                 offsetY.Text = "0";
             }
+            int limitationDownX;
+            if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
+            {
+                limitationDownX = int.MinValue;
+                LimitationDownX.Text = "0";
+            }
+            int limitationUpX;
+            if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
+            {
+                limitationUpX = int.MaxValue;
+                LimitationUpX.Text = "0";
+            }
+            int limitationDownY;
+            if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
+            {
+                limitationDownY = int.MinValue;
+                LimitationDownY.Text = "0";
+            }
+            int limitationUpY;
+            if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+            {
+                limitationUpY = int.MaxValue;
+                LimitationUpY.Text = "0";
+            }
 
             if (SelectingFunction.SelectedIndex == 1)
             {
@@ -290,6 +314,16 @@ namespace Сhart
             int byf;
             if (Int32.TryParse(CentralX.Text, out byf))
             {
+                if(byf>999)
+                {
+                    CentralX.Text = "999";
+                    byf = 999;
+                }
+                else if (byf < -999)
+                {
+                    CentralX.Text = "-999";
+                    byf = -999;
+                }
                 centralX = AreaPaint.Width / 2 - byf * plusM;
                 AreaPaint.Refresh();
             }
@@ -305,6 +339,16 @@ namespace Сhart
             int byf;
             if (Int32.TryParse(CentralY.Text, out byf))
             {
+                if (byf > 999)
+                {
+                    CentralY.Text = "999";
+                    byf = 999;
+                }
+                else if (byf < -999)
+                {
+                    CentralY.Text = "-999";
+                    byf = -999;
+                }
                 centralY = AreaPaint.Height / 2 + byf * plusM;
                 AreaPaint.Refresh();
             }

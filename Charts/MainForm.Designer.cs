@@ -34,10 +34,10 @@
             this.Draw = new System.Windows.Forms.Button();
             this.FinalExpression = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.limitationUpY = new System.Windows.Forms.TextBox();
-            this.limitationUpX = new System.Windows.Forms.TextBox();
-            this.limitationDownY = new System.Windows.Forms.TextBox();
-            this.limitationDownX = new System.Windows.Forms.TextBox();
+            this.LimitationUpY = new System.Windows.Forms.TextBox();
+            this.LimitationUpX = new System.Windows.Forms.TextBox();
+            this.LimitationDownY = new System.Windows.Forms.TextBox();
+            this.LimitationDownX = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -140,10 +140,10 @@
             this.functionsС.Controls.Add(this.Draw);
             this.functionsС.Controls.Add(this.FinalExpression);
             this.functionsС.Controls.Add(this.label11);
-            this.functionsС.Controls.Add(this.limitationUpY);
-            this.functionsС.Controls.Add(this.limitationUpX);
-            this.functionsС.Controls.Add(this.limitationDownY);
-            this.functionsС.Controls.Add(this.limitationDownX);
+            this.functionsС.Controls.Add(this.LimitationUpY);
+            this.functionsС.Controls.Add(this.LimitationUpX);
+            this.functionsС.Controls.Add(this.LimitationDownY);
+            this.functionsС.Controls.Add(this.LimitationDownX);
             this.functionsС.Controls.Add(this.label10);
             this.functionsС.Controls.Add(this.label9);
             this.functionsС.Controls.Add(this.label8);
@@ -193,33 +193,33 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "Итоговое выражение";
             // 
-            // limitationUpY
+            // LimitationUpY
             // 
-            this.limitationUpY.Location = new System.Drawing.Point(96, 260);
-            this.limitationUpY.Name = "limitationUpY";
-            this.limitationUpY.Size = new System.Drawing.Size(87, 20);
-            this.limitationUpY.TabIndex = 21;
+            this.LimitationUpY.Location = new System.Drawing.Point(96, 260);
+            this.LimitationUpY.Name = "LimitationUpY";
+            this.LimitationUpY.Size = new System.Drawing.Size(87, 20);
+            this.LimitationUpY.TabIndex = 21;
             // 
-            // limitationUpX
+            // LimitationUpX
             // 
-            this.limitationUpX.Location = new System.Drawing.Point(3, 260);
-            this.limitationUpX.Name = "limitationUpX";
-            this.limitationUpX.Size = new System.Drawing.Size(87, 20);
-            this.limitationUpX.TabIndex = 20;
+            this.LimitationUpX.Location = new System.Drawing.Point(3, 260);
+            this.LimitationUpX.Name = "LimitationUpX";
+            this.LimitationUpX.Size = new System.Drawing.Size(87, 20);
+            this.LimitationUpX.TabIndex = 20;
             // 
-            // limitationDownY
+            // LimitationDownY
             // 
-            this.limitationDownY.Location = new System.Drawing.Point(96, 234);
-            this.limitationDownY.Name = "limitationDownY";
-            this.limitationDownY.Size = new System.Drawing.Size(87, 20);
-            this.limitationDownY.TabIndex = 19;
+            this.LimitationDownY.Location = new System.Drawing.Point(96, 234);
+            this.LimitationDownY.Name = "LimitationDownY";
+            this.LimitationDownY.Size = new System.Drawing.Size(87, 20);
+            this.LimitationDownY.TabIndex = 19;
             // 
-            // limitationDownX
+            // LimitationDownX
             // 
-            this.limitationDownX.Location = new System.Drawing.Point(3, 234);
-            this.limitationDownX.Name = "limitationDownX";
-            this.limitationDownX.Size = new System.Drawing.Size(87, 20);
-            this.limitationDownX.TabIndex = 18;
+            this.LimitationDownX.Location = new System.Drawing.Point(3, 234);
+            this.LimitationDownX.Name = "LimitationDownX";
+            this.LimitationDownX.Size = new System.Drawing.Size(87, 20);
+            this.LimitationDownX.TabIndex = 18;
             // 
             // label10
             // 
@@ -710,10 +710,10 @@
         private System.Windows.Forms.Button Draw;
         private System.Windows.Forms.TextBox FinalExpression;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox limitationUpY;
-        private System.Windows.Forms.TextBox limitationUpX;
-        private System.Windows.Forms.TextBox limitationDownY;
-        private System.Windows.Forms.TextBox limitationDownX;
+        private System.Windows.Forms.TextBox LimitationUpY;
+        private System.Windows.Forms.TextBox LimitationUpX;
+        private System.Windows.Forms.TextBox LimitationDownY;
+        private System.Windows.Forms.TextBox LimitationDownX;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
