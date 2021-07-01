@@ -56,7 +56,6 @@
             this.SelectingFunction = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
@@ -161,7 +160,7 @@
             this.functionsС.Controls.Add(this.AdditionalParameter);
             this.functionsС.Controls.Add(this.SelectingFunction);
             this.functionsС.Controls.Add(this.label1);
-            this.functionsС.Location = new System.Drawing.Point(3, 71);
+            this.functionsС.Location = new System.Drawing.Point(3, 52);
             this.functionsС.Name = "functionsС";
             this.functionsС.Size = new System.Drawing.Size(188, 355);
             this.functionsС.TabIndex = 1;
@@ -389,24 +388,12 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.radioButton3);
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton1);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(188, 62);
+            this.panel1.Size = new System.Drawing.Size(188, 43);
             this.panel1.TabIndex = 4;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(52, 39);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(74, 17);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.Text = "Свобдное";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // radioButton2
             // 
@@ -438,7 +425,7 @@
             this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.tableC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableC.Controls.Add(this.button4);
-            this.tableC.Location = new System.Drawing.Point(3, 432);
+            this.tableC.Location = new System.Drawing.Point(3, 413);
             this.tableC.Name = "tableC";
             this.tableC.Size = new System.Drawing.Size(188, 30);
             this.tableC.TabIndex = 6;
@@ -459,7 +446,7 @@
             this.freeC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.freeC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.freeC.Controls.Add(this.button5);
-            this.freeC.Location = new System.Drawing.Point(3, 468);
+            this.freeC.Location = new System.Drawing.Point(3, 449);
             this.freeC.Name = "freeC";
             this.freeC.Size = new System.Drawing.Size(188, 31);
             this.freeC.TabIndex = 7;
@@ -744,7 +731,6 @@
         internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button4;

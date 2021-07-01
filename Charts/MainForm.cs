@@ -243,13 +243,24 @@ namespace Сhart
 
         void tableCompletion(PointF[] pointsDraw)
         {
+            int byfX, byfY;
+
+            if (!int.TryParse(CentralX.Text, out byfX))
+            {
+                byfX = 0;
+            }
+            if (!int.TryParse(CentralY.Text, out byfY))
+            {
+                byfY = 0;
+            }
+                
             for (int i = 0; i < pointsDraw.Length; i++)
             {
-                pointsDraw[i].X -= 330;
+                pointsDraw[i].X -= 330- byfX;
                 pointsDraw[i].X /= plusM;
                 pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X, 1);
                 pointsDraw[i].X = pointsDraw[i].X;
-                pointsDraw[i].Y -= 326;
+                pointsDraw[i].Y -= 326 + byfY;
                 pointsDraw[i].Y /= plusM;
                 pointsDraw[i].Y = (float)Math.Round(pointsDraw[i].Y, 1);
                 pointsDraw[i].Y = -pointsDraw[i].Y;
