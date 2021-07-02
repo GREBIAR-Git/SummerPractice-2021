@@ -80,18 +80,6 @@ namespace Сhart
             }
         }
 
-        int CheckSign()
-        {
-            if (plus.Checked)
-            {
-                return 1;
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
         private void SelectingFunction_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(SelectingFunction.SelectedIndex == 0)
@@ -148,6 +136,134 @@ namespace Сhart
                 CentralXChenged();
                 CentralYChenged();
             }
+        }
+
+        private void radioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                functionsС.Visible = true;
+                tableC.Visible = false;
+            }
+            else if (radioButton2.Checked)
+            {
+                functionsС.Visible = false;
+                tableC.Visible = true;
+            }
+            else
+            {
+                functionsС.Visible = false;
+                tableC.Visible = false;
+            }
+        }
+
+        private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
+        {
+            slow = SlowDrawing.Checked;
+            if (SlowDrawing.Checked)
+            {
+                SpeedSlow.Visible = true;
+            }
+            else
+            {
+                SpeedSlow.Visible = false;
+            }
+        }
+
+        private void SpeedSlow_Scroll(object sender, EventArgs e)
+        {
+            if (SpeedSlow.Value == 0)
+            {
+                slowspeed = 20;
+            }
+            else
+            {
+                slowspeed = SpeedSlow.Value * 20;
+            }
+        }
+
+        private void AreaPaint_MouseMove(object sender, MouseEventArgs e)
+        {
+            float coorX = ((float)(e.X - centralX)) / plusM;
+            float coorY = ((float)(centralY - e.Y)) / plusM;
+            coorX = (float)Math.Round(coorX, 0);
+            coorY = (float)Math.Round(coorY, 0);
+            coordinates.Text = "x = " + coorX.ToString() + ";  y = " + coorY.ToString() + ";";
+            if (lastpoint.X == coorX && lastpoint.Y == coorY)
+            {
+                return;
+            }
+            lastpoint.X = coorX;
+            lastpoint.Y = coorY;
+
+            float sizeСircle = plusM / 5.5f + 30 / plusM;
+
+            if (plusM < 9)
+            {
+                sizeСircle = 0;
+            }
+            if (!slow)
+            {
+                AreaPaint.Refresh();
+                Graphics graphics = AreaPaint.CreateGraphics();
+                graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX * plusM, centralY - sizeСircle / 2 - coorY * plusM, sizeСircle, sizeСircle);
+            }
+        }
+
+        private void AreaPaint_MouseLeave(object sender, EventArgs e)
+        {
+            coordinates.Text = "Не в зоны действия";
+            if (!slow)
+            {
+                AreaPaint.Refresh();
+            }
+            lastpoint.Y = 1000;
+            lastpoint.X = 1000;
+        }
+
+        private void Limitation_TextChanged(object sender, EventArgs e)
+        {
+            GeneralRestrictions((TextBox)sender);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            viewTable.Visible = !viewTable.Visible;
+            CentralXChenged();
+            CentralYChenged();
+        }
+
+        private void PercentScrolling_Scroll(object sender, EventArgs e)
+        {
+            if (PercentScrolling.Value != 0)
+            {
+                plusM = PercentScrolling.Value * 11;
+                Percent.Text = "1:" + plusM;
+                CentralXChenged();
+                CentralYChenged();
+            }
+            else
+            {
+                plusM = 1;
+                Percent.Text = "1:1";
+                CentralXChenged();
+                CentralYChenged();
+            }
+        }
+
+        private void CentralX_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length == 5)
+            {
+                textBox.Text = textBox.Text.Remove(4);
+            }
+            CentralXChenged();
+        }
+
+        private void CentralY_TextChanged(object sender, EventArgs e)
+        {
+            CentralYChenged();
         }
 
         void PaintChart(Graphics graphics)
@@ -293,7 +409,6 @@ namespace Сhart
             PointsGraph.Text = (nowTable.Rows.Count-1).ToString();
         }
 
-
         void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
         {
             if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)
@@ -358,6 +473,7 @@ namespace Сhart
                 return def;
             }
         }
+
         int LimitationsMax(int limitationUpX,int limitationDownX)
         {
             int lim = limitationUpX+1;
@@ -371,21 +487,6 @@ namespace Сhart
                 return def;
             }
         }
-        
-        private void CentralX_TextChanged(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text.Length == 5)
-            {
-                textBox.Text = textBox.Text.Remove(4);
-            }
-            CentralXChenged();
-        }
-
-        private void CentralY_TextChanged(object sender, EventArgs e)
-        {
-            CentralYChenged();
-        }
 
         void CentralXChenged()
         {
@@ -398,119 +499,6 @@ namespace Сhart
 
             centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
             AreaPaint.Refresh();
-        }
-
-        private void radioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            if(radioButton1.Checked)
-            {
-                functionsС.Visible = true;
-                tableC.Visible = false;
-            }
-            else if (radioButton2.Checked)
-            {
-                functionsС.Visible = false ;
-                tableC.Visible = true;
-            }
-            else
-            {
-                functionsС.Visible = false;
-                tableC.Visible = false;
-            }
-        }
-
-        private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
-        {
-            slow = SlowDrawing.Checked;
-            if (SlowDrawing.Checked)
-            {
-                SpeedSlow.Visible = true;
-            }
-            else
-            {
-                SpeedSlow.Visible = false;
-            }
-        }
-
-        private void SpeedSlow_Scroll(object sender, EventArgs e)
-        {
-            if(SpeedSlow.Value==0)
-            {
-                slowspeed = 20;
-            }
-            else
-            {
-                slowspeed = SpeedSlow.Value * 20;
-            }
-        }
-
-        private void AreaPaint_MouseMove(object sender, MouseEventArgs e)
-        {
-            float coorX = ((float)(e.X - centralX)) / plusM;
-            float coorY = ((float)(centralY - e.Y)) / plusM;
-            coorX=(float)Math.Round(coorX, 0);
-            coorY = (float)Math.Round(coorY, 0);
-            coordinates.Text = "x = " + coorX.ToString() + ";  y = " + coorY.ToString() + ";";
-            if (lastpoint.X== coorX && lastpoint.Y==coorY)
-            {
-                return;
-            }
-            lastpoint.X = coorX;
-            lastpoint.Y = coorY;
-
-            float sizeСircle = plusM / 5.5f+30/plusM;
-
-            if(plusM<9)
-            {
-                sizeСircle = 0;
-            }
-            if (!slow)
-            {
-                AreaPaint.Refresh();
-                Graphics graphics = AreaPaint.CreateGraphics();
-                graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX * plusM, centralY - sizeСircle / 2 - coorY * plusM, sizeСircle, sizeСircle);
-            }
-        }
-
-        private void AreaPaint_MouseLeave(object sender, EventArgs e)
-        {
-            coordinates.Text = "Не в зоны действия";
-            if (!slow)
-            {
-                AreaPaint.Refresh();
-            }
-            lastpoint.Y = 1000;
-            lastpoint.X = 1000;
-        }
-
-        private void Limitation_TextChanged(object sender, EventArgs e)
-        {
-            GeneralRestrictions((TextBox)sender);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            viewTable.Visible = !viewTable.Visible;
-            CentralXChenged();
-            CentralYChenged();
-        }
-
-        private void PercentScrolling_Scroll(object sender, EventArgs e)
-        {
-            if(PercentScrolling.Value!=0)
-            {
-                plusM = PercentScrolling.Value * 11;
-                Percent.Text = "1:" + plusM;
-                CentralXChenged();
-                CentralYChenged();
-            }
-            else
-            {
-                plusM = 1;
-                Percent.Text = "1:1";
-                CentralXChenged();
-                CentralYChenged();
-            }
         }
 
         int GeneralRestrictions(TextBox textBox)
@@ -560,6 +548,18 @@ namespace Сhart
                 }
             }
             return byf;
+        }
+
+        int CheckSign()
+        {
+            if (plus.Checked)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
         }
     }
 }
