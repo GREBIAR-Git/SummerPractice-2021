@@ -81,6 +81,8 @@
             this.Slow3 = new System.Windows.Forms.RadioButton();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label14 = new System.Windows.Forms.Label();
+            this.coordinates = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -478,6 +480,8 @@
             this.AreaPaint.TabIndex = 0;
             this.AreaPaint.TabStop = false;
             this.AreaPaint.Paint += new System.Windows.Forms.PaintEventHandler(this.AreaPaint_Paint);
+            this.AreaPaint.MouseLeave += new System.EventHandler(this.AreaPaint_MouseLeave);
+            this.AreaPaint.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AreaPaint_MouseMove);
             // 
             // viewTable
             // 
@@ -564,7 +568,7 @@
             // 
             // CentralY
             // 
-            this.CentralY.Location = new System.Drawing.Point(367, 701);
+            this.CentralY.Location = new System.Drawing.Point(349, 702);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(33, 20);
             this.CentralY.TabIndex = 30;
@@ -572,7 +576,7 @@
             // 
             // CentralX
             // 
-            this.CentralX.Location = new System.Drawing.Point(328, 701);
+            this.CentralX.Location = new System.Drawing.Point(300, 702);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(33, 20);
             this.CentralX.TabIndex = 25;
@@ -581,7 +585,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(337, 685);
+            this.label12.Location = new System.Drawing.Point(313, 686);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 25;
@@ -590,7 +594,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(379, 685);
+            this.label13.Location = new System.Drawing.Point(360, 684);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(12, 13);
             this.label13.TabIndex = 25;
@@ -598,9 +602,9 @@
             // 
             // CenterO
             // 
-            this.CenterO.Location = new System.Drawing.Point(325, 672);
+            this.CenterO.Location = new System.Drawing.Point(292, 672);
             this.CenterO.Name = "CenterO";
-            this.CenterO.Size = new System.Drawing.Size(90, 13);
+            this.CenterO.Size = new System.Drawing.Size(104, 13);
             this.CenterO.TabIndex = 25;
             this.CenterO.Text = "Центр экрана";
             this.CenterO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -674,6 +678,26 @@
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column2.Width = 76;
             // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(674, 672);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(104, 25);
+            this.label14.TabIndex = 35;
+            this.label14.Text = "Мышь";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // coordinates
+            // 
+            this.coordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coordinates.Location = new System.Drawing.Point(647, 698);
+            this.coordinates.Name = "coordinates";
+            this.coordinates.Size = new System.Drawing.Size(161, 20);
+            this.coordinates.TabIndex = 36;
+            this.coordinates.Text = "Не в зоны действия";
+            this.coordinates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -682,6 +706,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.Controls.Add(this.coordinates);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.Slow3);
             this.Controls.Add(this.Slow2);
             this.Controls.Add(this.Slow1);
@@ -775,6 +801,8 @@
         private System.Windows.Forms.DataGridView nowTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label coordinates;
     }
 }
 

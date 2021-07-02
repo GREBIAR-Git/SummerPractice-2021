@@ -15,6 +15,7 @@ namespace Сhart
         bool redrawing;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         List<PointF> nowPoints = new List<PointF>();
+        Point lastpoint = new Point();
         public MainForm()
         {
             InitializeComponent();
@@ -36,7 +37,8 @@ namespace Сhart
 
             nowTable.EnableHeadersVisualStyles = false;
             nowTable.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(194, 168, 148);
-
+            lastpoint.X = 1000;
+            lastpoint.Y = 1000;
         }
 
         private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -473,12 +475,33 @@ namespace Сhart
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void AreaPaint_MouseMove(object sender, MouseEventArgs e)
         {
-            foreach(PointF point in nowPoints)
+            int coorX = (e.X - centralX) / plusM;
+            int coorY = (centralY - e.Y) / plusM;
+            if (lastpoint.X== coorX && lastpoint.Y==coorY)
             {
-                //nowTable.Text += "x=" + point.X + ";" + "y=" + point.Y + Environment.NewLine;
+                return;
             }
+            lastpoint.X = coorX;
+            lastpoint.Y = coorY;
+            float sizeСircle = plusM / 5.5f+30/plusM;
+            if(plusM<9)
+            {
+                sizeСircle = 0;
+            }
+            AreaPaint.Refresh();
+            coordinates.Text = "x = "+coorX.ToString()+";  y = "+ coorY.ToString()+";";
+            Graphics graphics = AreaPaint.CreateGraphics();
+            graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX*plusM, centralY - sizeСircle / 2 - coorY*plusM, sizeСircle, sizeСircle);
+        }
+
+        private void AreaPaint_MouseLeave(object sender, EventArgs e)
+        {
+            coordinates.Text = "Не в зоны действия";
+            AreaPaint.Refresh();
+            lastpoint.Y = 1000;
+            lastpoint.X = 1000;
         }
 
         private void button3_Click(object sender, EventArgs e)
