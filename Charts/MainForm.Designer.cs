@@ -83,6 +83,8 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.coordinates = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.PointsGraph = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -612,7 +614,7 @@
             // SlowDrawing
             // 
             this.SlowDrawing.AutoSize = true;
-            this.SlowDrawing.Location = new System.Drawing.Point(443, 672);
+            this.SlowDrawing.Location = new System.Drawing.Point(419, 671);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
             this.SlowDrawing.TabIndex = 31;
@@ -624,7 +626,7 @@
             // 
             this.Slow1.AutoSize = true;
             this.Slow1.Checked = true;
-            this.Slow1.Location = new System.Drawing.Point(453, 700);
+            this.Slow1.Location = new System.Drawing.Point(428, 700);
             this.Slow1.Name = "Slow1";
             this.Slow1.Size = new System.Drawing.Size(36, 17);
             this.Slow1.TabIndex = 32;
@@ -637,7 +639,7 @@
             // Slow2
             // 
             this.Slow2.AutoSize = true;
-            this.Slow2.Location = new System.Drawing.Point(514, 699);
+            this.Slow2.Location = new System.Drawing.Point(481, 699);
             this.Slow2.Name = "Slow2";
             this.Slow2.Size = new System.Drawing.Size(36, 17);
             this.Slow2.TabIndex = 33;
@@ -649,7 +651,7 @@
             // Slow3
             // 
             this.Slow3.AutoSize = true;
-            this.Slow3.Location = new System.Drawing.Point(576, 700);
+            this.Slow3.Location = new System.Drawing.Point(537, 700);
             this.Slow3.Name = "Slow3";
             this.Slow3.Size = new System.Drawing.Size(36, 17);
             this.Slow3.TabIndex = 34;
@@ -681,7 +683,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(674, 672);
+            this.label14.Location = new System.Drawing.Point(624, 672);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(104, 25);
             this.label14.TabIndex = 35;
@@ -691,12 +693,32 @@
             // coordinates
             // 
             this.coordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coordinates.Location = new System.Drawing.Point(647, 698);
+            this.coordinates.Location = new System.Drawing.Point(594, 699);
             this.coordinates.Name = "coordinates";
             this.coordinates.Size = new System.Drawing.Size(161, 20);
             this.coordinates.TabIndex = 36;
             this.coordinates.Text = "Не в зоны действия";
             this.coordinates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(743, 671);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(143, 25);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "Точек на графике";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PointsGraph
+            // 
+            this.PointsGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PointsGraph.Location = new System.Drawing.Point(761, 699);
+            this.PointsGraph.Name = "PointsGraph";
+            this.PointsGraph.Size = new System.Drawing.Size(103, 20);
+            this.PointsGraph.TabIndex = 38;
+            this.PointsGraph.Text = "0";
+            this.PointsGraph.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
@@ -706,6 +728,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.Controls.Add(this.PointsGraph);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.coordinates);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.Slow3);
@@ -803,6 +827,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label coordinates;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label PointsGraph;
     }
 }
 

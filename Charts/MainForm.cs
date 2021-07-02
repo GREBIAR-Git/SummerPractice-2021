@@ -15,7 +15,7 @@ namespace Сhart
         bool redrawing;
         NearestNeighbor nearestNeighbor = new NearestNeighbor();
         List<PointF> nowPoints = new List<PointF>();
-        Point lastpoint = new Point();
+        PointF lastpoint = new PointF();
         public MainForm()
         {
             InitializeComponent();
@@ -292,6 +292,7 @@ namespace Сhart
                 nowTable.Rows.Add(point.X, point.Y);
             }
             nowTable.ResumeLayout();
+            PointsGraph.Text = (nowTable.Rows.Count-1).ToString();
         }
 
 
@@ -396,16 +397,6 @@ namespace Сhart
             int byf;
             if (Int32.TryParse(CentralY.Text, out byf))
             {
-                if (byf > 999)
-                {
-                    CentralY.Text = "999";
-                    byf = 999;
-                }
-                else if (byf < -999)
-                {
-                    CentralY.Text = "-999";
-                    byf = -999;
-                }
                 centralY = AreaPaint.Height / 2 + byf * plusM;
                 AreaPaint.Refresh();
             }
@@ -477,8 +468,10 @@ namespace Сhart
 
         private void AreaPaint_MouseMove(object sender, MouseEventArgs e)
         {
-            int coorX = (e.X - centralX) / plusM;
-            int coorY = (centralY - e.Y) / plusM;
+            float coorX = ((float)(e.X - centralX)) / plusM;
+            float coorY = ((float)(centralY - e.Y)) / plusM;
+            coorX=(float)Math.Round(coorX, 0);
+            coorY = (float)Math.Round(coorY, 0);
             if (lastpoint.X== coorX && lastpoint.Y==coorY)
             {
                 return;
