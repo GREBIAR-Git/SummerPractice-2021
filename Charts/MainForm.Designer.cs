@@ -60,8 +60,6 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
-            this.freeC = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
             this.nowTable = new System.Windows.Forms.DataGridView();
@@ -88,7 +86,6 @@
             this.functionsС.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableC.SuspendLayout();
-            this.freeC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
@@ -126,7 +123,6 @@
             this.tableLayoutPanel2.Controls.Add(this.functionsС, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableC, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.freeC, 0, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(663, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
@@ -451,27 +447,6 @@
             this.button4.Text = "Таблица";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // freeC
-            // 
-            this.freeC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            this.freeC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.freeC.Controls.Add(this.button5);
-            this.freeC.Location = new System.Drawing.Point(3, 449);
-            this.freeC.Name = "freeC";
-            this.freeC.Size = new System.Drawing.Size(188, 31);
-            this.freeC.TabIndex = 7;
-            this.freeC.Visible = false;
-            // 
-            // button5
-            // 
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(52, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 23);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Свободное";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
             // AreaPaint
             // 
             this.AreaPaint.BackColor = System.Drawing.Color.White;
@@ -733,7 +708,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableC.ResumeLayout(false);
-            this.freeC.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
             this.viewTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
@@ -789,8 +763,6 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel tableC;
-        private System.Windows.Forms.Panel freeC;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.CheckBox SlowDrawing;
         private System.Windows.Forms.DataGridView nowTable;

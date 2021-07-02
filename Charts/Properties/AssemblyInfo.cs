@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("CommisVoyageur")]
+[assembly: AssemblyTitle("Charts")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CommisVoyageur")]
+[assembly: AssemblyProduct("Charts")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

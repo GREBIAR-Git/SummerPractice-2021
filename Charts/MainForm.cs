@@ -14,7 +14,6 @@ namespace Сhart
         bool slow;
         int slowspeed;
         bool redrawing;
-        NearestNeighbor nearestNeighbor = new NearestNeighbor();
         List<PointF> nowPoints = new List<PointF>();
         PointF lastpoint = new PointF();
         public MainForm()
@@ -42,11 +41,6 @@ namespace Сhart
             lastpoint.Y = 1000;
         }
 
-        private void comboBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
             AreaPaint.Refresh();
@@ -67,7 +61,7 @@ namespace Сhart
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(i + plusM, 0), new Point(i + plusM, AreaPaint.Height));
                 }
-                for (int i = AreaPaint.Width / 2; i > 0-plusM; i -= plusM)
+                for (int i = AreaPaint.Width / 2; i > -plusM; i -= plusM)
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(i + plusM, 0), new Point(i + plusM, AreaPaint.Height));
                 }
@@ -75,7 +69,7 @@ namespace Сhart
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
-                for (int f = AreaPaint.Height / 2; f > 0-plusM; f -= plusM)
+                for (int f = AreaPaint.Height / 2; f > -plusM; f -= plusM)
                 {
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
@@ -128,7 +122,6 @@ namespace Сhart
             redrawing = false;
             AreaPaint.Refresh();
             redrawing = true;
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -156,8 +149,6 @@ namespace Сhart
                 CentralYChenged();
             }
         }
-
-
 
         void PaintChart(Graphics graphics)
         {
@@ -260,7 +251,6 @@ namespace Сhart
 
             }
         }
-
 
         void tableCompletion(PointF[] pointsDraw)
         {
@@ -416,19 +406,16 @@ namespace Сhart
             {
                 functionsС.Visible = true;
                 tableC.Visible = false;
-                freeC.Visible = false;
             }
             else if (radioButton2.Checked)
             {
                 functionsС.Visible = false ;
                 tableC.Visible = true;
-                freeC.Visible = false;
             }
             else
             {
                 functionsС.Visible = false;
                 tableC.Visible = false;
-                freeC.Visible = true;
             }
         }
 
