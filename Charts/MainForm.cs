@@ -72,7 +72,10 @@ namespace Сharts
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
             }
-            PaintChart(e.Graphics);
+            if(functionMain.TextLength!=0)
+            {
+                PaintChart(e.Graphics);
+            }
         }
 
         private void Draw_Click(object sender, EventArgs e)
@@ -272,7 +275,7 @@ namespace Сharts
             int o = min;
             for (int i = 0; i < points.Length; i++, o++)
             {
-                points[i] = new PointF(o * plusM + centralX, Charts.TranslatingExpression.Translating(textBox1.Text,o) * plusM + centralY);
+                points[i] = new PointF(o * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,o) * plusM + centralY);
                 EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
             }
             EndsGraphMax(ref points, ref ip, ref pointsDraw);

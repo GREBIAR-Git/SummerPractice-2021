@@ -125,7 +125,7 @@ namespace Charts
             }
             catch
             {
-                return 0;
+                return float.NaN;
             }
         }
 
