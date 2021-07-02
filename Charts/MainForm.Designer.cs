@@ -78,13 +78,11 @@
             this.label13 = new System.Windows.Forms.Label();
             this.CenterO = new System.Windows.Forms.Label();
             this.SlowDrawing = new System.Windows.Forms.CheckBox();
-            this.Slow1 = new System.Windows.Forms.RadioButton();
-            this.Slow2 = new System.Windows.Forms.RadioButton();
-            this.Slow3 = new System.Windows.Forms.RadioButton();
             this.label14 = new System.Windows.Forms.Label();
             this.coordinates = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.PointsGraph = new System.Windows.Forms.Label();
+            this.SpeedSlow = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -95,6 +93,7 @@
             this.viewTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -645,44 +644,6 @@
             this.SlowDrawing.UseVisualStyleBackColor = true;
             this.SlowDrawing.CheckedChanged += new System.EventHandler(this.SlowDrawing_CheckedChanged);
             // 
-            // Slow1
-            // 
-            this.Slow1.AutoSize = true;
-            this.Slow1.Checked = true;
-            this.Slow1.Location = new System.Drawing.Point(419, 695);
-            this.Slow1.Name = "Slow1";
-            this.Slow1.Size = new System.Drawing.Size(36, 17);
-            this.Slow1.TabIndex = 32;
-            this.Slow1.TabStop = true;
-            this.Slow1.Text = "1x";
-            this.Slow1.UseVisualStyleBackColor = true;
-            this.Slow1.Visible = false;
-            this.Slow1.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
-            // 
-            // Slow2
-            // 
-            this.Slow2.AutoSize = true;
-            this.Slow2.Location = new System.Drawing.Point(480, 695);
-            this.Slow2.Name = "Slow2";
-            this.Slow2.Size = new System.Drawing.Size(36, 17);
-            this.Slow2.TabIndex = 33;
-            this.Slow2.Text = "2x";
-            this.Slow2.UseVisualStyleBackColor = true;
-            this.Slow2.Visible = false;
-            this.Slow2.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
-            // 
-            // Slow3
-            // 
-            this.Slow3.AutoSize = true;
-            this.Slow3.Location = new System.Drawing.Point(541, 695);
-            this.Slow3.Name = "Slow3";
-            this.Slow3.Size = new System.Drawing.Size(36, 17);
-            this.Slow3.TabIndex = 34;
-            this.Slow3.Text = "3x";
-            this.Slow3.UseVisualStyleBackColor = true;
-            this.Slow3.Visible = false;
-            this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
-            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -723,6 +684,17 @@
             this.PointsGraph.Text = "0";
             this.PointsGraph.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // SpeedSlow
+            // 
+            this.SpeedSlow.AutoSize = false;
+            this.SpeedSlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
+            this.SpeedSlow.Location = new System.Drawing.Point(419, 691);
+            this.SpeedSlow.Name = "SpeedSlow";
+            this.SpeedSlow.Size = new System.Drawing.Size(169, 30);
+            this.SpeedSlow.TabIndex = 39;
+            this.SpeedSlow.Visible = false;
+            this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -731,13 +703,11 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.Controls.Add(this.SpeedSlow);
             this.Controls.Add(this.PointsGraph);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.coordinates);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.Slow3);
-            this.Controls.Add(this.Slow2);
-            this.Controls.Add(this.Slow1);
             this.Controls.Add(this.SlowDrawing);
             this.Controls.Add(this.CenterO);
             this.Controls.Add(this.label13);
@@ -768,6 +738,7 @@
             this.viewTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -822,9 +793,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.CheckBox SlowDrawing;
-        private System.Windows.Forms.RadioButton Slow1;
-        private System.Windows.Forms.RadioButton Slow2;
-        private System.Windows.Forms.RadioButton Slow3;
         private System.Windows.Forms.DataGridView nowTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -832,6 +800,7 @@
         private System.Windows.Forms.Label coordinates;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label PointsGraph;
+        private System.Windows.Forms.TrackBar SpeedSlow;
     }
 }
 

@@ -437,35 +437,23 @@ namespace Сhart
             slow = SlowDrawing.Checked;
             if (SlowDrawing.Checked)
             {
-                Slow1.Visible = true;
-                Slow2.Visible = true;
-                Slow3.Visible = true;
+                SpeedSlow.Visible = true;
             }
             else
             {
-                Slow1.Visible = false;
-                Slow2.Visible = false;
-                Slow3.Visible = false;
+                SpeedSlow.Visible = false;
             }
         }
 
-        private void Slow_CheckedChanged(object sender, EventArgs e)
+        private void SpeedSlow_Scroll(object sender, EventArgs e)
         {
-            if(Slow1.Checked)
+            if(SpeedSlow.Value==0)
             {
-                slowspeed = 10;
-            }
-            else if(Slow2.Checked)
-            {
-                slowspeed = 100;
-            }
-            else if (Slow3.Checked)
-            {
-                slowspeed = 1000;
+                slowspeed = 20;
             }
             else
             {
-                slowspeed = 0;
+                slowspeed = SpeedSlow.Value * 20;
             }
         }
 
@@ -475,27 +463,35 @@ namespace Сhart
             float coorY = ((float)(centralY - e.Y)) / plusM;
             coorX=(float)Math.Round(coorX, 0);
             coorY = (float)Math.Round(coorY, 0);
+            coordinates.Text = "x = " + coorX.ToString() + ";  y = " + coorY.ToString() + ";";
             if (lastpoint.X== coorX && lastpoint.Y==coorY)
             {
                 return;
             }
             lastpoint.X = coorX;
             lastpoint.Y = coorY;
+
             float sizeСircle = plusM / 5.5f+30/plusM;
+
             if(plusM<9)
             {
                 sizeСircle = 0;
             }
-            AreaPaint.Refresh();
-            coordinates.Text = "x = "+coorX.ToString()+";  y = "+ coorY.ToString()+";";
-            Graphics graphics = AreaPaint.CreateGraphics();
-            graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX*plusM, centralY - sizeСircle / 2 - coorY*plusM, sizeСircle, sizeСircle);
+            if (!slow)
+            {
+                AreaPaint.Refresh();
+                Graphics graphics = AreaPaint.CreateGraphics();
+                graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX * plusM, centralY - sizeСircle / 2 - coorY * plusM, sizeСircle, sizeСircle);
+            }
         }
 
         private void AreaPaint_MouseLeave(object sender, EventArgs e)
         {
             coordinates.Text = "Не в зоны действия";
-            AreaPaint.Refresh();
+            if (!slow)
+            {
+                AreaPaint.Refresh();
+            }
             lastpoint.Y = 1000;
             lastpoint.X = 1000;
         }
