@@ -108,22 +108,18 @@ namespace Charts
                         }
                         str = str.Replace(',', '.');
                         string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                        str = str.Insert(placeInsertion, Math.Round(-Math.Pow(double.Parse(byff),Convert.ToDouble(t)), 1).ToString());
+                        str = str.Insert(placeInsertion, Math.Round(Math.Pow(double.Parse(byff),Convert.ToDouble(t)), 1).ToString());
                         i = -1;
                     }
                 }
             }
             str = str.Replace(',', '.');
-            if(str=="не число")
-            {
-                str = "0";
-            }
             str = (new System.Data.DataTable()).Compute(str, "").ToString();
             if(str=="")
             {
                 return 0;
             }
-            return float.Parse(str);
+            return float.Parse(str)*-1;
         }
 
         static bool funcO(int num, ref int i, ref string str, ref string inParentheses, ref int tyt)
