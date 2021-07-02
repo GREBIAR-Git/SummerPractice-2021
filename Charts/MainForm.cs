@@ -28,15 +28,14 @@ namespace Сhart
             chart = false;
 
             nowTable.BorderStyle = BorderStyle.None;
-            nowTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            nowTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(218, 189, 171);
             nowTable.CellBorderStyle = DataGridViewCellBorderStyle.Single;
             nowTable.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
             nowTable.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            nowTable.BackgroundColor = Color.White;
+            nowTable.BackgroundColor = Color.FromArgb(239, 205, 184);
 
             nowTable.EnableHeadersVisualStyles = false;
-            nowTable.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            nowTable.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            nowTable.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(194, 168, 148);
 
         }
 

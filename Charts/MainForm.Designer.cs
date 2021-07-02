@@ -393,6 +393,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.radioButton2);
             this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(188, 43);
@@ -491,6 +492,7 @@
             // 
             // nowTable
             // 
+            this.nowTable.BackgroundColor = System.Drawing.Color.Beige;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -553,7 +555,7 @@
             // PercentScrolling
             // 
             this.PercentScrolling.AutoSize = false;
-            this.PercentScrolling.BackColor = System.Drawing.SystemColors.Control;
+            this.PercentScrolling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.PercentScrolling.Location = new System.Drawing.Point(65, 667);
             this.PercentScrolling.Name = "PercentScrolling";
             this.PercentScrolling.Size = new System.Drawing.Size(149, 30);
