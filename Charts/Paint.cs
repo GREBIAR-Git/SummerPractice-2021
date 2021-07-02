@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Сhart
+namespace Сharts
 {
     class Paint
     {

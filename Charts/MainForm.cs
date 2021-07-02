@@ -5,11 +5,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Сhart
+namespace Сharts
 {
     public partial class MainForm : Form
     {
-        bool chart;
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
@@ -26,7 +25,6 @@ namespace Сhart
             slow = false;
             redrawing = true;
             slowspeed = 10;
-            chart = false;
 
             nowTable.BorderStyle = BorderStyle.None;
             nowTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(218, 189, 171);
@@ -48,13 +46,13 @@ namespace Сhart
 
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
         {
-            Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(AreaPaint.Width, 0));
-            Сhart.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 1), new Point(AreaPaint.Width, AreaPaint.Height - 1));
-            Сhart.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
-            Сhart.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
-            Сhart.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
-            Сhart.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
+            Сharts.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(AreaPaint.Width, 0));
+            Сharts.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 1), new Point(AreaPaint.Width, AreaPaint.Height - 1));
+            Сharts.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
+            Сharts.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
+            Сharts.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
+            Сharts.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
+            Сharts.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
             if (plusM > 8)
             {
                 for (int i = AreaPaint.Width/2; i < AreaPaint.Width; i += plusM)
@@ -74,33 +72,7 @@ namespace Сhart
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
             }
-            if(chart)
-            {
-                PaintChart(e.Graphics);
-            }
-        }
-
-        private void SelectingFunction_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(SelectingFunction.SelectedIndex == 0)
-            {
-                chart = false;
-                AreaPaint.Refresh();
-                nowTable.Rows.Clear();
-            }
-            else if (SelectingFunction.SelectedIndex == 1)
-            {
-                label2.Text = "Степень";
-                AdditionalParameter.Visible = true;
-                label2.Visible = true;
-                chart = true;
-            }
-            else 
-            {
-                AdditionalParameter.Visible = false;
-                label2.Visible = false;
-                chart = true;
-            }
+            PaintChart(e.Graphics);
         }
 
         private void Draw_Click(object sender, EventArgs e)
@@ -268,35 +240,6 @@ namespace Сhart
 
         void PaintChart(Graphics graphics)
         {
-            /*string str = FinalExpression.Text;
-            str = str.ToLower();
-            str = str.Replace(" ", "");
-            str = str.Replace("--", "-");*/
-
-            int additionalParameter;
-            if (!Int32.TryParse(AdditionalParameter.Text, out additionalParameter))
-            {
-                additionalParameter = 0;
-                AdditionalParameter.Text = "0";
-            }
-            int offSetX;
-            if (!Int32.TryParse(offsetX.Text, out offSetX))
-            {
-                offSetX = 0;
-                offsetX.Text = "0";
-            }
-            int multiplierI;
-            if (!Int32.TryParse(multiplier.Text, out multiplierI))
-            {
-                multiplierI = 1;
-                multiplier.Text = "1";
-            }
-            int offSetY;
-            if (!Int32.TryParse(offsetY.Text, out offSetY))
-            {
-                offSetY = 0;
-                offsetY.Text = "0";
-            }
             int limitationDownX;
             if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
             {
@@ -321,51 +264,24 @@ namespace Сhart
                 limitationUpY = 1000;
                 LimitationUpY.Text = "1000";
             }
-            if(SelectingFunction.SelectedIndex == 5)
+            int min = LimitationsMin(limitationDownX);
+            int max = LimitationsMax(limitationUpX, limitationDownX);
+            PointF[] points = new PointF[Math.Abs(min) + max];
+            PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
+            int ip = 0;
+            int o = min;
+            for (int i = 0; i < points.Length; i++, o++)
             {
-                Pen pen = new Pen(Color.Black, 3f);
-                graphics.DrawArc(pen, centralX - 42, centralY - 30, 50, 50, 135, 180);
-                graphics.DrawArc(pen, -7 + centralX, centralY - 30, 50, 50, 225, 180);
-                graphics.DrawLine(pen, centralX - 35, 12 + centralY, 2 + centralX, 49 + centralY);
-                graphics.DrawLine(pen, 36 + centralX, 12 + centralY, centralX - 1, 49 + centralY);
+                points[i] = new PointF(o * plusM + centralX, Charts.TranslatingExpression.Translating(textBox1.Text,o) * plusM + centralY);
+                EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
             }
-            else
-            {
-                int min = LimitationsMin(limitationDownX);
-                int max = LimitationsMax(limitationUpX, limitationDownX);
-                PointF[] points = new PointF[Math.Abs(min) + max];
-                PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
-                int ip = 0;
-                int o = min;
-                for (int i = 0; i < points.Length; i++, o++)
-                {
-                    if (SelectingFunction.SelectedIndex == 1)
-                    {
-                        points[i] = new PointF((o + offSetX) * plusM + centralX, (float)((-Math.Pow(o, additionalParameter) * multiplierI + offSetY) * plusM * CheckSign() + centralY));
-                    }
-                    else if (SelectingFunction.SelectedIndex == 2)
-                    {
-                        points[i] = new PointF(((o + offSetX) * plusM + centralX), (float)(-Math.Sqrt(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    }
-                    else if (SelectingFunction.SelectedIndex == 3)
-                    {
-                        points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Sin(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    }
-                    else if (SelectingFunction.SelectedIndex == 4)
-                    {
-                        points[i] = new PointF((o + offSetX) * plusM + centralX, (-(float)Math.Cos(o) * multiplierI + offSetY) * plusM * CheckSign() + centralY);
-                    }
-                    EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
-                }
-                EndsGraphMax(ref points, ref ip, ref pointsDraw);
-                Array.Resize(ref pointsDraw, ip);
-                PointF[] pointsDrawTemp = pointsDraw;
-                SpeedDrawing(pointsDraw, graphics);
-                nowPoints.Clear();
-                nowTable.Rows.Clear();
-                tableCompletion(pointsDraw);
-
-            }
+            EndsGraphMax(ref points, ref ip, ref pointsDraw);
+            Array.Resize(ref pointsDraw, ip);
+            PointF[] pointsDrawTemp = pointsDraw;
+            SpeedDrawing(pointsDraw, graphics);
+            nowPoints.Clear();
+            nowTable.Rows.Clear();
+            tableCompletion(pointsDraw);
         }
 
         void tableCompletion(PointF[] pointsDraw)
@@ -501,6 +417,12 @@ namespace Сhart
             AreaPaint.Refresh();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            //double f = Math.Pow(341, 0.5);
+            //label16.Text=Charts.TranslatingExpression.Translating(textBox1.Text).ToString();
+        }
+
         int GeneralRestrictions(TextBox textBox)
         {
             if (textBox.Text.StartsWith("-"))
@@ -519,17 +441,17 @@ namespace Сhart
                     textBox.SelectionStart = textBox.TextLength;
                 }
             }
-            int byf;
-            if (Int32.TryParse(textBox.Text, out byf))
+            int inParentheses;
+            if (Int32.TryParse(textBox.Text, out inParentheses))
             {
-                if (byf > 1000)
+                if (inParentheses > 1000)
                 {
-                    byf = 1000;
+                    inParentheses = 1000;
                     textBox.Text = "1000";
                 }
-                else if (byf < -1000)
+                else if (inParentheses < -1000)
                 {
-                    byf = -1000;
+                    inParentheses = -1000;
                     textBox.Text = "-1000";
                 }
                 textBox.SelectionStart = textBox.TextLength;
@@ -542,24 +464,12 @@ namespace Сhart
                 }
                 else
                 {
-                    byf = 0;
+                    inParentheses = 0;
                     textBox.Text = "";
                     textBox.SelectionStart = textBox.TextLength;
                 }
             }
-            return byf;
-        }
-
-        int CheckSign()
-        {
-            if (plus.Checked)
-            {
-                return 1;
-            }
-            else
-            {
-                return -1;
-            }
+            return inParentheses;
         }
     }
 }

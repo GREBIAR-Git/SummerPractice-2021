@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Сhart
+namespace Сharts
 {
     static class Program
     {
