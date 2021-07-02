@@ -65,6 +65,8 @@
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
             this.nowTable = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -79,8 +81,6 @@
             this.Slow1 = new System.Windows.Forms.RadioButton();
             this.Slow2 = new System.Windows.Forms.RadioButton();
             this.Slow3 = new System.Windows.Forms.RadioButton();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.coordinates = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -185,7 +185,6 @@
             // 
             // FinalExpression
             // 
-            this.FinalExpression.Enabled = false;
             this.FinalExpression.Location = new System.Drawing.Point(3, 299);
             this.FinalExpression.Name = "FinalExpression";
             this.FinalExpression.Size = new System.Drawing.Size(180, 20);
@@ -206,6 +205,7 @@
             this.LimitationUpY.Name = "LimitationUpY";
             this.LimitationUpY.Size = new System.Drawing.Size(87, 20);
             this.LimitationUpY.TabIndex = 21;
+            this.LimitationUpY.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationUpX
             // 
@@ -213,6 +213,7 @@
             this.LimitationUpX.Name = "LimitationUpX";
             this.LimitationUpX.Size = new System.Drawing.Size(87, 20);
             this.LimitationUpX.TabIndex = 20;
+            this.LimitationUpX.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationDownY
             // 
@@ -220,6 +221,7 @@
             this.LimitationDownY.Name = "LimitationDownY";
             this.LimitationDownY.Size = new System.Drawing.Size(87, 20);
             this.LimitationDownY.TabIndex = 19;
+            this.LimitationDownY.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationDownX
             // 
@@ -227,6 +229,7 @@
             this.LimitationDownX.Name = "LimitationDownX";
             this.LimitationDownX.Size = new System.Drawing.Size(87, 20);
             this.LimitationDownX.TabIndex = 18;
+            this.LimitationDownX.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // label10
             // 
@@ -511,6 +514,26 @@
             this.nowTable.Size = new System.Drawing.Size(192, 643);
             this.nowTable.TabIndex = 8;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "X";
+            this.Column1.MinimumWidth = 76;
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 76;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column2.HeaderText = "Y";
+            this.Column2.MinimumWidth = 76;
+            this.Column2.Name = "Column2";
+            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 76;
+            // 
             // button2
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -570,7 +593,7 @@
             // 
             // CentralY
             // 
-            this.CentralY.Location = new System.Drawing.Point(349, 702);
+            this.CentralY.Location = new System.Drawing.Point(300, 700);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(33, 20);
             this.CentralY.TabIndex = 30;
@@ -578,7 +601,7 @@
             // 
             // CentralX
             // 
-            this.CentralX.Location = new System.Drawing.Point(300, 702);
+            this.CentralX.Location = new System.Drawing.Point(350, 700);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(33, 20);
             this.CentralX.TabIndex = 25;
@@ -587,7 +610,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(313, 686);
+            this.label12.Location = new System.Drawing.Point(311, 684);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 25;
@@ -604,9 +627,9 @@
             // 
             // CenterO
             // 
-            this.CenterO.Location = new System.Drawing.Point(292, 672);
+            this.CenterO.Location = new System.Drawing.Point(286, 670);
             this.CenterO.Name = "CenterO";
-            this.CenterO.Size = new System.Drawing.Size(104, 13);
+            this.CenterO.Size = new System.Drawing.Size(115, 13);
             this.CenterO.TabIndex = 25;
             this.CenterO.Text = "Центр экрана";
             this.CenterO.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -614,7 +637,7 @@
             // SlowDrawing
             // 
             this.SlowDrawing.AutoSize = true;
-            this.SlowDrawing.Location = new System.Drawing.Point(419, 671);
+            this.SlowDrawing.Location = new System.Drawing.Point(419, 668);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
             this.SlowDrawing.TabIndex = 31;
@@ -626,7 +649,7 @@
             // 
             this.Slow1.AutoSize = true;
             this.Slow1.Checked = true;
-            this.Slow1.Location = new System.Drawing.Point(428, 700);
+            this.Slow1.Location = new System.Drawing.Point(419, 695);
             this.Slow1.Name = "Slow1";
             this.Slow1.Size = new System.Drawing.Size(36, 17);
             this.Slow1.TabIndex = 32;
@@ -639,7 +662,7 @@
             // Slow2
             // 
             this.Slow2.AutoSize = true;
-            this.Slow2.Location = new System.Drawing.Point(481, 699);
+            this.Slow2.Location = new System.Drawing.Point(480, 695);
             this.Slow2.Name = "Slow2";
             this.Slow2.Size = new System.Drawing.Size(36, 17);
             this.Slow2.TabIndex = 33;
@@ -651,7 +674,7 @@
             // Slow3
             // 
             this.Slow3.AutoSize = true;
-            this.Slow3.Location = new System.Drawing.Point(537, 700);
+            this.Slow3.Location = new System.Drawing.Point(541, 695);
             this.Slow3.Name = "Slow3";
             this.Slow3.Size = new System.Drawing.Size(36, 17);
             this.Slow3.TabIndex = 34;
@@ -660,30 +683,10 @@
             this.Slow3.Visible = false;
             this.Slow3.CheckedChanged += new System.EventHandler(this.Slow_CheckedChanged);
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.HeaderText = "X";
-            this.Column1.MinimumWidth = 76;
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 76;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column2.HeaderText = "Y";
-            this.Column2.MinimumWidth = 76;
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 76;
-            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(624, 672);
+            this.label14.Location = new System.Drawing.Point(623, 668);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(104, 25);
             this.label14.TabIndex = 35;
@@ -703,7 +706,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(743, 671);
+            this.label15.Location = new System.Drawing.Point(742, 664);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(143, 25);
             this.label15.TabIndex = 37;

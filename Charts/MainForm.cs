@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -156,8 +157,15 @@ namespace Сhart
             }
         }
 
+
+
         void PaintChart(Graphics graphics)
         {
+            /*string str = FinalExpression.Text;
+            str = str.ToLower();
+            str = str.Replace(" ", "");
+            str = str.Replace("--", "-");*/
+
             int additionalParameter;
             if (!Int32.TryParse(AdditionalParameter.Text, out additionalParameter))
             {
@@ -185,26 +193,26 @@ namespace Сhart
             int limitationDownX;
             if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
             {
-                limitationDownX = int.MinValue;
-                LimitationDownX.Text = "0";
+                limitationDownX = -1000;
+                LimitationDownX.Text = "-1000";
             }
             int limitationUpX;
             if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
             {
-                limitationUpX = int.MaxValue;
-                LimitationUpX.Text = "0";
+                limitationUpX = 1000;
+                LimitationUpX.Text = "1000";
             }
             int limitationDownY;
             if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
             {
-                limitationDownY = int.MinValue;
-                LimitationDownY.Text = "0";
+                limitationDownY = -1000;
+                LimitationDownY.Text = "-1000";
             }
             int limitationUpY;
             if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
             {
-                limitationUpY = int.MaxValue;
-                LimitationUpY.Text = "0";
+                limitationUpY = 1000;
+                LimitationUpY.Text = "1000";
             }
             if(SelectingFunction.SelectedIndex == 5)
             {
@@ -216,8 +224,8 @@ namespace Сhart
             }
             else
             {
-                int min = LimitationsMin();
-                int max = LimitationsMax();
+                int min = LimitationsMin(limitationDownX);
+                int max = LimitationsMax(limitationUpX, limitationDownX);
                 PointF[] points = new PointF[Math.Abs(min) + max];
                 PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
                 int ip = 0;
@@ -347,18 +355,40 @@ namespace Сhart
             }
         }
 
-        int LimitationsMin()
+        int LimitationsMin(int limitationDownX)
         {
-            return -(centralX / plusM + 1) ;
+            int lim = limitationDownX;
+            int def = -(centralX / plusM + 1);
+            if (lim > def)
+            {
+                return lim;
+            }
+            else
+            {
+                return def;
+            }
         }
-        int LimitationsMax()
+        int LimitationsMax(int limitationUpX,int limitationDownX)
         {
-            return (AreaPaint.Width) / plusM + 2 + LimitationsMin();
+            int lim = limitationUpX+1;
+            int def = (AreaPaint.Width) / plusM + 2 + LimitationsMin(limitationDownX);
+            if(lim<def)
+            {
+                return lim;
+            }
+            else
+            {
+                return def;
+            }
         }
         
-
         private void CentralX_TextChanged(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text.Length == 5)
+            {
+                textBox.Text = textBox.Text.Remove(4);
+            }
             CentralXChenged();
         }
 
@@ -369,42 +399,15 @@ namespace Сhart
 
         void CentralXChenged()
         {
-            int byf;
-            if (Int32.TryParse(CentralX.Text, out byf))
-            {
-                if(byf>999)
-                {
-                    CentralX.Text = "999";
-                    byf = 999;
-                }
-                else if (byf < -999)
-                {
-                    CentralX.Text = "-999";
-                    byf = -999;
-                }
-                centralX = AreaPaint.Width / 2 - byf * plusM;
-                AreaPaint.Refresh();
-            }
-            else
-            {
-                centralX = AreaPaint.Width / 2;
-                AreaPaint.Refresh();
-            }
+            centralX = AreaPaint.Width / 2 - GeneralRestrictions(CentralX) * plusM;
+            AreaPaint.Refresh();
         }
 
         void CentralYChenged()
         {
-            int byf;
-            if (Int32.TryParse(CentralY.Text, out byf))
-            {
-                centralY = AreaPaint.Height / 2 + byf * plusM;
-                AreaPaint.Refresh();
-            }
-            else
-            {
-                centralY = AreaPaint.Height / 2;
-                AreaPaint.Refresh();
-            }
+
+            centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
+            AreaPaint.Refresh();
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
@@ -497,6 +500,11 @@ namespace Сhart
             lastpoint.X = 1000;
         }
 
+        private void Limitation_TextChanged(object sender, EventArgs e)
+        {
+            GeneralRestrictions((TextBox)sender);
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             viewTable.Visible = !viewTable.Visible;
@@ -520,6 +528,55 @@ namespace Сhart
                 CentralXChenged();
                 CentralYChenged();
             }
+        }
+
+        int GeneralRestrictions(TextBox textBox)
+        {
+            if (textBox.Text.StartsWith("-"))
+            {
+                if (textBox.TextLength > 5)
+                {
+                    textBox.Text = textBox.Text.Remove(5);
+                    textBox.SelectionStart = textBox.TextLength;
+                }
+            }
+            else
+            {
+                if (textBox.TextLength > 4)
+                {
+                    textBox.Text = textBox.Text.Remove(4);
+                    textBox.SelectionStart = textBox.TextLength;
+                }
+            }
+            int byf;
+            if (Int32.TryParse(textBox.Text, out byf))
+            {
+                if (byf > 1000)
+                {
+                    byf = 1000;
+                    textBox.Text = "1000";
+                }
+                else if (byf < -1000)
+                {
+                    byf = -1000;
+                    textBox.Text = "-1000";
+                }
+                textBox.SelectionStart = textBox.TextLength;
+            }
+            else
+            {
+                if (textBox.Text.StartsWith("-"))
+                {
+
+                }
+                else
+                {
+                    byf = 0;
+                    textBox.Text = "";
+                    textBox.SelectionStart = textBox.TextLength;
+                }
+            }
+            return byf;
         }
     }
 }
