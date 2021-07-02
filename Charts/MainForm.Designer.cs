@@ -39,13 +39,12 @@
             this.LimitationDownX = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
-            this.label16 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
             this.nowTable = new System.Windows.Forms.DataGridView();
@@ -67,7 +66,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.PointsGraph = new System.Windows.Forms.Label();
             this.SpeedSlow = new System.Windows.Forms.TrackBar();
-            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.functionsС.SuspendLayout();
@@ -78,6 +79,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -107,9 +109,9 @@
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.functionsС, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableC, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.functionsС, 0, 1);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(663, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 5;
@@ -135,6 +137,7 @@
             this.functionsС.Controls.Add(this.label9);
             this.functionsС.Controls.Add(this.label8);
             this.functionsС.Controls.Add(this.label1);
+            this.functionsС.Dock = System.Windows.Forms.DockStyle.Fill;
             this.functionsС.Location = new System.Drawing.Point(3, 52);
             this.functionsС.Name = "functionsС";
             this.functionsС.Size = new System.Drawing.Size(188, 172);
@@ -208,6 +211,15 @@
             this.label9.TabIndex = 16;
             this.label9.Text = "x";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(59, 52);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(73, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Ограничения";
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,33 +271,12 @@
             // 
             this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.tableC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableC.Controls.Add(this.label16);
-            this.tableC.Controls.Add(this.button4);
+            this.tableC.Controls.Add(this.dataGridView1);
             this.tableC.Location = new System.Drawing.Point(3, 230);
             this.tableC.Name = "tableC";
-            this.tableC.Size = new System.Drawing.Size(188, 98);
+            this.tableC.Size = new System.Drawing.Size(188, 532);
             this.tableC.TabIndex = 6;
             this.tableC.Visible = false;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(50, 66);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(65, 13);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "Множитель";
-            // 
-            // button4
-            // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(51, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 23);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Таблица";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // AreaPaint
             // 
@@ -510,14 +501,40 @@
             this.SpeedSlow.Visible = false;
             this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
             // 
-            // label8
+            // dataGridView1
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(59, 52);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Ограничения";
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.Beige;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 20;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.Size = new System.Drawing.Size(186, 530);
+            this.dataGridView1.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.HeaderText = "X";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 76;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 76;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 76;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 76;
             // 
             // MainForm
             // 
@@ -557,12 +574,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableC.ResumeLayout(false);
-            this.tableC.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
             this.viewTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,7 +612,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel tableC;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.CheckBox SlowDrawing;
@@ -608,8 +624,10 @@
         private System.Windows.Forms.Label PointsGraph;
         private System.Windows.Forms.TrackBar SpeedSlow;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }
 
