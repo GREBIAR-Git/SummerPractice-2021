@@ -400,10 +400,11 @@ namespace Сharts
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "GREBIAR |*.grebiar;";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(folderBrowserDialog.SelectedPath);
+                MessageBox.Show(saveFileDialog.FileName);
             }
         }
 
