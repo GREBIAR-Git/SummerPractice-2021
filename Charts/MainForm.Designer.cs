@@ -39,6 +39,8 @@
             this.functionR = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
             this.blockTable = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.functionsС = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.Draw = new System.Windows.Forms.Button();
@@ -72,8 +74,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.PointsGraph = new System.Windows.Forms.Label();
             this.SpeedSlow = new System.Windows.Forms.TrackBar();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -204,6 +204,26 @@
             this.blockTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.blockTable.Size = new System.Drawing.Size(186, 530);
             this.blockTable.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.HeaderText = "X";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 73;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 73;
             // 
             // functionsС
             // 
@@ -456,7 +476,7 @@
             // 
             // CentralY
             // 
-            this.CentralY.Location = new System.Drawing.Point(300, 700);
+            this.CentralY.Location = new System.Drawing.Point(343, 700);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(33, 20);
             this.CentralY.TabIndex = 30;
@@ -464,7 +484,7 @@
             // 
             // CentralX
             // 
-            this.CentralX.Location = new System.Drawing.Point(350, 700);
+            this.CentralX.Location = new System.Drawing.Point(304, 700);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(33, 20);
             this.CentralX.TabIndex = 25;
@@ -473,7 +493,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(311, 684);
+            this.label12.Location = new System.Drawing.Point(314, 684);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 25;
@@ -482,7 +502,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(360, 684);
+            this.label13.Location = new System.Drawing.Point(354, 684);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(12, 13);
             this.label13.TabIndex = 25;
@@ -558,26 +578,6 @@
             this.SpeedSlow.TabIndex = 39;
             this.SpeedSlow.Visible = false;
             this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn1.HeaderText = "X";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 73;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 73;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 73;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 73;
             // 
             // MainForm
             // 

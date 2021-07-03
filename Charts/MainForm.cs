@@ -14,6 +14,7 @@ namespace Сharts
         bool redrawing;
         List<PointF> nowPoints = new List<PointF>();
         PointF lastpoint = new PointF();
+        List<PointF[]> segments = new List<PointF[]>();
         public MainForm()
         {
             InitializeComponent();
@@ -203,6 +204,47 @@ namespace Сharts
             CentralYChenged();
         }
 
+        void CentralXChenged()
+        {
+            centralX = AreaPaint.Width / 2 - GeneralRestrictions(CentralX) * plusM;
+            AreaPaint.Refresh();
+        }
+
+        void CentralYChenged()
+        {
+
+            centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
+            AreaPaint.Refresh();
+        }
+
+        int LimitationsMin(int limitationDownX)
+        {
+            int lim = limitationDownX;
+            int def = -(centralX / plusM + 1);
+            if (lim > def)
+            {
+                return lim;
+            }
+            else
+            {
+                return def;
+            }
+        }
+
+        int LimitationsMax(int limitationUpX, int limitationDownX)
+        {
+            int lim = limitationUpX + 1;
+            int def = (AreaPaint.Width) / plusM + 2 + LimitationsMin(limitationDownX);
+            if (lim < def)
+            {
+                return lim;
+            }
+            else
+            {
+                return def;
+            }
+        }
+
         void PaintChart(Graphics graphics)
         {
             int limitationDownX;
@@ -246,58 +288,11 @@ namespace Сharts
             }
             EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
             Array.Resize(ref pointsDraw, countPointsDraw);
+            SeparationSegments(pointsDraw, Math.Abs(min) + max);
             SpeedDrawing(pointsDraw, graphics);
             nowPoints.Clear();
             nowTable.Rows.Clear();
             tableCompletion(pointsDraw);
-        }
-
-        void tableCompletion(PointF[] pointsDraw)
-        {
-            int byfX, byfY;
-
-            if (!int.TryParse(CentralX.Text, out byfX))
-            {
-                byfX = 0;
-            }
-            if (!int.TryParse(CentralY.Text, out byfY))
-            {
-                byfY = 0;
-            }
-                
-            for (int i = 0; i < pointsDraw.Length; i++)
-            {
-                pointsDraw[i].X -= 330- byfX;
-                pointsDraw[i].X /= plusM;
-                pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X, 1);
-                pointsDraw[i].X = pointsDraw[i].X;
-                pointsDraw[i].Y -= 326 + byfY;
-                pointsDraw[i].Y /= plusM;
-                pointsDraw[i].Y = (float)Math.Round(pointsDraw[i].Y, 1);
-                pointsDraw[i].Y = -pointsDraw[i].Y;
-                if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
-                {
-                    nowPoints.Add(pointsDraw[i]);
-                }
-                else if (i == 0)
-                {
-                    nowPoints.Add(pointsDraw[i]);
-                }
-            }
-            if(nowPoints.Count==1)
-            {
-                if(nowPoints[0].X!= pointsDraw[pointsDraw.Length-1].X)
-                {
-                    nowPoints.Add(pointsDraw[pointsDraw.Length - 1]);
-                }
-            }
-            nowTable.SuspendLayout();
-            foreach (PointF point in nowPoints)
-            {
-                nowTable.Rows.Add(point.X, point.Y);
-            }
-            nowTable.ResumeLayout();
-            PointsGraph.Text = (nowTable.Rows.Count-1).ToString();
         }
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
@@ -330,14 +325,56 @@ namespace Сharts
             }
         }
 
+        void SeparationSegments(PointF[] pointsDraw,int size)
+        {
+            segments.Clear();
+            PointF[] pointFsbyf = new PointF[size];
+            int idx = 0;
+            for(int i=0;i< pointsDraw.Length-1;i++)
+            {
+                if(pointsDraw[i].X/plusM+1==pointsDraw[i+1].X / plusM)
+                {
+                    pointFsbyf[idx] =  pointsDraw[i];
+                    idx++;
+                }
+                else
+                {
+                    pointFsbyf[idx] = pointsDraw[i];
+                    idx++;
+                    Array.Resize(ref pointFsbyf, idx);
+                    if(pointFsbyf.Length>1)
+                    {
+                        segments.Add(pointFsbyf);
+                    }
+                    pointFsbyf = new PointF[size];
+                    Array.Clear(pointFsbyf,0,pointFsbyf.Length);
+                    idx = 0;
+                }
+            }
+            if(pointsDraw.Length - 1>0)
+            {
+                pointFsbyf[idx] = pointsDraw[pointsDraw.Length - 1];
+                idx++;
+            }
+            if (pointFsbyf.Length>0)
+            {
+                Array.Resize(ref pointFsbyf, idx);
+                if (pointFsbyf.Length > 1)
+                {
+                    segments.Add(pointFsbyf);
+                }
+            }
+        }
+
         async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics)
         {
             Pen pen = new Pen(Color.Black, 2f);
-            if (pointsDraw.Length > 1)
+            if (segments.Count > 0)
             {
                 if (!slow || redrawing)
                 {
-                    graphics.DrawLines(pen, pointsDraw);
+                    foreach(PointF[] points in segments)
+                    graphics.DrawLines(pen, points);
                 }
                 else
                 {
@@ -353,45 +390,52 @@ namespace Сharts
             }
         }
 
-        int LimitationsMin(int limitationDownX)
+        void tableCompletion(PointF[] pointsDraw)
         {
-            int lim = limitationDownX;
-            int def = -(centralX / plusM + 1);
-            if (lim > def)
-            {
-                return lim;
-            }
-            else
-            {
-                return def;
-            }
-        }
+            int byfX, byfY;
 
-        int LimitationsMax(int limitationUpX,int limitationDownX)
-        {
-            int lim = limitationUpX+1;
-            int def = (AreaPaint.Width) / plusM + 2 + LimitationsMin(limitationDownX);
-            if(lim<def)
+            if (!int.TryParse(CentralX.Text, out byfX))
             {
-                return lim;
+                byfX = 0;
             }
-            else
+            if (!int.TryParse(CentralY.Text, out byfY))
             {
-                return def;
+                byfY = 0;
             }
-        }
 
-        void CentralXChenged()
-        {
-            centralX = AreaPaint.Width / 2 - GeneralRestrictions(CentralX) * plusM;
-            AreaPaint.Refresh();
-        }
-
-        void CentralYChenged()
-        {
-
-            centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
-            AreaPaint.Refresh();
+            for (int i = 0; i < pointsDraw.Length; i++)
+            {
+                pointsDraw[i].X -= 330 - byfX;
+                pointsDraw[i].X /= plusM;
+                pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X, 1);
+                pointsDraw[i].X = pointsDraw[i].X;
+                pointsDraw[i].Y -= 326 + byfY;
+                pointsDraw[i].Y /= plusM;
+                pointsDraw[i].Y = (float)Math.Round(pointsDraw[i].Y, 1);
+                pointsDraw[i].Y = -pointsDraw[i].Y;
+                if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
+                {
+                    nowPoints.Add(pointsDraw[i]);
+                }
+                else if (i == 0)
+                {
+                    nowPoints.Add(pointsDraw[i]);
+                }
+            }
+            if (nowPoints.Count == 1)
+            {
+                if (nowPoints[0].X != pointsDraw[pointsDraw.Length - 1].X)
+                {
+                    nowPoints.Add(pointsDraw[pointsDraw.Length - 1]);
+                }
+            }
+            nowTable.SuspendLayout();
+            foreach (PointF point in nowPoints)
+            {
+                nowTable.Rows.Add(point.X, point.Y);
+            }
+            nowTable.ResumeLayout();
+            PointsGraph.Text = (nowTable.Rows.Count - 1).ToString();
         }
 
         int GeneralRestrictions(TextBox textBox)
