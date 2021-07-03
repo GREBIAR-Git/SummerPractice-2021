@@ -242,6 +242,10 @@ namespace Сharts
             }
             int min = LimitationsMin(limitationDownX);
             int max = LimitationsMax(limitationUpX, limitationDownX);
+            if(Math.Abs(min) + max<0)
+            {
+                return;
+            }
             PointF[] points = new PointF[Math.Abs(min) + max];
             PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
             int countPointsDraw = 0;
