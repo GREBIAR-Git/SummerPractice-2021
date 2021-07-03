@@ -242,7 +242,7 @@ namespace Сharts
             for (int i = 0; i < points.Length; i++, x++)
             {
                 points[i] = new PointF(x * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,x) * plusM + centralY);
-                EndsGraphMin(ref points, ref i, ref countPointsDraw, ref pointsDraw);
+                EndsGraphMin(ref points, ref i, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
             }
             EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw);
             Array.Resize(ref pointsDraw, countPointsDraw);
@@ -284,6 +284,13 @@ namespace Сharts
                     nowPoints.Add(pointsDraw[i]);
                 }
             }
+            if(nowPoints.Count==1)
+            {
+                if(nowPoints[0].X!= pointsDraw[pointsDraw.Length-1].X)
+                {
+                    nowPoints.Add(pointsDraw[pointsDraw.Length - 1]);
+                }
+            }
             nowTable.SuspendLayout();
             foreach (PointF point in nowPoints)
             {
@@ -293,9 +300,9 @@ namespace Сharts
             PointsGraph.Text = (nowTable.Rows.Count-1).ToString();
         }
 
-        void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw)
+        void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
         {
-            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)
+            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)//&& points[i].Y> limitationDownY&& points[i].Y < limitationUpY)
             {
                 if (ip == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN))
                 {
