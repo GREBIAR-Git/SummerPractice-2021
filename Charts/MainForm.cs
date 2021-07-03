@@ -18,15 +18,15 @@ namespace Сharts
         public MainForm()
         {
             InitializeComponent();
-            centralX = AreaPaint.Width / 2;
-            centralY = AreaPaint.Height / 2;
             plusM = 1;
             slow = false;
             redrawing = true;
             slowspeed = 10;
             lastpoint.X = 1000;
             lastpoint.Y = 1000;
-
+            CentralXChenged();
+            CentralYChenged();
+            centralX += 100;
         }
 
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
@@ -435,9 +435,9 @@ namespace Сharts
             {
                 pointsDraw[i].X -= 330 - byfX;
                 pointsDraw[i].X /= plusM;
-                pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X, 1);
+                pointsDraw[i].X = (float)Math.Round(pointsDraw[i].X);
                 pointsDraw[i].X = pointsDraw[i].X;
-                pointsDraw[i].Y -= 326 + byfY;
+                pointsDraw[i].Y -= 343 + byfY;
                 pointsDraw[i].Y /= plusM;
                 pointsDraw[i].Y = (float)Math.Round(pointsDraw[i].Y, 1);
                 pointsDraw[i].Y = -pointsDraw[i].Y;
