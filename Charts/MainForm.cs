@@ -80,8 +80,6 @@ namespace Сharts
 
         private void Draw_Click(object sender, EventArgs e)
         {
-            Graphics graphics = AreaPaint.CreateGraphics();
-            graphics.Clear(Color.White);
             redrawing = false;
             AreaPaint.Refresh();
             redrawing = true;
@@ -115,45 +113,25 @@ namespace Сharts
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
-            {
-                functionsС.Visible = true;
-                tableC.Visible = false;
-            }
-            else if (radioButton2.Checked)
-            {
-                functionsС.Visible = false;
-                tableC.Visible = true;
-            }
-            else
-            {
-                functionsС.Visible = false;
-                tableC.Visible = false;
-            }
+            functionsС.Visible = functionR.Checked;
+            tableC.Visible = tableR.Checked;
         }
 
         private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
         {
             slow = SlowDrawing.Checked;
-            if (SlowDrawing.Checked)
-            {
-                SpeedSlow.Visible = true;
-            }
-            else
-            {
-                SpeedSlow.Visible = false;
-            }
+            SpeedSlow.Visible = SlowDrawing.Checked;
         }
 
         private void SpeedSlow_Scroll(object sender, EventArgs e)
         {
             if (SpeedSlow.Value == 0)
             {
-                slowspeed = 20;
+                slowspeed = 15;
             }
             else
             {
-                slowspeed = SpeedSlow.Value * 20;
+                slowspeed = SpeedSlow.Value * 15;
             }
         }
 
@@ -228,11 +206,6 @@ namespace Сharts
 
         private void CentralX_TextChanged(object sender, EventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text.Length == 5)
-            {
-                textBox.Text = textBox.Text.Remove(4);
-            }
             CentralXChenged();
         }
 
@@ -271,16 +244,15 @@ namespace Сharts
             int max = LimitationsMax(limitationUpX, limitationDownX);
             PointF[] points = new PointF[Math.Abs(min) + max];
             PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
-            int ip = 0;
-            int o = min;
-            for (int i = 0; i < points.Length; i++, o++)
+            int countPointsDraw = 0;
+            int x = min;
+            for (int i = 0; i < points.Length; i++, x++)
             {
-                points[i] = new PointF(o * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,o) * plusM + centralY);
-                EndsGraphMin(ref points, ref i, ref ip, ref pointsDraw);
+                points[i] = new PointF(x * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,x) * plusM + centralY);
+                EndsGraphMin(ref points, ref i, ref countPointsDraw, ref pointsDraw);
             }
-            EndsGraphMax(ref points, ref ip, ref pointsDraw);
-            Array.Resize(ref pointsDraw, ip);
-            PointF[] pointsDrawTemp = pointsDraw;
+            EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw);
+            Array.Resize(ref pointsDraw, countPointsDraw);
             SpeedDrawing(pointsDraw, graphics);
             nowPoints.Clear();
             nowTable.Rows.Clear();
@@ -342,15 +314,15 @@ namespace Сharts
             }
         }
 
-        void EndsGraphMax(ref PointF[] points,ref int ip, ref PointF[] pointsDraw)
+        void EndsGraphMax(ref PointF[] points,ref int countPointsDraw, ref PointF[] pointsDraw)
         {
             foreach (PointF point in points)
             {
 
-                if (ip>0&&point.X == (pointsDraw[ip - 1].X + 1 * plusM))
+                if (countPointsDraw > 0&&point.X == (pointsDraw[countPointsDraw - 1].X + 1 * plusM))
                 {
-                    pointsDraw[ip] = point;
-                    ip++;
+                    pointsDraw[countPointsDraw] = point;
+                    countPointsDraw++;
                     break;
                 }
             }
@@ -418,12 +390,6 @@ namespace Сharts
 
             centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
             AreaPaint.Refresh();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //double f = Math.Pow(341, 0.5);
-            //label16.Text=Charts.TranslatingExpression.Translating(textBox1.Text).ToString();
         }
 
         int GeneralRestrictions(TextBox textBox)

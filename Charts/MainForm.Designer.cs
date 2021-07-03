@@ -31,8 +31,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.tableR = new System.Windows.Forms.RadioButton();
+            this.functionR = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,38 +127,38 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.tableR);
+            this.panel1.Controls.Add(this.functionR);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(188, 43);
             this.panel1.TabIndex = 4;
             // 
-            // radioButton2
+            // tableR
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(99, 12);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(68, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.Text = "Таблица";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            this.tableR.AutoSize = true;
+            this.tableR.Location = new System.Drawing.Point(99, 12);
+            this.tableR.Name = "tableR";
+            this.tableR.Size = new System.Drawing.Size(68, 17);
+            this.tableR.TabIndex = 3;
+            this.tableR.Text = "Таблица";
+            this.tableR.UseVisualStyleBackColor = true;
+            this.tableR.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
-            // radioButton1
+            // functionR
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.radioButton1.Location = new System.Drawing.Point(6, 12);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(71, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Функции";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
+            this.functionR.AutoSize = true;
+            this.functionR.Checked = true;
+            this.functionR.Cursor = System.Windows.Forms.Cursors.Default;
+            this.functionR.Location = new System.Drawing.Point(6, 12);
+            this.functionR.Name = "functionR";
+            this.functionR.Size = new System.Drawing.Size(71, 17);
+            this.functionR.TabIndex = 2;
+            this.functionR.TabStop = true;
+            this.functionR.Text = "Функции";
+            this.functionR.UseVisualStyleBackColor = true;
+            this.functionR.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
             // tableC
             // 
@@ -610,8 +610,8 @@
         internal System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton tableR;
+        private System.Windows.Forms.RadioButton functionR;
         private System.Windows.Forms.Panel tableC;
         private System.Windows.Forms.Panel viewTable;
         private System.Windows.Forms.CheckBox SlowDrawing;
