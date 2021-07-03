@@ -300,17 +300,17 @@ namespace Сharts
             PointsGraph.Text = (nowTable.Rows.Count-1).ToString();
         }
 
-        void EndsGraphMin(ref PointF[] points,ref int i,ref int ip, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
+        void EndsGraphMin(ref PointF[] points,ref int i,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
         {
-            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height)//&& points[i].Y> limitationDownY&& points[i].Y < limitationUpY)
+            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height&& points[i].Y / plusM < (-limitationDownY  + centralY/plusM) && points[i].Y / plusM-1 > (-limitationUpY+ centralY / plusM))
             {
-                if (ip == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN))
+                if (countPointsDraw == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN))
                 {
-                    pointsDraw[ip] = points[i - 1];
-                    ip++;
+                    pointsDraw[countPointsDraw] = points[i - 1];
+                    countPointsDraw++;
                 }
-                pointsDraw[ip] = points[i];
-                ip++;
+                pointsDraw[countPointsDraw] = points[i];
+                countPointsDraw++;
             }
         }
 
@@ -318,7 +318,6 @@ namespace Сharts
         {
             foreach (PointF point in points)
             {
-
                 if (countPointsDraw > 0&&point.X == (pointsDraw[countPointsDraw - 1].X + 1 * plusM))
                 {
                     pointsDraw[countPointsDraw] = point;
