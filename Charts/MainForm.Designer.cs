@@ -60,7 +60,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.openTable = new System.Windows.Forms.Button();
             this.Percent = new System.Windows.Forms.Label();
             this.PercentScrolling = new System.Windows.Forms.TrackBar();
             this.CentralY = new System.Windows.Forms.TextBox();
@@ -74,6 +74,11 @@
             this.label15 = new System.Windows.Forms.Label();
             this.PointsGraph = new System.Windows.Forms.Label();
             this.SpeedSlow = new System.Windows.Forms.TrackBar();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -85,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -102,12 +108,12 @@
             this.tableLayoutPanel1.Controls.Add(this.AreaPaint, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.viewTable, 2, 0);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 11);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(11, 35);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 651);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 686);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -125,7 +131,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 645);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 680);
             this.tableLayoutPanel2.TabIndex = 25;
             // 
             // panel1
@@ -170,9 +176,10 @@
             this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.tableC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tableC.Controls.Add(this.blockTable);
+            this.tableC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableC.Location = new System.Drawing.Point(3, 221);
             this.tableC.Name = "tableC";
-            this.tableC.Size = new System.Drawing.Size(188, 532);
+            this.tableC.Size = new System.Drawing.Size(188, 458);
             this.tableC.TabIndex = 6;
             this.tableC.Visible = false;
             // 
@@ -196,13 +203,12 @@
             this.blockTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.blockTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.blockTable.EnableHeadersVisualStyles = false;
             this.blockTable.Location = new System.Drawing.Point(0, 0);
             this.blockTable.Name = "blockTable";
             this.blockTable.RowHeadersWidth = 20;
             this.blockTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.blockTable.Size = new System.Drawing.Size(186, 530);
+            this.blockTable.Size = new System.Drawing.Size(186, 377);
             this.blockTable.TabIndex = 9;
             // 
             // dataGridViewTextBoxColumn1
@@ -350,7 +356,7 @@
             this.AreaPaint.Location = new System.Drawing.Point(0, 0);
             this.AreaPaint.Margin = new System.Windows.Forms.Padding(0);
             this.AreaPaint.Name = "AreaPaint";
-            this.AreaPaint.Size = new System.Drawing.Size(660, 651);
+            this.AreaPaint.Size = new System.Drawing.Size(660, 686);
             this.AreaPaint.TabIndex = 0;
             this.AreaPaint.TabStop = false;
             this.AreaPaint.Paint += new System.Windows.Forms.PaintEventHandler(this.AreaPaint_Paint);
@@ -364,7 +370,7 @@
             this.viewTable.Controls.Add(this.nowTable);
             this.viewTable.Location = new System.Drawing.Point(863, 3);
             this.viewTable.Name = "viewTable";
-            this.viewTable.Size = new System.Drawing.Size(194, 645);
+            this.viewTable.Size = new System.Drawing.Size(194, 680);
             this.viewTable.TabIndex = 26;
             this.viewTable.Visible = false;
             // 
@@ -394,7 +400,7 @@
             this.nowTable.Name = "nowTable";
             this.nowTable.RowHeadersWidth = 20;
             this.nowTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.nowTable.Size = new System.Drawing.Size(192, 643);
+            this.nowTable.Size = new System.Drawing.Size(192, 678);
             this.nowTable.TabIndex = 8;
             // 
             // Column1
@@ -421,7 +427,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::Charts.Properties.Resources._11;
-            this.button2.Location = new System.Drawing.Point(220, 667);
+            this.button2.Location = new System.Drawing.Point(225, 737);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(49, 49);
             this.button2.TabIndex = 26;
@@ -433,7 +439,7 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::Charts.Properties.Resources.minus;
-            this.button1.Location = new System.Drawing.Point(11, 667);
+            this.button1.Location = new System.Drawing.Point(16, 737);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 50);
             this.button1.TabIndex = 25;
@@ -441,22 +447,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
+            // openTable
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(892, 668);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 49);
-            this.button3.TabIndex = 27;
-            this.button3.Text = "Открыть таблицу";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.openTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.openTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openTable.Location = new System.Drawing.Point(897, 738);
+            this.openTable.Name = "openTable";
+            this.openTable.Size = new System.Drawing.Size(159, 49);
+            this.openTable.TabIndex = 27;
+            this.openTable.Text = "Открыть таблицу";
+            this.openTable.UseVisualStyleBackColor = false;
+            this.openTable.Click += new System.EventHandler(this.button3_Click);
             // 
             // Percent
             // 
             this.Percent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Percent.Location = new System.Drawing.Point(65, 687);
+            this.Percent.Location = new System.Drawing.Point(70, 757);
             this.Percent.Margin = new System.Windows.Forms.Padding(0);
             this.Percent.Name = "Percent";
             this.Percent.Size = new System.Drawing.Size(149, 43);
@@ -468,7 +474,7 @@
             // 
             this.PercentScrolling.AutoSize = false;
             this.PercentScrolling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.PercentScrolling.Location = new System.Drawing.Point(65, 667);
+            this.PercentScrolling.Location = new System.Drawing.Point(70, 737);
             this.PercentScrolling.Name = "PercentScrolling";
             this.PercentScrolling.Size = new System.Drawing.Size(149, 30);
             this.PercentScrolling.TabIndex = 10;
@@ -476,7 +482,7 @@
             // 
             // CentralY
             // 
-            this.CentralY.Location = new System.Drawing.Point(343, 700);
+            this.CentralY.Location = new System.Drawing.Point(348, 770);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(33, 20);
             this.CentralY.TabIndex = 30;
@@ -484,7 +490,7 @@
             // 
             // CentralX
             // 
-            this.CentralX.Location = new System.Drawing.Point(304, 700);
+            this.CentralX.Location = new System.Drawing.Point(309, 770);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(33, 20);
             this.CentralX.TabIndex = 25;
@@ -493,7 +499,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(314, 684);
+            this.label12.Location = new System.Drawing.Point(319, 754);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 13);
             this.label12.TabIndex = 25;
@@ -502,7 +508,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(354, 684);
+            this.label13.Location = new System.Drawing.Point(359, 754);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(12, 13);
             this.label13.TabIndex = 25;
@@ -510,7 +516,7 @@
             // 
             // CenterO
             // 
-            this.CenterO.Location = new System.Drawing.Point(286, 670);
+            this.CenterO.Location = new System.Drawing.Point(291, 740);
             this.CenterO.Name = "CenterO";
             this.CenterO.Size = new System.Drawing.Size(115, 13);
             this.CenterO.TabIndex = 25;
@@ -520,7 +526,7 @@
             // SlowDrawing
             // 
             this.SlowDrawing.AutoSize = true;
-            this.SlowDrawing.Location = new System.Drawing.Point(419, 668);
+            this.SlowDrawing.Location = new System.Drawing.Point(424, 738);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
             this.SlowDrawing.TabIndex = 31;
@@ -531,7 +537,7 @@
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(623, 668);
+            this.label14.Location = new System.Drawing.Point(628, 738);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(104, 25);
             this.label14.TabIndex = 35;
@@ -541,7 +547,7 @@
             // coordinates
             // 
             this.coordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coordinates.Location = new System.Drawing.Point(594, 699);
+            this.coordinates.Location = new System.Drawing.Point(599, 769);
             this.coordinates.Name = "coordinates";
             this.coordinates.Size = new System.Drawing.Size(161, 20);
             this.coordinates.TabIndex = 36;
@@ -551,7 +557,7 @@
             // label15
             // 
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(742, 664);
+            this.label15.Location = new System.Drawing.Point(747, 734);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(143, 25);
             this.label15.TabIndex = 37;
@@ -561,7 +567,7 @@
             // PointsGraph
             // 
             this.PointsGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PointsGraph.Location = new System.Drawing.Point(761, 699);
+            this.PointsGraph.Location = new System.Drawing.Point(766, 769);
             this.PointsGraph.Name = "PointsGraph";
             this.PointsGraph.Size = new System.Drawing.Size(103, 20);
             this.PointsGraph.TabIndex = 38;
@@ -572,12 +578,52 @@
             // 
             this.SpeedSlow.AutoSize = false;
             this.SpeedSlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.SpeedSlow.Location = new System.Drawing.Point(419, 691);
+            this.SpeedSlow.Location = new System.Drawing.Point(424, 761);
             this.SpeedSlow.Name = "SpeedSlow";
             this.SpeedSlow.Size = new System.Drawing.Size(169, 30);
             this.SpeedSlow.TabIndex = 39;
             this.SpeedSlow.Visible = false;
             this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1082, 24);
+            this.menuStrip1.TabIndex = 40;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveMenuItem,
+            this.LoadMenuItem,
+            this.ExitMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveMenuItem.Text = "Сохранить";
+            // 
+            // LoadMenuItem
+            // 
+            this.LoadMenuItem.Name = "LoadMenuItem";
+            this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LoadMenuItem.Text = "Загрузить";
+            // 
+            // ExitMenuItem
+            // 
+            this.ExitMenuItem.Name = "ExitMenuItem";
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Text = "Выход";
+            this.ExitMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -586,7 +632,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.ClientSize = new System.Drawing.Size(1082, 728);
+            this.ClientSize = new System.Drawing.Size(1082, 804);
             this.Controls.Add(this.SpeedSlow);
             this.Controls.Add(this.PointsGraph);
             this.Controls.Add(this.label15);
@@ -597,19 +643,20 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.CentralX);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.openTable);
             this.Controls.Add(this.CentralY);
             this.Controls.Add(this.PercentScrolling);
             this.Controls.Add(this.Percent);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Charts";
-            this.SizeChanged += new System.EventHandler(this.MainForm_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -623,6 +670,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -642,7 +691,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button openTable;
         private System.Windows.Forms.Label Percent;
         private System.Windows.Forms.TrackBar PercentScrolling;
         private System.Windows.Forms.TextBox CentralY;
@@ -672,6 +721,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LoadMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitMenuItem;
     }
 }
 

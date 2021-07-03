@@ -18,7 +18,6 @@ namespace Сharts
         public MainForm()
         {
             InitializeComponent();
-            AreaPaint.Refresh();
             centralX = AreaPaint.Width / 2;
             centralY = AreaPaint.Height / 2;
             plusM = 1;
@@ -27,11 +26,7 @@ namespace Сharts
             slowspeed = 10;
             lastpoint.X = 1000;
             lastpoint.Y = 1000;
-        }
 
-        private void MainForm_SizeChanged(object sender, EventArgs e)
-        {
-            AreaPaint.Refresh();
         }
 
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
@@ -40,8 +35,8 @@ namespace Сharts
             Сharts.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 1), new Point(AreaPaint.Width, AreaPaint.Height - 1));
             Сharts.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
             Сharts.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
-            Сharts.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
-            Сharts.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
+            Сharts.Paint.DrawPoint(e, Color.Brown, new Point(AreaPaint.Width / 2, AreaPaint.Height / 2));
+            Сharts.Paint.DrawLine(e, Color.Brown, new Point(AreaPaint.Width / 2, 0), new Point(AreaPaint.Width / 2, AreaPaint.Height));
             Сharts.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
             if (plusM > 8)
             {
@@ -172,6 +167,14 @@ namespace Сharts
         private void button3_Click(object sender, EventArgs e)
         {
             viewTable.Visible = !viewTable.Visible;
+            if(viewTable.Visible)
+            {
+                openTable.Text = "Закрыть таблицу";
+            }
+            else
+            {
+                openTable.Text = "Открыть таблицу";
+            }
             CentralXChenged();
             CentralYChenged();
         }
@@ -388,6 +391,11 @@ namespace Сharts
                     }
                 }
             }
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         void tableCompletion(PointF[] pointsDraw)
