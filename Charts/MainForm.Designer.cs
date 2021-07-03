@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableR = new System.Windows.Forms.RadioButton();
             this.functionR = new System.Windows.Forms.RadioButton();
             this.tableC = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.blockTable = new System.Windows.Forms.DataGridView();
             this.functionsС = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.Draw = new System.Windows.Forms.Button();
             this.functionMain = new System.Windows.Forms.TextBox();
             this.LimitationUpY = new System.Windows.Forms.TextBox();
@@ -69,11 +72,13 @@
             this.label15 = new System.Windows.Forms.Label();
             this.PointsGraph = new System.Windows.Forms.Label();
             this.SpeedSlow = new System.Windows.Forms.TrackBar();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableC.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blockTable)).BeginInit();
             this.functionsС.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
@@ -164,52 +169,47 @@
             // 
             this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.tableC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableC.Controls.Add(this.dataGridView1);
-            this.tableC.Location = new System.Drawing.Point(3, 230);
+            this.tableC.Controls.Add(this.blockTable);
+            this.tableC.Location = new System.Drawing.Point(3, 221);
             this.tableC.Name = "tableC";
             this.tableC.Size = new System.Drawing.Size(188, 532);
             this.tableC.TabIndex = 6;
             this.tableC.Visible = false;
             // 
-            // dataGridView1
+            // blockTable
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.Beige;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.blockTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.blockTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.blockTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.blockTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.blockTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.blockTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 20;
-            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView1.Size = new System.Drawing.Size(186, 530);
-            this.dataGridView1.TabIndex = 9;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn1.HeaderText = "X";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 76;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 76;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 76;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 76;
+            this.blockTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.blockTable.EnableHeadersVisualStyles = false;
+            this.blockTable.Location = new System.Drawing.Point(0, 0);
+            this.blockTable.Name = "blockTable";
+            this.blockTable.RowHeadersWidth = 20;
+            this.blockTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.blockTable.Size = new System.Drawing.Size(186, 530);
+            this.blockTable.TabIndex = 9;
             // 
             // functionsС
             // 
             this.functionsС.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.functionsС.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.functionsС.Controls.Add(this.label2);
             this.functionsС.Controls.Add(this.Draw);
             this.functionsС.Controls.Add(this.functionMain);
             this.functionsС.Controls.Add(this.LimitationUpY);
@@ -223,8 +223,17 @@
             this.functionsС.Dock = System.Windows.Forms.DockStyle.Fill;
             this.functionsС.Location = new System.Drawing.Point(3, 52);
             this.functionsС.Name = "functionsС";
-            this.functionsС.Size = new System.Drawing.Size(188, 172);
+            this.functionsС.Size = new System.Drawing.Size(188, 163);
             this.functionsС.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(0, 32);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(21, 13);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "y =";
             // 
             // Draw
             // 
@@ -239,9 +248,9 @@
             // 
             // functionMain
             // 
-            this.functionMain.Location = new System.Drawing.Point(3, 29);
+            this.functionMain.Location = new System.Drawing.Point(21, 29);
             this.functionMain.Name = "functionMain";
-            this.functionMain.Size = new System.Drawing.Size(180, 20);
+            this.functionMain.Size = new System.Drawing.Size(162, 20);
             this.functionMain.TabIndex = 24;
             // 
             // LimitationUpY
@@ -341,12 +350,26 @@
             // 
             // nowTable
             // 
-            this.nowTable.BackgroundColor = System.Drawing.Color.Beige;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.nowTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.nowTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2});
             this.nowTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.nowTable.EnableHeadersVisualStyles = false;
             this.nowTable.Location = new System.Drawing.Point(0, 0);
             this.nowTable.Name = "nowTable";
             this.nowTable.RowHeadersWidth = 20;
@@ -536,6 +559,26 @@
             this.SpeedSlow.Visible = false;
             this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.HeaderText = "X";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 73;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 73;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -572,7 +615,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tableC.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blockTable)).EndInit();
             this.functionsС.ResumeLayout(false);
             this.functionsС.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).EndInit();
@@ -625,7 +668,8 @@
         private System.Windows.Forms.TrackBar SpeedSlow;
         private System.Windows.Forms.TextBox functionMain;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView blockTable;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }

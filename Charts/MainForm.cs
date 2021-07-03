@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,16 +24,6 @@ namespace Сharts
             slow = false;
             redrawing = true;
             slowspeed = 10;
-
-            nowTable.BorderStyle = BorderStyle.None;
-            nowTable.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(218, 189, 171);
-            nowTable.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            nowTable.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            nowTable.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            nowTable.BackgroundColor = Color.FromArgb(239, 205, 184);
-
-            nowTable.EnableHeadersVisualStyles = false;
-            nowTable.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(194, 168, 148);
             lastpoint.X = 1000;
             lastpoint.Y = 1000;
         }
