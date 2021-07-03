@@ -611,12 +611,14 @@
             this.SaveMenuItem.Name = "SaveMenuItem";
             this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.SaveMenuItem.Text = "Сохранить";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
             // LoadMenuItem
             // 
             this.LoadMenuItem.Name = "LoadMenuItem";
             this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LoadMenuItem.Text = "Загрузить";
+            this.LoadMenuItem.Click += new System.EventHandler(this.LoadMenuItem_Click);
             // 
             // ExitMenuItem
             // 

@@ -398,6 +398,25 @@ namespace Сharts
             Application.Exit();
         }
 
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(folderBrowserDialog.SelectedPath);
+            }
+        }
+
+        private void LoadMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "GREBIAR |*.grebiar;";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(openFileDialog.FileName);
+            }
+        }
+
         void tableCompletion(PointF[] pointsDraw)
         {
             int byfX, byfY;
