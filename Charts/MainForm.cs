@@ -244,7 +244,7 @@ namespace Сharts
                 points[i] = new PointF(x * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,x) * plusM + centralY);
                 EndsGraphMin(ref points, ref i, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
             }
-            EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw);
+            EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
             Array.Resize(ref pointsDraw, countPointsDraw);
             SpeedDrawing(pointsDraw, graphics);
             nowPoints.Clear();
@@ -302,7 +302,10 @@ namespace Сharts
 
         void EndsGraphMin(ref PointF[] points,ref int i,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
         {
-            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height&& points[i].Y / plusM < (-limitationDownY  + centralY/plusM) && points[i].Y / plusM-1 > (-limitationUpY+ centralY / plusM))
+            float z = (float)Math.Round(points[i].Y / plusM);
+            float xx = (-limitationDownY + centralY / plusM);
+            float ee = (-limitationUpY + centralY / plusM);
+            if (points[i].Y >= 0 && points[i].Y <= AreaPaint.Height&& Math.Round(points[i].Y / plusM) <= (-limitationDownY  + centralY/plusM) && Math.Round(points[i].Y / plusM-1) >= (-limitationUpY+ centralY / plusM))
             {
                 if (countPointsDraw == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN))
                 {
@@ -314,11 +317,11 @@ namespace Сharts
             }
         }
 
-        void EndsGraphMax(ref PointF[] points,ref int countPointsDraw, ref PointF[] pointsDraw)
+        void EndsGraphMax(ref PointF[] points,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
         {
             foreach (PointF point in points)
             {
-                if (countPointsDraw > 0&&point.X == (pointsDraw[countPointsDraw - 1].X + 1 * plusM))
+                if (countPointsDraw > 0&&point.X == (pointsDraw[countPointsDraw - 1].X + 1 * plusM)&& Math.Round(point.Y / plusM) <= (-limitationDownY + centralY / plusM) && Math.Round(point.Y / plusM - 1) >= (-limitationUpY + centralY / plusM))
                 {
                     pointsDraw[countPointsDraw] = point;
                     countPointsDraw++;
