@@ -35,8 +35,8 @@ namespace Сharts
             Сharts.Paint.DrawLine(e, Color.Black, new Point(0, AreaPaint.Height - 1), new Point(AreaPaint.Width, AreaPaint.Height - 1));
             Сharts.Paint.DrawLine(e, Color.Black, new Point(0, 0), new Point(0, AreaPaint.Height));
             Сharts.Paint.DrawLine(e, Color.Black, new Point(AreaPaint.Width - 1, 0), new Point(AreaPaint.Width - 1, AreaPaint.Height));
-            Сharts.Paint.DrawPoint(e, Color.Brown, new Point(AreaPaint.Width / 2, AreaPaint.Height / 2));
-            Сharts.Paint.DrawLine(e, Color.Brown, new Point(AreaPaint.Width / 2, 0), new Point(AreaPaint.Width / 2, AreaPaint.Height));
+            Сharts.Paint.DrawPoint(e, Color.Brown, new Point(centralX, centralY));
+            Сharts.Paint.DrawLine(e, Color.Brown, new Point(centralX, 0), new Point(centralX, AreaPaint.Height));
             Сharts.Paint.DrawLine(e, Color.Brown, new Point(0, centralY), new Point(AreaPaint.Width, centralY));
             if (plusM > 8)
             {
