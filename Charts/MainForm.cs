@@ -10,12 +10,15 @@ namespace Сharts
     public partial class MainForm : Form
     {
         PointF[] allPoints = new PointF[0];
+
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
         bool redrawing;
         List<PointF> nowPoints = new List<PointF>();
         PointF lastpoint = new PointF();
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -262,7 +265,7 @@ namespace Сharts
 
         void RemoveUnnecessary(PointF point,ref int countAllPoint,int limitationDownY,int limitationUpY)
         {
-            int checkedNumber = (int)(point.Y);
+            float checkedNumber = (point.Y);
             if (checkedNumber <= (-limitationDownY) && checkedNumber >=(-limitationUpY))
             {
                 allPoints[countAllPoint] = point;
@@ -272,6 +275,7 @@ namespace Сharts
 
         void PaintChart(Graphics graphics)
         {
+            List<PointF[]> segments = new List<PointF[]>();
             PointF[] pointsDraw = new PointF[allPoints.Length];
             int countPointsDraw = 0;
             for(int i=0;i<allPoints.Length;i++)
@@ -280,17 +284,99 @@ namespace Сharts
             }
             EndsGraphMax(ref countPointsDraw, ref pointsDraw);
             Array.Resize(ref pointsDraw, countPointsDraw);
-            SpeedDrawing(pointsDraw, graphics);
+            SeparationSegments(pointsDraw,ref segments);
+            SpeedDrawing(pointsDraw, graphics, segments);
             if(redrawing)
             {
                 tableCompletion(pointsDraw);
             }
         }
 
+        void SeparationSegments(PointF[] pointsDraw, ref List<PointF[]> segments)
+        {
+            PointF[] pointFsbyf = new PointF[pointsDraw.Length];
+            int idx = 0;
+            for (int i = 0; i < pointsDraw.Length - 1; i++)
+            {
+                if ((int)Math.Round(pointsDraw[i].X / plusM,1) + 1 == (int)Math.Round(pointsDraw[i + 1].X/ plusM,1))
+                {
+                    pointFsbyf[idx] = pointsDraw[i];
+                    idx++;
+                }
+                else
+                {
+                    pointFsbyf[idx] = pointsDraw[i];
+                    idx++;
+                    bool t1 = true;
+                    foreach(PointF point in allPoints)
+                    {
+                        if(point.X == (pointsDraw[i].X-centralX)/plusM + 1)
+                        {
+                            pointFsbyf[idx].X = (point.X*plusM)+centralX;
+                            pointFsbyf[idx].Y = (point.Y * plusM) + centralY;
+                            idx++;
+                        }
+                        if (point.X == (pointFsbyf[0].X - centralX) / plusM - 1)
+                        {
+                            if (t1)
+                            {
+                                for (int f = idx; f > 0; f--)
+                                {
+                                    pointFsbyf[f] = pointFsbyf[f - 1];
+                                }
+                                pointFsbyf[0].X = (point.X * plusM) + centralX;
+                                pointFsbyf[0].Y = (point.Y * plusM) + centralY;
+                                idx++;
+                                t1 = false;
+                            }
+                        }
+                    }
+                    Array.Resize(ref pointFsbyf, idx);
+                    if (pointFsbyf.Length > 1)
+                    {
+                        segments.Add(pointFsbyf);
+                    }
+                    pointFsbyf = new PointF[pointsDraw.Length];
+                    Array.Clear(pointFsbyf, 0, pointFsbyf.Length);
+                    idx = 0;
+                }
+            }
+            if (pointsDraw.Length - 1 > 0)
+            {
+                pointFsbyf[idx] = pointsDraw[pointsDraw.Length - 1];
+                idx++;
+                if(idx<pointsDraw.Length)
+                {
+                    foreach (PointF point in allPoints)
+                    {
+                        if (point.X == (pointFsbyf[0].X - centralX) / plusM - 1)
+                        {
+                            for (int f = idx; f > 0; f--)
+                            {
+                                pointFsbyf[f] = pointFsbyf[f - 1];
+                            }
+                            pointFsbyf[0].X = (point.X * plusM) + centralX;
+                            pointFsbyf[0].Y = (point.Y * plusM) + centralY;
+                            idx++;
+                        }
+                    }
+                }
+            }
+            if (pointFsbyf.Length > 0)
+            {
+                Array.Resize(ref pointFsbyf, idx);
+                if (pointFsbyf.Length > 1)
+                {
+                    segments.Add(pointFsbyf);
+                }
+            }
+        }
+
+
         void EndsGraphMin(int i,ref int countPointsDraw, ref PointF[] pointsDraw)
         {
-            int checkedNumberX = (int)((allPoints[i].X * plusM + centralX));
-            int checkedNumberY = (int)((allPoints[i].Y * plusM + centralY));
+            float checkedNumberX = (allPoints[i].X * plusM + centralX);
+            float checkedNumberY = (allPoints[i].Y * plusM + centralY);
             if (checkedNumberY >= 0 && checkedNumberY <= AreaPaint.Height&& checkedNumberX>=0&&checkedNumberX<=AreaPaint.Width)
             {
                 if (countPointsDraw == 0 && i > 0 && !allPoints[i - 1].Y.Equals(float.NaN))
@@ -322,24 +408,26 @@ namespace Сharts
             }
         }
 
-        async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics)
+        async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics, List<PointF[]> segments)
         {
             if (pointsDraw.Length > 1)
             {
                 Pen pen = new Pen(Color.Black, 2f);
                 if (!slow)
                 {
-                    graphics.DrawLines(pen, pointsDraw);
+                    foreach (PointF[] points in segments) 
+                    graphics.DrawLines(pen, points);
                 }
                 else
                 {
-                    PointF[] temppointsDraw = new PointF[pointsDraw.Length];
-                    Array.Copy(pointsDraw, temppointsDraw, pointsDraw.Length);
-                    for (int f = 0; temppointsDraw.Length - 1 > f; f++)
+                    foreach (PointF[] points in segments)
                     {
-                        await Task.Delay(slowspeed);
-                        graphics = AreaPaint.CreateGraphics();
-                        graphics.DrawLine(pen, temppointsDraw[f], temppointsDraw[f + 1]);
+                        for(int i=0;i<points.Length-1;i++)
+                        {
+                            await Task.Delay(slowspeed);
+                            graphics = AreaPaint.CreateGraphics();
+                            graphics.DrawLine(pen, points[i], points[i + 1]);
+                        }
                     }
                 }
             }
@@ -399,21 +487,23 @@ namespace Сharts
             nowTable.Rows.Clear();
             for (int i = 0; i < pointsDraw.Length; i++)
             {
-                pointsDraw[i].X -= centralX;
-                pointsDraw[i].X /= plusM;
-                pointsDraw[i].X = (int)(pointsDraw[i].X);
-                pointsDraw[i].Y -= centralY;
-                pointsDraw[i].Y /= plusM;
-                pointsDraw[i].Y = (int)(pointsDraw[i].Y);
-
-                pointsDraw[i].Y = -pointsDraw[i].Y;
-                if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
+                pointsDraw[i].X = (pointsDraw[i].X - centralX) / plusM;
+                float t = (float)Math.Round(pointsDraw[i].X);
+                pointsDraw[i].X = pointsDraw[i].X;
+                if (pointsDraw[i].X == Math.Round(pointsDraw[i].X))
                 {
-                    nowPoints.Add(pointsDraw[i]);
-                }
-                else if (i == 0)
-                {
-                    nowPoints.Add(pointsDraw[i]);
+                    pointsDraw[i].Y = -(pointsDraw[i].Y - centralY) / plusM;
+                    if(pointsDraw[i].Y == Math.Round(pointsDraw[i].Y))
+                    {
+                        if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
+                        {
+                            nowPoints.Add(pointsDraw[i]);
+                        }
+                        else if (i == 0)
+                        {
+                            nowPoints.Add(pointsDraw[i]);
+                        }
+                    }
                 }
             }
             if (nowPoints.Count == 1)

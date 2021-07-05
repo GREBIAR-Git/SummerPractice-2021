@@ -21,7 +21,7 @@ namespace Charts
                         if (funcO(3, ref i, ref str, ref inParentheses, ref placeInsertion))
                         {
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Sin(Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Sin(Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
@@ -32,7 +32,7 @@ namespace Charts
                         if (funcO(3, ref i, ref str, ref inParentheses, ref placeInsertion))
                         {
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Cos(Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Cos(Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
@@ -43,7 +43,7 @@ namespace Charts
                         if (funcO(3, ref i, ref str, ref inParentheses, ref placeInsertion))
                         {
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Log(Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Log(Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
@@ -54,7 +54,7 @@ namespace Charts
                         if (funcO(2, ref i, ref str, ref inParentheses, ref placeInsertion))
                         {
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Tan(Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Tan(Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
@@ -65,7 +65,7 @@ namespace Charts
                         if (funcO(2, ref i, ref str, ref inParentheses, ref placeInsertion))
                         {
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Log10(Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Log10(Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
@@ -86,7 +86,6 @@ namespace Charts
                                 if (str[f] == '-')
                                 {
                                     countS++;
-
                                 }
                                 else
                                 {
@@ -110,7 +109,7 @@ namespace Charts
                             }
                             str = str.Replace(',', '.');
                             string t = (new System.Data.DataTable()).Compute(inParentheses, "").ToString();
-                            str = str.Insert(placeInsertion, Math.Round(Math.Pow(double.Parse(byff), Convert.ToDouble(t)), 1).ToString());
+                            str = str.Insert(placeInsertion, Math.Round(Math.Pow(double.Parse(byff), Convert.ToDouble(t)), 2).ToString());
                             i = -1;
                         }
                     }
