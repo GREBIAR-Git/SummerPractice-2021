@@ -8,6 +8,7 @@ namespace Сharts
 {
     public partial class MainForm : Form
     {
+        PointF[] allPoints;
         //сюда массив всех точек от и до
         //массив точек на экране
         int centralX, centralY, plusM;
@@ -62,11 +63,6 @@ namespace Сharts
             {
                 PaintChart(e.Graphics);
             }
-        }
-
-        private void Draw_Click(object sender, EventArgs e)
-        {
-            AreaPaint.Refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -223,35 +219,7 @@ namespace Сharts
             AreaPaint.Refresh();
         }
 
-        int LimitationsMin(int limitationDownX)
-        {
-            int lim = limitationDownX;
-            int def = -(centralX / plusM + 1);
-            if (lim > def)
-            {
-                return lim;
-            }
-            else
-            {
-                return def;
-            }
-        }
-
-        int LimitationsMax(int limitationUpX, int limitationDownX)
-        {
-            int lim = limitationUpX + 1;
-            int def = (AreaPaint.Width) / plusM + 2 + LimitationsMin(limitationDownX);
-            if (lim < def)
-            {
-                return lim;
-            }
-            else
-            {
-                return def;
-            }
-        }
-
-        void PaintChart(Graphics graphics)
+        private void Draw_Click(object sender, EventArgs e)
         {
             int limitationDownX;
             if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
@@ -277,22 +245,44 @@ namespace Сharts
                 limitationUpY = 1000;
                 LimitationUpY.Text = "1000";
             }
-            int min = LimitationsMin(limitationDownX);
-            int max = LimitationsMax(limitationUpX, limitationDownX);
-            if(Math.Abs(min) + max<0)
+            int minX = limitationDownX;
+            int maxX = limitationUpX;
+            if (Math.Abs(minX) + maxX < 0)
             {
                 return;
             }
-            PointF[] points = new PointF[Math.Abs(min) + max];
-            PointF[] pointsDraw = new PointF[Math.Abs(min) + max];
-            int countPointsDraw = 0;
-            int x = min;
-            for (int i = 0; i < points.Length; i++, x++)
+            int countAllPoint=0;
+            allPoints = new PointF[Math.Abs(minX) + maxX];
+            PointF[] temporaryPoint = new PointF[Math.Abs(minX) + maxX];
+            int x = minX;
+            for (int i = 0; i < temporaryPoint.Length; i++, x++)
             {
-                points[i] = new PointF(x * plusM + centralX, Charts.TranslatingExpression.Translating(functionMain.Text,x) * plusM + centralY);
-                EndsGraphMin(ref points, ref i, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
+                temporaryPoint[i] = new PointF(x, Charts.TranslatingExpression.Translating(functionMain.Text, x));
+                RemoveUnnecessary(temporaryPoint[i], ref countAllPoint, limitationDownY, limitationUpY);
             }
-            EndsGraphMax(ref points, ref countPointsDraw, ref pointsDraw, limitationDownY, limitationUpY);
+            Array.Resize(ref allPoints, countAllPoint);
+            AreaPaint.Refresh();
+        }
+
+        void RemoveUnnecessary(PointF point,ref int countAllPoint,int limitationDownY,int limitationUpY)
+        {
+            int checkedNumber = (int)(point.Y);
+            if (checkedNumber <= (-limitationDownY) && checkedNumber >=(-limitationUpY))
+            {
+                allPoints[countAllPoint] = point;
+                countAllPoint++;
+            }
+        }
+
+        void PaintChart(Graphics graphics)
+        {
+            PointF[] pointsDraw = new PointF[2000];
+            int countPointsDraw = 0;
+            for(int i=0;i<allPoints.Length;i++)
+            {
+                EndsGraphMin(i, ref countPointsDraw, ref pointsDraw);
+            }
+            EndsGraphMax(ref countPointsDraw, ref pointsDraw);
             Array.Resize(ref pointsDraw, countPointsDraw);
             SpeedDrawing(pointsDraw, graphics);
             if(redrawing)
@@ -303,32 +293,34 @@ namespace Сharts
             }
         }
 
-        void EndsGraphMin(ref PointF[] points,ref int i,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
+        void EndsGraphMin(int i,ref int countPointsDraw, ref PointF[] pointsDraw)
         {
-            int checkedNumber = (int)(points[i].Y / plusM);
-            int leftBorder = (int)(-limitationDownY + centralY / plusM);
-            int rightBorder = (int)(-limitationUpY + centralY / plusM);
-            if (checkedNumber >= -9 && checkedNumber <= AreaPaint.Height+9 && checkedNumber <= leftBorder && checkedNumber >= rightBorder)
+            int checkedNumber = (int)((allPoints[i].Y * plusM + centralY) / plusM);
+            if (checkedNumber >= -9 && checkedNumber <= AreaPaint.Height+9)
             {
-                if (countPointsDraw == 0 && i > 0 && !points[i - 1].Y.Equals(float.NaN)&& (int)points[i - 1].Y/plusM<leftBorder&& (int)points[i - 1].Y / plusM> rightBorder)
+                if (countPointsDraw == 0 && i > 0 && !allPoints[i - 1].Y.Equals(float.NaN))
                 {
-                    pointsDraw[countPointsDraw] = points[i - 1];
+                    pointsDraw[countPointsDraw] = allPoints[i - 1];
+                    pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
+                    pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
                     countPointsDraw++;
                 }
-                pointsDraw[countPointsDraw] = points[i];
+                pointsDraw[countPointsDraw] = allPoints[i];
+                pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
+                pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
                 countPointsDraw++;
             }
         }
 
-        void EndsGraphMax(ref PointF[] points,ref int countPointsDraw, ref PointF[] pointsDraw, int limitationDownY, int limitationUpY)
+        void EndsGraphMax(ref int countPointsDraw, ref PointF[] pointsDraw)
         {
-            int leftBorder = (int)(-limitationDownY + centralY / plusM);
-            int rightBorder = (int)(-limitationUpY + centralY / plusM);
-            foreach (PointF point in points)
+            foreach (PointF point in allPoints)
             {
-                if (countPointsDraw > 0&&point.X == (pointsDraw[countPointsDraw - 1].X + 1 * plusM)&& (int)point.Y / plusM < leftBorder && (int)point.Y / plusM > rightBorder)
+                if (countPointsDraw > 0&&point.X == ((pointsDraw[countPointsDraw - 1].X-centralX/ plusM+1)))
                 {
                     pointsDraw[countPointsDraw] = point;
+                    pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
+                    pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
                     countPointsDraw++;
                     break;
                 }
