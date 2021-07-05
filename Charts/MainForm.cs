@@ -8,7 +8,7 @@ namespace Сharts
 {
     public partial class MainForm : Form
     {
-        PointF[] allPoints;
+        PointF[] allPoints = new PointF[0];
         //сюда массив всех точек от и до
         //массив точек на экране
         int centralX, centralY, plusM;
@@ -276,7 +276,7 @@ namespace Сharts
 
         void PaintChart(Graphics graphics)
         {
-            PointF[] pointsDraw = new PointF[2000];
+            PointF[] pointsDraw = new PointF[allPoints.Length];
             int countPointsDraw = 0;
             for(int i=0;i<allPoints.Length;i++)
             {
@@ -287,16 +287,15 @@ namespace Сharts
             SpeedDrawing(pointsDraw, graphics);
             if(redrawing)
             {
-                nowPoints.Clear();
-                nowTable.Rows.Clear();
                 tableCompletion(pointsDraw);
             }
         }
 
         void EndsGraphMin(int i,ref int countPointsDraw, ref PointF[] pointsDraw)
         {
-            int checkedNumber = (int)((allPoints[i].Y * plusM + centralY) / plusM);
-            if (checkedNumber >= -9 && checkedNumber <= AreaPaint.Height+9)
+            int checkedNumberX = (int)((allPoints[i].X * plusM + centralX));
+            int checkedNumberY = (int)((allPoints[i].Y * plusM + centralY));
+            if (checkedNumberY >= 0 && checkedNumberY <= AreaPaint.Height&& checkedNumberX>=0&&checkedNumberX<=AreaPaint.Width)
             {
                 if (countPointsDraw == 0 && i > 0 && !allPoints[i - 1].Y.Equals(float.NaN))
                 {
@@ -316,7 +315,7 @@ namespace Сharts
         {
             foreach (PointF point in allPoints)
             {
-                if (countPointsDraw > 0&&point.X == ((pointsDraw[countPointsDraw - 1].X-centralX/ plusM+1)))
+                if (countPointsDraw > 0&&point.X == ((pointsDraw[countPointsDraw - 1].X-centralX)/ plusM+1))
                 {
                     pointsDraw[countPointsDraw] = point;
                     pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
@@ -354,7 +353,7 @@ namespace Сharts
             }
         }
 
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
@@ -381,6 +380,8 @@ namespace Сharts
 
         void tableCompletion(PointF[] pointsDraw)
         {
+            nowPoints.Clear();
+            nowTable.Rows.Clear();
             for (int i = 0; i < pointsDraw.Length; i++)
             {
                 pointsDraw[i].X -= centralX;
@@ -388,7 +389,8 @@ namespace Сharts
                 pointsDraw[i].X = (int)(pointsDraw[i].X);
                 pointsDraw[i].Y -= centralY;
                 pointsDraw[i].Y /= plusM;
-                pointsDraw[i].Y = (int)(pointsDraw[i].Y);
+                pointsDraw[i].Y = (int)Math.Round(pointsDraw[i].Y,0);
+
                 pointsDraw[i].Y = -pointsDraw[i].Y;
                 if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
                 {
