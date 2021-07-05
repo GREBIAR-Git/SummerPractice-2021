@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -9,8 +10,6 @@ namespace Сharts
     public partial class MainForm : Form
     {
         PointF[] allPoints = new PointF[0];
-        //сюда массив всех точек от и до
-        //массив точек на экране
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
@@ -59,10 +58,7 @@ namespace Сharts
                     e.Graphics.DrawLine(new Pen(Color.Brown, 1), new Point(0, f + plusM), new Point(AreaPaint.Width, f + plusM));
                 }
             }
-            if(functionMain.TextLength!=0)
-            {
-                PaintChart(e.Graphics);
-            }
+            PaintChart(e.Graphics);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -364,7 +360,13 @@ namespace Сharts
             saveFileDialog.Filter = "GREBIAR |*.grebiar;";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(saveFileDialog.FileName);
+                FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Create);
+                StreamWriter output = new StreamWriter(fileStream);
+                foreach (PointF point in allPoints)
+                {
+                    output.Write(point.X+";"+point.Y+"!");
+                }
+                output.Close();
             }
         }
 
@@ -374,7 +376,20 @@ namespace Сharts
             openFileDialog.Filter = "GREBIAR |*.grebiar;";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show(openFileDialog.FileName);
+                FileStream file = new FileStream(openFileDialog.FileName, FileMode.Open);
+                StreamReader reader = new StreamReader(file);
+                string data = reader.ReadToEnd();
+                string[] subs = data.Split('!');
+                allPoints = new PointF[subs.Length-1];
+                int countAllPoint = 0;
+                for(int i =0; i< allPoints.Length;i++)
+                {
+                    string[] axis = subs[i].Split(';');
+                    allPoints[countAllPoint].X = int.Parse(axis[0]);
+                    allPoints[countAllPoint].Y = int.Parse(axis[1]);
+                    countAllPoint++;
+                }
+                reader.Close();
             }
         }
 
@@ -389,7 +404,7 @@ namespace Сharts
                 pointsDraw[i].X = (int)(pointsDraw[i].X);
                 pointsDraw[i].Y -= centralY;
                 pointsDraw[i].Y /= plusM;
-                pointsDraw[i].Y = (int)Math.Round(pointsDraw[i].Y,0);
+                pointsDraw[i].Y = (int)(pointsDraw[i].Y);
 
                 pointsDraw[i].Y = -pointsDraw[i].Y;
                 if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
