@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
@@ -39,9 +39,6 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableA = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.choice = new System.Windows.Forms.Panel();
             this.tableR = new System.Windows.Forms.RadioButton();
             this.functionR = new System.Windows.Forms.RadioButton();
@@ -57,6 +54,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tableC = new System.Windows.Forms.TableLayoutPanel();
+            this.tableA = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openTable = new System.Windows.Forms.Button();
@@ -84,27 +86,25 @@
             this.ColorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GraphFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GraphAdditionalFunctionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdditionalFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BottomPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableC = new System.Windows.Forms.TableLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.AdditionalFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tableA)).BeginInit();
             this.choice.SuspendLayout();
             this.functionsС.SuspendLayout();
+            this.tableC.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableC.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -161,20 +161,20 @@
             // 
             // nowTable
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.nowTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.nowTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -229,55 +229,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(197, 647);
             this.tableLayoutPanel2.TabIndex = 27;
-            // 
-            // tableA
-            // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tableA.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
-            this.tableA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
-            this.tableA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2});
-            this.tableA.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableA.EnableHeadersVisualStyles = false;
-            this.tableA.Location = new System.Drawing.Point(0, 0);
-            this.tableA.Margin = new System.Windows.Forms.Padding(0);
-            this.tableA.Name = "tableA";
-            this.tableA.RowHeadersWidth = 20;
-            this.tableA.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.tableA.Size = new System.Drawing.Size(191, 389);
-            this.tableA.TabIndex = 9;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn1.HeaderText = "X";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 73;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 73;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 73;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 73;
             // 
             // choice
             // 
@@ -436,6 +387,86 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Функция";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableC
+            // 
+            this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.tableC.ColumnCount = 1;
+            this.tableC.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableC.Controls.Add(this.tableA, 0, 0);
+            this.tableC.Controls.Add(this.button3, 0, 1);
+            this.tableC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableC.Location = new System.Drawing.Point(3, 218);
+            this.tableC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.tableC.Name = "tableC";
+            this.tableC.RowCount = 2;
+            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableC.Size = new System.Drawing.Size(191, 429);
+            this.tableC.TabIndex = 5;
+            this.tableC.Visible = false;
+            // 
+            // tableA
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.tableA.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.tableA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.tableA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.tableA.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableA.EnableHeadersVisualStyles = false;
+            this.tableA.Location = new System.Drawing.Point(0, 0);
+            this.tableA.Margin = new System.Windows.Forms.Padding(0);
+            this.tableA.Name = "tableA";
+            this.tableA.RowHeadersWidth = 20;
+            this.tableA.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.tableA.Size = new System.Drawing.Size(191, 389);
+            this.tableA.TabIndex = 9;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn1.HeaderText = "X";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 73;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Y";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 73;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 73;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(0, 394);
+            this.button3.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(191, 30);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Начертить";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
             // 
@@ -665,7 +696,7 @@
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
-            this.BottomPanelMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.BottomPanelMenuItem.Size = new System.Drawing.Size(236, 22);
             this.BottomPanelMenuItem.Text = "Нижняя панель";
             this.BottomPanelMenuItem.Click += new System.EventHandler(this.BottomPanelMenuItem_Click);
             // 
@@ -673,7 +704,7 @@
             // 
             this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
-            this.TableMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.TableMenuItem.Size = new System.Drawing.Size(236, 22);
             this.TableMenuItem.Text = "Таблица";
             this.TableMenuItem.Click += new System.EventHandler(this.TableMenuItem_Click);
             // 
@@ -684,14 +715,14 @@
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
             this.ColorMenuItem.Name = "ColorMenuItem";
-            this.ColorMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.ColorMenuItem.Size = new System.Drawing.Size(236, 22);
             this.ColorMenuItem.Text = "Цвета";
             // 
             // GraphFunctionMenuItem
             // 
             this.GraphFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphFunctionMenuItem.Name = "GraphFunctionMenuItem";
-            this.GraphFunctionMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.GraphFunctionMenuItem.Size = new System.Drawing.Size(274, 22);
             this.GraphFunctionMenuItem.Text = "График функции";
             this.GraphFunctionMenuItem.Click += new System.EventHandler(this.GraphFunctionMenuItem_Click);
             // 
@@ -699,9 +730,19 @@
             // 
             this.GraphAdditionalFunctionsMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphAdditionalFunctionsMenuItem.Name = "GraphAdditionalFunctionsMenuItem";
-            this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(268, 22);
-            this.GraphAdditionalFunctionsMenuItem.Text = "График корректированой функции";
+            this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(274, 22);
+            this.GraphAdditionalFunctionsMenuItem.Text = "График cкорректированой функции";
             this.GraphAdditionalFunctionsMenuItem.Click += new System.EventHandler(this.GraphAdditionalFunctionsMenuItem_Click);
+            // 
+            // AdditionalFunctionMenuItem
+            // 
+            this.AdditionalFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
+            this.AdditionalFunctionMenuItem.Checked = true;
+            this.AdditionalFunctionMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AdditionalFunctionMenuItem.Name = "AdditionalFunctionMenuItem";
+            this.AdditionalFunctionMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.AdditionalFunctionMenuItem.Text = "Скорректированная функция";
+            this.AdditionalFunctionMenuItem.Click += new System.EventHandler(this.AdditionalFunctionMenuItem_Click);
             // 
             // BottomPanel
             // 
@@ -758,47 +799,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1084, 741);
             this.tableLayoutPanel4.TabIndex = 42;
             // 
-            // tableC
-            // 
-            this.tableC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            this.tableC.ColumnCount = 1;
-            this.tableC.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableC.Controls.Add(this.tableA, 0, 0);
-            this.tableC.Controls.Add(this.button3, 0, 1);
-            this.tableC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableC.Location = new System.Drawing.Point(3, 218);
-            this.tableC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.tableC.Name = "tableC";
-            this.tableC.RowCount = 2;
-            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableC.Size = new System.Drawing.Size(191, 429);
-            this.tableC.TabIndex = 5;
-            this.tableC.Visible = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(0, 394);
-            this.button3.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(191, 30);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Начертить";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
-            // 
-            // AdditionalFunctionMenuItem
-            // 
-            this.AdditionalFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.AdditionalFunctionMenuItem.Checked = true;
-            this.AdditionalFunctionMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AdditionalFunctionMenuItem.Name = "AdditionalFunctionMenuItem";
-            this.AdditionalFunctionMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.AdditionalFunctionMenuItem.Text = "Скорректированная функция";
-            this.AdditionalFunctionMenuItem.Click += new System.EventHandler(this.AdditionalFunctionMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -821,11 +821,12 @@
             this.viewTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tableA)).EndInit();
             this.choice.ResumeLayout(false);
             this.choice.PerformLayout();
             this.functionsС.ResumeLayout(false);
             this.functionsС.PerformLayout();
+            this.tableC.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tableA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -834,7 +835,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableC.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

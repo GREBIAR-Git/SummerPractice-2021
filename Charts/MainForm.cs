@@ -177,6 +177,7 @@ namespace Сharts
             {
                 colorMainFunctoin = color.Color;
             }
+            AreaPaint.Refresh();
         }
 
         private void GraphAdditionalFunctionsMenuItem_Click(object sender, EventArgs e)
@@ -187,6 +188,7 @@ namespace Сharts
             {
                 colorAdditionalFunction = color.Color;
             }
+            AreaPaint.Refresh();
         }
 
         private void button1_Click(object sender, EventArgs e)
