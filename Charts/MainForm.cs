@@ -28,8 +28,8 @@ namespace Сharts
             slowspeed = 10;
             lastpoint.X = 1000;
             lastpoint.Y = 1000;
-            CentralXChenged();
-            CentralYChenged();
+            CentralXChanged();
+            CentralYChanged();
             centralX += 100;
         }
 
@@ -72,8 +72,8 @@ namespace Сharts
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
-                CentralXChenged();
-                CentralYChenged();
+                CentralXChanged();
+                CentralYChanged();
             }
         }
 
@@ -85,8 +85,8 @@ namespace Сharts
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
-                CentralXChenged();
-                CentralYChenged();
+                CentralXChanged();
+                CentralYChanged();
             }
         }
 
@@ -173,8 +173,8 @@ namespace Сharts
             {
                 openTable.Text = "Открыть таблицу";
             }
-            CentralXChenged();
-            CentralYChenged();
+            CentralXChanged();
+            CentralYChanged();
         }
 
         private void PercentScrolling_Scroll(object sender, EventArgs e)
@@ -183,35 +183,35 @@ namespace Сharts
             {
                 plusM = PercentScrolling.Value * 11;
                 Percent.Text = "1:" + plusM;
-                CentralXChenged();
-                CentralYChenged();
+                CentralXChanged();
+                CentralYChanged();
             }
             else
             {
                 plusM = 1;
                 Percent.Text = "1:1";
-                CentralXChenged();
-                CentralYChenged();
+                CentralXChanged();
+                CentralYChanged();
             }
         }
 
         private void CentralX_TextChanged(object sender, EventArgs e)
         {
-            CentralXChenged();
+            CentralXChanged();
         }
 
         private void CentralY_TextChanged(object sender, EventArgs e)
         {
-            CentralYChenged();
+            CentralYChanged();
         }
 
-        void CentralXChenged()
+        void CentralXChanged()
         {
             centralX = AreaPaint.Width / 2 - GeneralRestrictions(CentralX) * plusM;
             AreaPaint.Refresh();
         }
 
-        void CentralYChenged()
+        void CentralYChanged()
         {
 
             centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
@@ -479,6 +479,20 @@ namespace Сharts
                 }
                 reader.Close();
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
         }
 
         void tableCompletion(PointF[] pointsDraw)
