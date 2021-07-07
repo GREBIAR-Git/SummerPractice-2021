@@ -28,10 +28,8 @@ namespace Сharts
             slow = false;
             redrawing = true;
             slowspeed = 10;
-            lastpoint.X = 1000;
-            lastpoint.Y = 1000;
-            CentralXChanged();
-            CentralYChanged();
+            lastpoint.X = 10000;
+            lastpoint.Y = 10000;
             centralX += 100;
             colorMainFunctoin = Color.Black;
             colorAdditionalFunction = Color.Red;
@@ -190,10 +188,10 @@ namespace Сharts
                 ForStopSlow();
                 plusM -= 1;
                 PercentScrolling.Value = plusM / (11);
-                AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
                 CentralXChanged();
                 CentralYChanged();
+                AreaPaint.Refresh();
             }
         }
 
@@ -204,15 +202,20 @@ namespace Сharts
                 ForStopSlow();
                 plusM += 1;
                 PercentScrolling.Value = plusM / (11);
-                AreaPaint.Refresh();
                 Percent.Text = "1:" + plusM;
                 CentralXChanged();
                 CentralYChanged();
+                AreaPaint.Refresh();
             }
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
         {
+            tableA.Rows.Clear();
+            for(int i=0;i < nowTable.Rows.Count-1;i++)
+            {
+                tableA.Rows.Add(nowTable.Rows[i].Cells[0].Value, nowTable.Rows[i].Cells[1].Value); ;
+            }
             functionsС.Visible = functionR.Checked;
             tableC.Visible = tableR.Checked;
         }
@@ -276,8 +279,8 @@ namespace Сharts
                 AreaPaint.Refresh();
                 redrawing = true;
             }
-            lastpoint.Y = 1000;
-            lastpoint.X = 1000;
+            lastpoint.Y = 10000;
+            lastpoint.X = 10000;
         }
 
         private void Limitation_TextChanged(object sender, EventArgs e)
@@ -299,6 +302,7 @@ namespace Сharts
             }
             CentralXChanged();
             CentralYChanged();
+            AreaPaint.Refresh();
         }
 
         private void PercentScrolling_Scroll(object sender, EventArgs e)
@@ -318,6 +322,7 @@ namespace Сharts
                 CentralXChanged();
                 CentralYChanged();
             }
+            AreaPaint.Refresh();
         }
 
         private void CentralX_TextChanged(object sender, EventArgs e)
@@ -335,14 +340,12 @@ namespace Сharts
         void CentralXChanged()
         {
             centralX = AreaPaint.Width / 2 - GeneralRestrictions(CentralX) * plusM;
-            AreaPaint.Refresh();
         }
 
         void CentralYChanged()
         {
 
             centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
-            AreaPaint.Refresh();
         }
 
         private void Draw_Click(object sender, EventArgs e)
@@ -352,26 +355,26 @@ namespace Сharts
                 int limitationDownX;
                 if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
                 {
-                    limitationDownX = -1000;
-                    LimitationDownX.Text = "-1000";
+                    limitationDownX = -10000;
+                    LimitationDownX.Text = "-10000";
                 }
                 int limitationUpX;
                 if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
                 {
-                    limitationUpX = 1000;
-                    LimitationUpX.Text = "1000";
+                    limitationUpX = 10000;
+                    LimitationUpX.Text = "10000";
                 }
                 int limitationDownY;
                 if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
                 {
-                    limitationDownY = -1000;
-                    LimitationDownY.Text = "-1000";
+                    limitationDownY = -10000;
+                    LimitationDownY.Text = "-10000";
                 }
                 int limitationUpY;
                 if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
                 {
-                    limitationUpY = 1000;
-                    LimitationUpY.Text = "1000";
+                    limitationUpY = 10000;
+                    LimitationUpY.Text = "10000";
                 }
                 int minX = limitationDownX;
                 int maxX = limitationUpX;
@@ -398,15 +401,7 @@ namespace Сharts
                     allPoints = new PointF[0];
                 }
             }
-            if(allPoints.Length>0)
-            {
-                choice.Visible = true;
-            }
-            else
-            {
-                choice.Visible = false;
-            }
-            if(!slow)
+            if (!slow)
             {
                 stopSlowDrawing = false;
                 AreaPaint.Refresh();
@@ -414,6 +409,14 @@ namespace Сharts
             else
             {
                 ForStopSlow();
+            }
+            if (allPoints.Length>0)
+            {
+                choice.Visible = true;
+            }
+            else
+            {
+                choice.Visible = false;
             }
         }
 
@@ -656,32 +659,32 @@ namespace Сharts
         {
             if (textBox.Text.StartsWith("-"))
             {
+                if (textBox.TextLength > 6)
+                {
+                    textBox.Text = textBox.Text.Remove(6);
+                    textBox.SelectionStart = textBox.TextLength;
+                }
+            }
+            else
+            {
                 if (textBox.TextLength > 5)
                 {
                     textBox.Text = textBox.Text.Remove(5);
                     textBox.SelectionStart = textBox.TextLength;
                 }
             }
-            else
-            {
-                if (textBox.TextLength > 4)
-                {
-                    textBox.Text = textBox.Text.Remove(4);
-                    textBox.SelectionStart = textBox.TextLength;
-                }
-            }
             int inParentheses;
             if (Int32.TryParse(textBox.Text, out inParentheses))
             {
-                if (inParentheses > 1000)
+                if (inParentheses > 10000)
                 {
-                    inParentheses = 1000;
-                    textBox.Text = "1000";
+                    inParentheses = 10000;
+                    textBox.Text = "10000";
                 }
-                else if (inParentheses < -1000)
+                else if (inParentheses < -10000)
                 {
-                    inParentheses = -1000;
-                    textBox.Text = "-1000";
+                    inParentheses = -10000;
+                    textBox.Text = "-10000";
                 }
                 textBox.SelectionStart = textBox.TextLength;
             }
