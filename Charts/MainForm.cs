@@ -606,6 +606,11 @@ namespace Сharts
             }
         }
 
+        private void nowTable_Click(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            AreaPaint.Focus();
+        }
+
         void tableCompletion(PointF[] pointsDraw)
         {
             nowPoints.Clear();

@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
@@ -157,20 +157,20 @@
             // 
             // nowTable
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.nowTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.nowTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -184,6 +184,9 @@
             this.nowTable.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.nowTable.Size = new System.Drawing.Size(192, 645);
             this.nowTable.TabIndex = 8;
+            this.nowTable.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.nowTable_Click);
+            this.nowTable.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.nowTable_Click);
+            this.nowTable.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.nowTable_Click);
             // 
             // Column1
             // 
@@ -225,19 +228,19 @@
             // 
             // tableC
             // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tableC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.tableC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.tableC.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.tableC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -610,7 +613,7 @@
             // 
             this.SaveMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveMenuItem.Size = new System.Drawing.Size(133, 22);
             this.SaveMenuItem.Text = "Сохранить";
             this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
             // 
@@ -618,7 +621,7 @@
             // 
             this.LoadMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.LoadMenuItem.Name = "LoadMenuItem";
-            this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LoadMenuItem.Size = new System.Drawing.Size(133, 22);
             this.LoadMenuItem.Text = "Загрузить";
             this.LoadMenuItem.Click += new System.EventHandler(this.LoadMenuItem_Click);
             // 
@@ -626,7 +629,7 @@
             // 
             this.ExitMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(133, 22);
             this.ExitMenuItem.Text = "Выход";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -658,7 +661,7 @@
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
-            this.BottomPanelMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BottomPanelMenuItem.Size = new System.Drawing.Size(160, 22);
             this.BottomPanelMenuItem.Text = "Нижняя панель";
             this.BottomPanelMenuItem.Click += new System.EventHandler(this.BottomPanelMenuItem_Click);
             // 
@@ -666,7 +669,7 @@
             // 
             this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
-            this.TableMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.TableMenuItem.Size = new System.Drawing.Size(160, 22);
             this.TableMenuItem.Text = "Таблица";
             this.TableMenuItem.Click += new System.EventHandler(this.TableMenuItem_Click);
             // 
@@ -677,7 +680,7 @@
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
             this.ColorMenuItem.Name = "ColorMenuItem";
-            this.ColorMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ColorMenuItem.Size = new System.Drawing.Size(160, 22);
             this.ColorMenuItem.Text = "Цвета";
             // 
             // GraphFunctionMenuItem
