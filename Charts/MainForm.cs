@@ -78,6 +78,7 @@ namespace Сharts
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
+            ForStopSlow();
             CentralXChanged();
             CentralYChanged();
             AreaPaint.Refresh();
@@ -160,6 +161,26 @@ namespace Сharts
             }
             CentralXChanged();
             CentralYChanged();
+        }
+
+        private void GraphFunctionMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog color = new ColorDialog();
+            color.AllowFullOpen = false;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                colorMainFunctoin = color.Color;
+            }
+        }
+
+        private void GraphAdditionalFunctionsMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog color = new ColorDialog();
+            color.AllowFullOpen = false;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                colorAdditionalFunction = color.Color;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -404,8 +425,6 @@ namespace Сharts
             AreaPaint.Refresh();
         }
 
-
-
         void RemoveUnnecessary(PointF point,ref int countAllPoint,int limitationDownY,int limitationUpY)
         {
             float checkedNumber = (point.Y);
@@ -584,26 +603,6 @@ namespace Сharts
             else if(pointsDraw.Length == 1)
             {
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointsDraw[0].X - 3, pointsDraw[0].Y - 3, 6, 6);
-            }
-        }
-
-        private void GraphFunctionMenuItem_Click(object sender, EventArgs e)
-        {
-            ColorDialog color= new ColorDialog();
-            color.AllowFullOpen = false;
-            if (color.ShowDialog() == DialogResult.OK)
-            {
-                colorMainFunctoin = color.Color;
-            }
-        }
-
-        private void GraphAdditionalFunctionsMenuItem_Click(object sender, EventArgs e)
-        {
-            ColorDialog color = new ColorDialog();
-            color.AllowFullOpen = false;
-            if (color.ShowDialog() == DialogResult.OK)
-            {
-                colorAdditionalFunction= color.Color;
             }
         }
 
