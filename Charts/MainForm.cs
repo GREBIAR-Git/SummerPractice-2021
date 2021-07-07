@@ -121,16 +121,23 @@ namespace Сharts
             {
                 FileStream file = new FileStream(openFileDialog.FileName, FileMode.Open);
                 StreamReader reader = new StreamReader(file);
-                string data = reader.ReadToEnd();
-                string[] subs = data.Split('!');
-                allPoints = new PointF[subs.Length - 1];
-                int countAllPoint = 0;
-                for (int i = 0; i < allPoints.Length; i++)
+                try
                 {
-                    string[] axis = subs[i].Split(';');
-                    allPoints[countAllPoint].X = int.Parse(axis[0]);
-                    allPoints[countAllPoint].Y = int.Parse(axis[1]);
-                    countAllPoint++;
+                    string data = reader.ReadToEnd();
+                    string[] subs = data.Split('!');
+                    allPoints = new PointF[subs.Length - 1];
+                    int countAllPoint = 0;
+                    for (int i = 0; i < allPoints.Length; i++)
+                    {
+                        string[] axis = subs[i].Split(';');
+                        allPoints[countAllPoint].X = int.Parse(axis[0]);
+                        allPoints[countAllPoint].Y = int.Parse(axis[1]);
+                        countAllPoint++;
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Файл повреждён");
                 }
                 reader.Close();
             }
