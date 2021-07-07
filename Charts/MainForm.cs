@@ -495,6 +495,15 @@ namespace Сharts
             AreaPaint.Refresh();
         }
 
+        private void BottomPanelMenuItem_Click(object sender, EventArgs e)
+        {
+            BottomPanelMenuItem.Checked = !BottomPanelMenuItem.Checked;
+            BottomPanel.Visible = BottomPanelMenuItem.Checked;
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
+        }
+
         void tableCompletion(PointF[] pointsDraw)
         {
             nowPoints.Clear();
