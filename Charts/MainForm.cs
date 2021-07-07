@@ -64,6 +64,89 @@ namespace Сharts
             PaintChart(e.Graphics);
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
+        }
+
+        private void BottomPanelMenuItem_Click(object sender, EventArgs e)
+        {
+            BottomPanelMenuItem.Checked = !BottomPanelMenuItem.Checked;
+            BottomPanel.Visible = BottomPanelMenuItem.Checked;
+            CentralXChanged();
+            CentralYChanged();
+            AreaPaint.Refresh();
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SaveMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "GREBIAR |*.grebiar;";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Create);
+                StreamWriter output = new StreamWriter(fileStream);
+                foreach (PointF point in allPoints)
+                {
+                    output.Write(point.X + ";" + point.Y + "!");
+                }
+                output.Close();
+            }
+        }
+
+        private void LoadMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "GREBIAR |*.grebiar;";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                FileStream file = new FileStream(openFileDialog.FileName, FileMode.Open);
+                StreamReader reader = new StreamReader(file);
+                string data = reader.ReadToEnd();
+                string[] subs = data.Split('!');
+                allPoints = new PointF[subs.Length - 1];
+                int countAllPoint = 0;
+                for (int i = 0; i < allPoints.Length; i++)
+                {
+                    string[] axis = subs[i].Split(';');
+                    allPoints[countAllPoint].X = int.Parse(axis[0]);
+                    allPoints[countAllPoint].Y = int.Parse(axis[1]);
+                    countAllPoint++;
+                }
+                reader.Close();
+            }
+        }
+
+        private void TableMenuItem_Click(object sender, EventArgs e)
+        {
+            TableMenuItem.Checked = !TableMenuItem.Checked;
+            viewTable.Visible = TableMenuItem.Checked;
+            if (viewTable.Visible)
+            {
+                openTable.Text = "Закрыть таблицу";
+            }
+            else
+            {
+                openTable.Text = "Открыть таблицу";
+            }
+            CentralXChanged();
+            CentralYChanged();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (plusM > 1)
@@ -435,73 +518,6 @@ namespace Сharts
             {
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointsDraw[0].X - 3, pointsDraw[0].Y - 3, 6, 6);
             }
-        }
-
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void SaveMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "GREBIAR |*.grebiar;";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Create);
-                StreamWriter output = new StreamWriter(fileStream);
-                foreach (PointF point in allPoints)
-                {
-                    output.Write(point.X+";"+point.Y+"!");
-                }
-                output.Close();
-            }
-        }
-
-        private void LoadMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "GREBIAR |*.grebiar;";
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                FileStream file = new FileStream(openFileDialog.FileName, FileMode.Open);
-                StreamReader reader = new StreamReader(file);
-                string data = reader.ReadToEnd();
-                string[] subs = data.Split('!');
-                allPoints = new PointF[subs.Length-1];
-                int countAllPoint = 0;
-                for(int i =0; i< allPoints.Length;i++)
-                {
-                    string[] axis = subs[i].Split(';');
-                    allPoints[countAllPoint].X = int.Parse(axis[0]);
-                    allPoints[countAllPoint].Y = int.Parse(axis[1]);
-                    countAllPoint++;
-                }
-                reader.Close();
-            }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            CentralXChanged();
-            CentralYChanged();
-            AreaPaint.Refresh();
-        }
-
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            CentralXChanged();
-            CentralYChanged();
-            AreaPaint.Refresh();
-        }
-
-        private void BottomPanelMenuItem_Click(object sender, EventArgs e)
-        {
-            BottomPanelMenuItem.Checked = !BottomPanelMenuItem.Checked;
-            BottomPanel.Visible = BottomPanelMenuItem.Checked;
-            CentralXChanged();
-            CentralYChanged();
-            AreaPaint.Refresh();
         }
 
         void tableCompletion(PointF[] pointsDraw)
