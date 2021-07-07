@@ -89,6 +89,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableC = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
+            this.AdditionalFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
@@ -652,7 +653,8 @@
             this.ViewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BottomPanelMenuItem,
             this.TableMenuItem,
-            this.ColorMenuItem});
+            this.ColorMenuItem,
+            this.AdditionalFunctionMenuItem});
             this.ViewMenuItem.Name = "ViewMenuItem";
             this.ViewMenuItem.Size = new System.Drawing.Size(39, 20);
             this.ViewMenuItem.Text = "Вид";
@@ -663,7 +665,7 @@
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
-            this.BottomPanelMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.BottomPanelMenuItem.Size = new System.Drawing.Size(225, 22);
             this.BottomPanelMenuItem.Text = "Нижняя панель";
             this.BottomPanelMenuItem.Click += new System.EventHandler(this.BottomPanelMenuItem_Click);
             // 
@@ -671,7 +673,7 @@
             // 
             this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
-            this.TableMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.TableMenuItem.Size = new System.Drawing.Size(225, 22);
             this.TableMenuItem.Text = "Таблица";
             this.TableMenuItem.Click += new System.EventHandler(this.TableMenuItem_Click);
             // 
@@ -682,14 +684,14 @@
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
             this.ColorMenuItem.Name = "ColorMenuItem";
-            this.ColorMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.ColorMenuItem.Size = new System.Drawing.Size(225, 22);
             this.ColorMenuItem.Text = "Цвета";
             // 
             // GraphFunctionMenuItem
             // 
             this.GraphFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphFunctionMenuItem.Name = "GraphFunctionMenuItem";
-            this.GraphFunctionMenuItem.Size = new System.Drawing.Size(261, 22);
+            this.GraphFunctionMenuItem.Size = new System.Drawing.Size(268, 22);
             this.GraphFunctionMenuItem.Text = "График функции";
             this.GraphFunctionMenuItem.Click += new System.EventHandler(this.GraphFunctionMenuItem_Click);
             // 
@@ -697,8 +699,8 @@
             // 
             this.GraphAdditionalFunctionsMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphAdditionalFunctionsMenuItem.Name = "GraphAdditionalFunctionsMenuItem";
-            this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(261, 22);
-            this.GraphAdditionalFunctionsMenuItem.Text = "График корректировкой функции";
+            this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(268, 22);
+            this.GraphAdditionalFunctionsMenuItem.Text = "График корректированой функции";
             this.GraphAdditionalFunctionsMenuItem.Click += new System.EventHandler(this.GraphAdditionalFunctionsMenuItem_Click);
             // 
             // BottomPanel
@@ -785,6 +787,17 @@
             this.button3.TabIndex = 10;
             this.button3.Text = "Начертить";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // AdditionalFunctionMenuItem
+            // 
+            this.AdditionalFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
+            this.AdditionalFunctionMenuItem.Checked = true;
+            this.AdditionalFunctionMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AdditionalFunctionMenuItem.Name = "AdditionalFunctionMenuItem";
+            this.AdditionalFunctionMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.AdditionalFunctionMenuItem.Text = "Корректированой функции";
+            this.AdditionalFunctionMenuItem.Click += new System.EventHandler(this.AdditionalFunctionMenuItem_Click);
             // 
             // MainForm
             // 
@@ -886,6 +899,7 @@
         private System.Windows.Forms.ToolStripMenuItem GraphAdditionalFunctionsMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableC;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem AdditionalFunctionMenuItem;
     }
 }
 

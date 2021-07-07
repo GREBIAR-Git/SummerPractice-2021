@@ -10,6 +10,7 @@ namespace Сharts
     public partial class MainForm : Form
     {
         PointF[] allPoints = new PointF[0];
+        PointF[] dopPoints = new PointF[0];
         Color colorMainFunctoin;
         Color colorAdditionalFunction;
         int centralX, centralY, plusM;
@@ -607,11 +608,50 @@ namespace Сharts
             {
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointsDraw[0].X - 3, pointsDraw[0].Y - 3, 6, 6);
             }
+            if (AdditionalFunctionMenuItem.Checked)
+            {
+                PointF[] tempPoints = new PointF[dopPoints.Length];
+                int tempCount=0;
+                foreach(PointF point in dopPoints)
+                {
+                    tempPoints[tempCount] = point;
+                    tempPoints[tempCount].X = tempPoints[tempCount].X * plusM + centralX;
+                    tempPoints[tempCount].Y = tempPoints[tempCount].Y * plusM + centralY;
+                    tempCount++;
+                }
+                if (tempPoints.Length > 1)
+                {
+                    Pen pen = new Pen(colorAdditionalFunction, 2f);
+                    graphics.DrawLines(pen, tempPoints);
+                }
+                else if (tempPoints.Length == 1)
+                {
+                    Pen pen = new Pen(colorAdditionalFunction, 2f);
+                    graphics.FillEllipse(new SolidBrush(Color.Black), tempPoints[0].X - 3, tempPoints[0].Y - 3, 6, 6);
+                }
+            }
         }
 
         private void nowTable_Click(object sender, DataGridViewCellMouseEventArgs e)
         {
             AreaPaint.Focus();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            dopPoints = new PointF[tableA.Rows.Count - 1];
+            for (int i = 0; i < tableA.Rows.Count - 1; i++)
+            {
+                dopPoints[i].X = float.Parse(tableA.Rows[i].Cells[0].Value.ToString());
+                dopPoints[i].Y = -float.Parse(tableA.Rows[i].Cells[1].Value.ToString());
+            }
+            AreaPaint.Refresh();
+        }
+
+        private void AdditionalFunctionMenuItem_Click(object sender, EventArgs e)
+        {
+            AdditionalFunctionMenuItem.Checked = !AdditionalFunctionMenuItem.Checked;
+
         }
 
         void tableCompletion(PointF[] pointsDraw)
