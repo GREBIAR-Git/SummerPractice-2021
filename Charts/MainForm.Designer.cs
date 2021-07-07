@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
@@ -42,7 +42,7 @@
             this.tableC = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.choice = new System.Windows.Forms.Panel();
             this.tableR = new System.Windows.Forms.RadioButton();
             this.functionR = new System.Windows.Forms.RadioButton();
             this.functionsС = new System.Windows.Forms.Panel();
@@ -93,7 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableC)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.choice.SuspendLayout();
             this.functionsС.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
@@ -157,20 +157,20 @@
             // 
             // nowTable
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this.nowTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.nowTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -210,7 +210,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.tableC, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.choice, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.functionsС, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(680, 10);
@@ -225,19 +225,19 @@
             // 
             // tableC
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tableC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.tableC.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.tableC.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableC.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.tableC.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableC.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -273,27 +273,29 @@
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 73;
             // 
-            // panel1
+            // choice
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.tableR);
-            this.panel1.Controls.Add(this.functionR);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(191, 43);
-            this.panel1.TabIndex = 4;
+            this.choice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.choice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.choice.Controls.Add(this.tableR);
+            this.choice.Controls.Add(this.functionR);
+            this.choice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.choice.Location = new System.Drawing.Point(3, 0);
+            this.choice.Margin = new System.Windows.Forms.Padding(3, 0, 3, 6);
+            this.choice.Name = "choice";
+            this.choice.Size = new System.Drawing.Size(191, 43);
+            this.choice.TabIndex = 4;
+            this.choice.Visible = false;
             // 
             // tableR
             // 
             this.tableR.AutoSize = true;
-            this.tableR.Location = new System.Drawing.Point(99, 12);
+            this.tableR.Location = new System.Drawing.Point(74, 5);
             this.tableR.Name = "tableR";
-            this.tableR.Size = new System.Drawing.Size(68, 17);
+            this.tableR.Size = new System.Drawing.Size(112, 30);
             this.tableR.TabIndex = 3;
-            this.tableR.Text = "Таблица";
+            this.tableR.Text = "Изменённая \r\nтаблица функции";
+            this.tableR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tableR.UseVisualStyleBackColor = true;
             this.tableR.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
@@ -302,12 +304,12 @@
             this.functionR.AutoSize = true;
             this.functionR.Checked = true;
             this.functionR.Cursor = System.Windows.Forms.Cursors.Default;
-            this.functionR.Location = new System.Drawing.Point(6, 12);
+            this.functionR.Location = new System.Drawing.Point(1, 12);
             this.functionR.Name = "functionR";
             this.functionR.Size = new System.Drawing.Size(71, 17);
             this.functionR.TabIndex = 2;
             this.functionR.TabStop = true;
-            this.functionR.Text = "Функции";
+            this.functionR.Text = "Функция";
             this.functionR.UseVisualStyleBackColor = true;
             this.functionR.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
@@ -463,7 +465,7 @@
             this.openTable.Name = "openTable";
             this.openTable.Size = new System.Drawing.Size(169, 49);
             this.openTable.TabIndex = 27;
-            this.openTable.Text = "Открыть таблицу";
+            this.openTable.Text = "Открыть таблицу\r\nфункции";
             this.openTable.UseVisualStyleBackColor = false;
             this.openTable.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -605,6 +607,7 @@
             // 
             // SaveMenuItem
             // 
+            this.SaveMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.SaveMenuItem.Name = "SaveMenuItem";
             this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.SaveMenuItem.Text = "Сохранить";
@@ -612,6 +615,7 @@
             // 
             // LoadMenuItem
             // 
+            this.LoadMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.LoadMenuItem.Name = "LoadMenuItem";
             this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LoadMenuItem.Text = "Загрузить";
@@ -619,6 +623,7 @@
             // 
             // ExitMenuItem
             // 
+            this.ExitMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ExitMenuItem.Name = "ExitMenuItem";
             this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "Выход";
@@ -626,7 +631,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
             this.ViewMenuItem});
@@ -648,6 +653,7 @@
             // 
             // BottomPanelMenuItem
             // 
+            this.BottomPanelMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
@@ -657,6 +663,7 @@
             // 
             // TableMenuItem
             // 
+            this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
             this.TableMenuItem.Size = new System.Drawing.Size(180, 22);
             this.TableMenuItem.Text = "Таблица";
@@ -664,6 +671,7 @@
             // 
             // ColorMenuItem
             // 
+            this.ColorMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.ColorMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
@@ -673,15 +681,19 @@
             // 
             // GraphFunctionMenuItem
             // 
+            this.GraphFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphFunctionMenuItem.Name = "GraphFunctionMenuItem";
             this.GraphFunctionMenuItem.Size = new System.Drawing.Size(261, 22);
             this.GraphFunctionMenuItem.Text = "График функции";
+            this.GraphFunctionMenuItem.Click += new System.EventHandler(this.GraphFunctionMenuItem_Click);
             // 
             // GraphAdditionalFunctionsMenuItem
             // 
+            this.GraphAdditionalFunctionsMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.GraphAdditionalFunctionsMenuItem.Name = "GraphAdditionalFunctionsMenuItem";
             this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(261, 22);
             this.GraphAdditionalFunctionsMenuItem.Text = "График корректировкой функции";
+            this.GraphAdditionalFunctionsMenuItem.Click += new System.EventHandler(this.GraphAdditionalFunctionsMenuItem_Click);
             // 
             // BottomPanel
             // 
@@ -761,8 +773,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nowTable)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableC)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.choice.ResumeLayout(false);
+            this.choice.PerformLayout();
             this.functionsС.ResumeLayout(false);
             this.functionsС.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
@@ -801,7 +813,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label CenterO;
         internal System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel choice;
         private System.Windows.Forms.RadioButton tableR;
         private System.Windows.Forms.RadioButton functionR;
         private System.Windows.Forms.Panel viewTable;

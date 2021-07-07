@@ -10,19 +10,21 @@ namespace Сharts
     public partial class MainForm : Form
     {
         PointF[] allPoints = new PointF[0];
-
+        Color colorMainFunctoin;
+        Color colorAdditionalFunction;
         int centralX, centralY, plusM;
         bool slow;
         int slowspeed;
         bool redrawing;
         List<PointF> nowPoints = new List<PointF>();
         PointF lastpoint = new PointF();
-
-
+        bool load;
+        bool stopSlowDrawing;
         public MainForm()
         {
             InitializeComponent();
             plusM = 1;
+            load = true;
             slow = false;
             redrawing = true;
             slowspeed = 10;
@@ -31,6 +33,9 @@ namespace Сharts
             CentralXChanged();
             CentralYChanged();
             centralX += 100;
+            colorMainFunctoin = Color.Black;
+            colorAdditionalFunction = Color.Red;
+            stopSlowDrawing = true;
         }
 
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
@@ -129,6 +134,16 @@ namespace Сharts
                 }
                 reader.Close();
             }
+            load = true;
+            if (allPoints.Length > 0)
+            {
+                choice.Visible = true;
+            }
+            else
+            {
+                choice.Visible = false;
+            }
+            AreaPaint.Refresh();
         }
 
         private void TableMenuItem_Click(object sender, EventArgs e)
@@ -151,6 +166,7 @@ namespace Сharts
         {
             if (plusM > 1)
             {
+                ForStopSlow();
                 plusM -= 1;
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
@@ -164,6 +180,7 @@ namespace Сharts
         {
             if (plusM < 110)
             {
+                ForStopSlow();
                 plusM += 1;
                 PercentScrolling.Value = plusM / (11);
                 AreaPaint.Refresh();
@@ -181,8 +198,10 @@ namespace Сharts
 
         private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
         {
+            stopSlowDrawing = true;
             slow = SlowDrawing.Checked;
             SpeedSlow.Visible = SlowDrawing.Checked;
+            AreaPaint.Refresh();
         }
 
         private void SpeedSlow_Scroll(object sender, EventArgs e)
@@ -248,13 +267,14 @@ namespace Сharts
         private void button3_Click(object sender, EventArgs e)
         {
             viewTable.Visible = !viewTable.Visible;
-            if(viewTable.Visible)
+            TableMenuItem.Checked = viewTable.Visible;
+            if (viewTable.Visible)
             {
-                openTable.Text = "Закрыть таблицу";
+                openTable.Text = "Закрыть таблицу\nфункции";
             }
             else
             {
-                openTable.Text = "Открыть таблицу";
+                openTable.Text = "Открыть таблицу\nфункции";
             }
             CentralXChanged();
             CentralYChanged();
@@ -262,6 +282,7 @@ namespace Сharts
 
         private void PercentScrolling_Scroll(object sender, EventArgs e)
         {
+            ForStopSlow();
             if (PercentScrolling.Value != 0)
             {
                 plusM = PercentScrolling.Value * 11;
@@ -280,11 +301,13 @@ namespace Сharts
 
         private void CentralX_TextChanged(object sender, EventArgs e)
         {
+            ForStopSlow();
             CentralXChanged();
         }
 
         private void CentralY_TextChanged(object sender, EventArgs e)
         {
+            ForStopSlow();
             CentralYChanged();
         }
 
@@ -303,48 +326,85 @@ namespace Сharts
 
         private void Draw_Click(object sender, EventArgs e)
         {
-            int limitationDownX;
-            if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
+            if (functionMain.Text != "")
             {
-                limitationDownX = -1000;
-                LimitationDownX.Text = "-1000";
+                int limitationDownX;
+                if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
+                {
+                    limitationDownX = -1000;
+                    LimitationDownX.Text = "-1000";
+                }
+                int limitationUpX;
+                if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
+                {
+                    limitationUpX = 1000;
+                    LimitationUpX.Text = "1000";
+                }
+                int limitationDownY;
+                if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
+                {
+                    limitationDownY = -1000;
+                    LimitationDownY.Text = "-1000";
+                }
+                int limitationUpY;
+                if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+                {
+                    limitationUpY = 1000;
+                    LimitationUpY.Text = "1000";
+                }
+                int minX = limitationDownX;
+                int maxX = limitationUpX;
+                if (Math.Abs(minX) + maxX < 0)
+                {
+                    return;
+                }
+                int countAllPoint = 0;
+                allPoints = new PointF[Math.Abs(minX) + maxX + 1];
+                PointF[] temporaryPoint = new PointF[Math.Abs(minX) + maxX + 1];
+                int x = minX;
+                for (int i = 0; i < temporaryPoint.Length; i++, x++)
+                {
+                    temporaryPoint[i] = new PointF(x, Charts.TranslatingExpression.Translating(functionMain.Text, x));
+                    RemoveUnnecessary(temporaryPoint[i], ref countAllPoint, limitationDownY, limitationUpY);
+                }
+                Array.Resize(ref allPoints, countAllPoint);
+                load = false;
             }
-            int limitationUpX;
-            if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
+            else
             {
-                limitationUpX = 1000;
-                LimitationUpX.Text = "1000";
+                if (!load)
+                {
+                    allPoints = new PointF[0];
+                }
             }
-            int limitationDownY;
-            if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
+            if(allPoints.Length>0)
             {
-                limitationDownY = -1000;
-                LimitationDownY.Text = "-1000";
+                choice.Visible = true;
             }
-            int limitationUpY;
-            if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+            else
             {
-                limitationUpY = 1000;
-                LimitationUpY.Text = "1000";
+                choice.Visible = false;
             }
-            int minX = limitationDownX;
-            int maxX = limitationUpX;
-            if (Math.Abs(minX) + maxX < 0)
+            if(!slow)
             {
-                return;
+                stopSlowDrawing = false;
+                AreaPaint.Refresh();
             }
-            int countAllPoint=0;
-            allPoints = new PointF[Math.Abs(minX) + maxX];
-            PointF[] temporaryPoint = new PointF[Math.Abs(minX) + maxX];
-            int x = minX;
-            for (int i = 0; i < temporaryPoint.Length; i++, x++)
+            else
             {
-                temporaryPoint[i] = new PointF(x, Charts.TranslatingExpression.Translating(functionMain.Text, x));
-                RemoveUnnecessary(temporaryPoint[i], ref countAllPoint, limitationDownY, limitationUpY);
+                ForStopSlow();
             }
-            Array.Resize(ref allPoints, countAllPoint);
+        }
+
+        async void ForStopSlow()
+        {
+            stopSlowDrawing = true;
+            await Task.Delay(slowspeed+10);
+            stopSlowDrawing = false;
             AreaPaint.Refresh();
         }
+
+
 
         void RemoveUnnecessary(PointF point,ref int countAllPoint,int limitationDownY,int limitationUpY)
         {
@@ -495,7 +555,7 @@ namespace Сharts
         {
             if (pointsDraw.Length > 1)
             {
-                Pen pen = new Pen(Color.Black, 2f);
+                Pen pen = new Pen(colorMainFunctoin, 2f);
                 if (!slow)
                 {
                     foreach (PointF[] points in segments) 
@@ -507,9 +567,16 @@ namespace Сharts
                     {
                         for(int i=0;i<points.Length-1;i++)
                         {
-                            await Task.Delay(slowspeed);
-                            graphics = AreaPaint.CreateGraphics();
-                            graphics.DrawLine(pen, points[i], points[i + 1]);
+                            if(!stopSlowDrawing)
+                            {
+                                await Task.Delay(slowspeed);
+                                graphics = AreaPaint.CreateGraphics();
+                                graphics.DrawLine(pen, points[i], points[i + 1]);
+                            }
+                            else
+                            {
+                                return;
+                            }
                         }
                     }
                 }
@@ -517,6 +584,26 @@ namespace Сharts
             else if(pointsDraw.Length == 1)
             {
                 graphics.FillEllipse(new SolidBrush(Color.Black), pointsDraw[0].X - 3, pointsDraw[0].Y - 3, 6, 6);
+            }
+        }
+
+        private void GraphFunctionMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog color= new ColorDialog();
+            color.AllowFullOpen = false;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                colorMainFunctoin = color.Color;
+            }
+        }
+
+        private void GraphAdditionalFunctionsMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog color = new ColorDialog();
+            color.AllowFullOpen = false;
+            if (color.ShowDialog() == DialogResult.OK)
+            {
+                colorAdditionalFunction= color.Color;
             }
         }
 
