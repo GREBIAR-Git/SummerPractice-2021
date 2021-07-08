@@ -440,7 +440,24 @@ namespace Сharts
                 int countAllPoint = 0;
                 PointF[] allPoints = new PointF[AreaPaint.Width + plusM + 2];
                 PointF[] temporaryPoint = new PointF[AreaPaint.Width + plusM + 2];
+                int limitationDownX;
                 float x = -(AreaPaint.Width / 2 / plusM - GeneralRestrictions(CentralX)) - 1;
+                if (LimitationDownX.Text != "" && Int32.TryParse(LimitationDownX.Text, out limitationDownX))
+                {
+                    if (limitationDownX > x)
+                    {
+                        x = limitationDownX;
+                    }
+                }
+                else
+                {
+                    limitationDownY = (int)x;
+                }
+                int limitationUpX;
+                if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX)&&LimitationUpX.Text == "")
+                {
+                    limitationUpX = 10000;
+                }
                 List<PointF[]> segments = new List<PointF[]>();
                 Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
                 for (int i = 0; i < temporaryPoint.Length; i++)
@@ -448,6 +465,10 @@ namespace Сharts
                     temporaryPoint[i] = new PointF(x, translating.Translating(functionMain.Text, x));
                     RemoveUnnecessary(temporaryPoint[i], ref allPoints, ref countAllPoint, limitationDownY, limitationUpY, segments, x);
                     x += 1 / (float)plusM;
+                    if(x> limitationUpX)
+                    {
+                        break;
+                    }
                 }
                 Array.Resize(ref allPoints, countAllPoint);
                 if (allPoints.Length > 1)
@@ -649,7 +670,25 @@ namespace Сharts
             int countAllPoint = 0;
             PointF[] allPoints = new PointF[AreaPaint.Width + plusM + 2];
             PointF[] temporaryPoint = new PointF[AreaPaint.Width + plusM + 2];
+            int limitationDownX;
             float x1 = -(AreaPaint.Width / 2 / plusM - GeneralRestrictions(CentralX));
+            if (LimitationDownX.Text != "" && Int32.TryParse(LimitationDownX.Text, out limitationDownX))
+            {
+                if (limitationDownX > x1)
+                {
+                    x1 = limitationDownX;
+                }
+            }
+            else
+            {
+                limitationDownY = (int)x1;
+            }
+            int limitationUpX;
+            if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX) && LimitationUpX.Text == "")
+            {
+                limitationUpX = 10000;
+            }
+            
             float e1 = AreaPaint.Width / plusM + x1 + 1;
             List<PointF[]> segments = new List<PointF[]>();
             Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
@@ -680,6 +719,10 @@ namespace Сharts
                     countAllPoint = 0;
                 }
                 x1 += 1;
+                if (x1 > limitationUpX)
+                {
+                    break;
+                }
             }
             Array.Resize(ref allPoints, countAllPoint);
             if (allPoints.Length > 1)
