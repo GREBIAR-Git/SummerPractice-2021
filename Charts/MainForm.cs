@@ -9,32 +9,30 @@ namespace Сharts
 {
     public partial class MainForm : Form
     {
-        PointF[] allPoints = new PointF[0];
         PointF[] dopPoints = new PointF[0];
         Color colorMainFunctoin;
         Color colorAdditionalFunction;
         int centralX, centralY, plusM;
         bool slow;
-        int slowspeed;
-        bool redrawing;
-        List<PointF> nowPoints = new List<PointF>();
-        PointF lastpoint = new PointF();
-        bool load;
         bool stopSlowDrawing;
+        bool tableupdate;
+        bool movePoint;
+        int slowspeed;
+        PointF lastpoint = new PointF();
+        int movingPoint;
         public MainForm()
         {
             InitializeComponent();
             plusM = 1;
-            load = true;
             slow = false;
-            redrawing = true;
+            stopSlowDrawing = true;
+            tableupdate = true;
             slowspeed = 10;
             lastpoint.X = 10000;
             lastpoint.Y = 10000;
             centralX += 100;
             colorMainFunctoin = Color.Black;
             colorAdditionalFunction = Color.Red;
-            stopSlowDrawing = true;
         }
 
         private void AreaPaint_Paint(object sender, PaintEventArgs e)
@@ -105,9 +103,17 @@ namespace Сharts
             {
                 FileStream fileStream = File.Open(saveFileDialog.FileName, FileMode.Create);
                 StreamWriter output = new StreamWriter(fileStream);
-                foreach (PointF point in allPoints)
+                if(!string.IsNullOrEmpty(functionMain.Text))
                 {
-                    output.Write(point.X + ";" + point.Y + "!");
+                    output.Write(functionMain.Text+"&");
+                    for(int i =0;i< dopPoints.Length;i++)
+                    {
+                        output.Write(dopPoints[i].X.ToString() + ";" + dopPoints[i].Y.ToString());
+                        if(i+1 < dopPoints.Length)
+                        {
+                            output.Write("@");
+                        }
+                    }
                 }
                 output.Close();
             }
@@ -124,15 +130,14 @@ namespace Сharts
                 try
                 {
                     string data = reader.ReadToEnd();
-                    string[] subs = data.Split('!');
-                    allPoints = new PointF[subs.Length - 1];
-                    int countAllPoint = 0;
-                    for (int i = 0; i < allPoints.Length; i++)
+                    string[] dataFuction = data.Split('&');
+                    functionMain.Text = dataFuction[0];
+                    string[] pointDopFunc = dataFuction[1].Split('@');
+                    dopPoints = new PointF[pointDopFunc.Length];
+                    for (int i =0; i< pointDopFunc.Length;i++)
                     {
-                        string[] axis = subs[i].Split(';');
-                        allPoints[countAllPoint].X = int.Parse(axis[0]);
-                        allPoints[countAllPoint].Y = int.Parse(axis[1]);
-                        countAllPoint++;
+                        dopPoints[i].X= float.Parse(pointDopFunc[i].Split(';')[0]);
+                        dopPoints[i].Y = float.Parse(pointDopFunc[i].Split(';')[1]);
                     }
                 }
                 catch
@@ -141,32 +146,24 @@ namespace Сharts
                 }
                 reader.Close();
             }
-            load = true;
-            if (allPoints.Length > 0)
-            {
-                choice.Visible = true;
-            }
-            else
-            {
-                choice.Visible = false;
-            }
             AreaPaint.Refresh();
         }
 
-        private void TableMenuItem_Click(object sender, EventArgs e)
+        private void OpenTable(object sender, EventArgs e)
         {
             TableMenuItem.Checked = !TableMenuItem.Checked;
             viewTable.Visible = TableMenuItem.Checked;
             if (viewTable.Visible)
             {
-                openTable.Text = "Закрыть таблицу";
+                openTable.Text = "Закрыть таблицу\nфункции";
             }
             else
             {
-                openTable.Text = "Открыть таблицу";
+                openTable.Text = "Открыть таблицу\nфункции";
             }
             CentralXChanged();
             CentralYChanged();
+            AreaPaint.Refresh();
         }
 
         private void GraphFunctionMenuItem_Click(object sender, EventArgs e)
@@ -220,7 +217,7 @@ namespace Сharts
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
-        {
+        {   
             tableA.Rows.Clear();
             for(int i=0;i < nowTable.Rows.Count-1;i++)
             {
@@ -228,11 +225,28 @@ namespace Сharts
             }
             functionsС.Visible = functionR.Checked;
             tableC.Visible = tableR.Checked;
+            if(functionsС.Visible)
+            {
+                dopPoints = new PointF[0];
+                AreaPaint.Refresh();
+            }
+            else
+            {
+                dopPoints = new PointF[tableA.Rows.Count - 1];
+                for (int i = 0; i < tableA.Rows.Count - 1; i++)
+                {
+                    dopPoints[i].X = float.Parse(tableA.Rows[i].Cells[0].Value.ToString());
+                    dopPoints[i].Y = -float.Parse(tableA.Rows[i].Cells[1].Value.ToString());
+                }
+                tableupdate = false;
+                AreaPaint.Refresh();
+                tableupdate = true;
+            }
         }
 
         private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
         {
-            stopSlowDrawing = true;
+            stopSlowDrawing = false;
             slow = SlowDrawing.Checked;
             SpeedSlow.Visible = SlowDrawing.Checked;
             AreaPaint.Refresh();
@@ -250,12 +264,42 @@ namespace Сharts
             }
         }
 
+        private void AreaPaint_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(tableR.Checked)
+            {
+                float coorX = ((float)(e.X - centralX)) / plusM;
+                float coorY = ((float)(centralY - e.Y)) / plusM;
+                coorX = (float)Math.Round(coorX, 0);
+                coorY = (float)Math.Round(coorY, 0);
+                movePoint = true;
+                int x = (int)coorX;
+                int y = (int)coorY;
+                for (int i = 0; i < tableA.Rows.Count - 1; i++)
+                {
+                    if (tableA.Rows[i].Cells[0].Value.ToString() == x.ToString() && tableA.Rows[i].Cells[1].Value.ToString() == y.ToString())
+                    {
+                        movingPoint = i;
+                        break;
+                    }
+                }
+            }
+        }
+
         private void AreaPaint_MouseMove(object sender, MouseEventArgs e)
         {
             float coorX = ((float)(e.X - centralX)) / plusM;
             float coorY = ((float)(centralY - e.Y)) / plusM;
             coorX = (float)Math.Round(coorX, 0);
             coorY = (float)Math.Round(coorY, 0);
+            if (movePoint)
+            {
+                dopPoints[movingPoint].X = coorX;
+                dopPoints[movingPoint].Y = -coorY;
+                tableupdate = false;
+                AreaPaint.Refresh();
+                tableupdate = true;
+            }
             coordinates.Text = "x = " + coorX.ToString() + ";  y = " + coorY.ToString() + ";";
             if (lastpoint.X == coorX && lastpoint.Y == coorY)
             {
@@ -272,12 +316,24 @@ namespace Сharts
             }
             if (!slow)
             {
-                redrawing = false;
+                tableupdate = false;
                 AreaPaint.Refresh();
-                redrawing = true;
+                tableupdate = true;
                 Graphics graphics = AreaPaint.CreateGraphics();
                 graphics.FillEllipse(new SolidBrush(Color.FromArgb(0, 191, 255)), centralX - sizeСircle / 2 + coorX * plusM, centralY - sizeСircle / 2 - coorY * plusM, sizeСircle, sizeСircle);
             }
+        }
+
+        private void AreaPaint_MouseUp(object sender, MouseEventArgs e)
+        {
+            float coorX = ((float)(e.X - centralX)) / plusM;
+            float coorY = ((float)(centralY - e.Y)) / plusM;
+            coorX = (float)Math.Round(coorX, 0);
+            coorY = (float)Math.Round(coorY, 0);
+            tableA.Rows[movingPoint].Cells[0].Value = coorX;
+            tableA.Rows[movingPoint].Cells[1].Value = coorY;
+            movePoint = false;
+            AreaPaint.Refresh();
         }
 
         private void AreaPaint_MouseLeave(object sender, EventArgs e)
@@ -285,9 +341,9 @@ namespace Сharts
             coordinates.Text = "Не в зоны действия";
             if (!slow)
             {
-                redrawing = false;
+                tableupdate = false;
                 AreaPaint.Refresh();
-                redrawing = true;
+                tableupdate = true;
             }
             lastpoint.Y = 10000;
             lastpoint.X = 10000;
@@ -296,22 +352,6 @@ namespace Сharts
         private void Limitation_TextChanged(object sender, EventArgs e)
         {
             GeneralRestrictions((TextBox)sender);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            viewTable.Visible = !viewTable.Visible;
-            TableMenuItem.Checked = viewTable.Visible;
-            if (viewTable.Visible)
-            {
-                openTable.Text = "Закрыть таблицу\nфункции";
-            }
-            else
-            {
-                openTable.Text = "Открыть таблицу\nфункции";
-            }
-            CentralXChanged();
-            CentralYChanged();
             AreaPaint.Refresh();
         }
 
@@ -354,244 +394,140 @@ namespace Сharts
 
         void CentralYChanged()
         {
-
             centralY = AreaPaint.Height / 2 + GeneralRestrictions(CentralY) * plusM;
-        }
-
-        private void Draw_Click(object sender, EventArgs e)
-        {
-            if (functionMain.Text != "")
-            {
-                int limitationDownX;
-                if (!Int32.TryParse(LimitationDownX.Text, out limitationDownX))
-                {
-                    limitationDownX = -10000;
-                    LimitationDownX.Text = "-10000";
-                }
-                int limitationUpX;
-                if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX))
-                {
-                    limitationUpX = 10000;
-                    LimitationUpX.Text = "10000";
-                }
-                int limitationDownY;
-                if (!Int32.TryParse(LimitationDownY.Text, out limitationDownY))
-                {
-                    limitationDownY = -10000;
-                    LimitationDownY.Text = "-10000";
-                }
-                int limitationUpY;
-                if (!Int32.TryParse(LimitationUpY.Text, out limitationUpY))
-                {
-                    limitationUpY = 10000;
-                    LimitationUpY.Text = "10000";
-                }
-                int minX = limitationDownX;
-                int maxX = limitationUpX;
-                if (Math.Abs(minX) + maxX < 0)
-                {
-                    return;
-                }
-                int countAllPoint = 0;
-                allPoints = new PointF[Math.Abs(minX) + maxX + 1];
-                PointF[] temporaryPoint = new PointF[Math.Abs(minX) + maxX + 1];
-                int x = minX;
-                for (int i = 0; i < temporaryPoint.Length; i++, x++)
-                {
-                    temporaryPoint[i] = new PointF(x, Charts.TranslatingExpression.Translating(functionMain.Text, x));
-                    RemoveUnnecessary(temporaryPoint[i], ref countAllPoint, limitationDownY, limitationUpY);
-                }
-                Array.Resize(ref allPoints, countAllPoint);
-                load = false;
-            }
-            else
-            {
-                if (!load)
-                {
-                    allPoints = new PointF[0];
-                }
-            }
-            if (!slow)
-            {
-                stopSlowDrawing = false;
-                AreaPaint.Refresh();
-            }
-            else
-            {
-                ForStopSlow();
-            }
-            if (allPoints.Length>0)
-            {
-                choice.Visible = true;
-            }
-            else
-            {
-                choice.Visible = false;
-            }
         }
 
         async void ForStopSlow()
         {
             stopSlowDrawing = true;
-            await Task.Delay(slowspeed+10);
+            await Task.Delay(slowspeed+100);
             stopSlowDrawing = false;
             AreaPaint.Refresh();
         }
 
-        void RemoveUnnecessary(PointF point,ref int countAllPoint,int limitationDownY,int limitationUpY)
-        {
-            float checkedNumber = (point.Y);
-            if (checkedNumber <= (-limitationDownY) && checkedNumber >=(-limitationUpY))
-            {
-                allPoints[countAllPoint] = point;
-                countAllPoint++;
-            }
-        }
-
         void PaintChart(Graphics graphics)
         {
-            List<PointF[]> segments = new List<PointF[]>();
-            PointF[] pointsDraw = new PointF[allPoints.Length];
-            int countPointsDraw = 0;
-            for(int i=0;i<allPoints.Length;i++)
+            if(!string.IsNullOrEmpty(functionMain.Text))
             {
-                EndsGraphMin(i, ref countPointsDraw, ref pointsDraw);
-            }
-            EndsGraphMax(ref countPointsDraw, ref pointsDraw);
-            Array.Resize(ref pointsDraw, countPointsDraw);
-            SeparationSegments(pointsDraw,ref segments);
-            SpeedDrawing(pointsDraw, graphics, segments);
-            if(redrawing)
-            {
-                tableCompletion(pointsDraw);
-            }
-        }
-
-        void SeparationSegments(PointF[] pointsDraw, ref List<PointF[]> segments)
-        {
-            PointF[] pointFsbyf = new PointF[pointsDraw.Length];
-            int idx = 0;
-            for (int i = 0; i < pointsDraw.Length - 1; i++)
-            {
-                if ((int)Math.Round(pointsDraw[i].X / plusM,1) + 1 == (int)Math.Round(pointsDraw[i + 1].X/ plusM,1))
+                int minY = -(AreaPaint.Height / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
+                int limitationDownY;
+                if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationDownY))
                 {
-                    pointFsbyf[idx] = pointsDraw[i];
-                    idx++;
+                    limitationDownY = -limitationDownY;
+                    if (limitationDownY < minY)
+                    {
+                        limitationDownY = minY;
+                    }
                 }
                 else
                 {
-                    pointFsbyf[idx] = pointsDraw[i];
-                    idx++;
-                    bool t1 = true;
-                    foreach(PointF point in allPoints)
-                    {
-                        if(point.X == (pointsDraw[i].X-centralX)/plusM + 1)
-                        {
-                            pointFsbyf[idx].X = (point.X*plusM)+centralX;
-                            pointFsbyf[idx].Y = (point.Y * plusM) + centralY;
-                            idx++;
-                        }
-                        if (point.X == (pointFsbyf[0].X - centralX) / plusM - 1)
-                        {
-                            if (t1)
-                            {
-                                for (int f = idx; f > 0; f--)
-                                {
-                                    pointFsbyf[f] = pointFsbyf[f - 1];
-                                }
-                                pointFsbyf[0].X = (point.X * plusM) + centralX;
-                                pointFsbyf[0].Y = (point.Y * plusM) + centralY;
-                                idx++;
-                                t1 = false;
-                            }
-                        }
-                    }
-                    Array.Resize(ref pointFsbyf, idx);
-                    if (pointFsbyf.Length > 1)
-                    {
-                        segments.Add(pointFsbyf);
-                    }
-                    pointFsbyf = new PointF[pointsDraw.Length];
-                    Array.Clear(pointFsbyf, 0, pointFsbyf.Length);
-                    idx = 0;
+                    limitationDownY = minY;
                 }
-            }
-            if (pointsDraw.Length - 1 > 0)
-            {
-                pointFsbyf[idx] = pointsDraw[pointsDraw.Length - 1];
-                idx++;
-                if(idx<pointsDraw.Length)
+                int limitationUpY = 0;
+                int maxY = AreaPaint.Height / plusM + minY + 1;
+                if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationUpY))
                 {
-                    foreach (PointF point in allPoints)
+                    limitationUpY = -limitationUpY;
+                    if (-limitationUpY > maxY)
                     {
-                        if (point.X == (pointFsbyf[0].X - centralX) / plusM - 1)
-                        {
-                            for (int f = idx; f > 0; f--)
-                            {
-                                pointFsbyf[f] = pointFsbyf[f - 1];
-                            }
-                            pointFsbyf[0].X = (point.X * plusM) + centralX;
-                            pointFsbyf[0].Y = (point.Y * plusM) + centralY;
-                            idx++;
-                        }
+                        limitationUpY = maxY;
                     }
                 }
-            }
-            if (pointFsbyf.Length > 0)
-            {
-                Array.Resize(ref pointFsbyf, idx);
-                if (pointFsbyf.Length > 1)
+                else
                 {
-                    segments.Add(pointFsbyf);
+                    limitationUpY = maxY;
+                }
+                int countAllPoint = 0;
+                PointF[] allPoints = new PointF[AreaPaint.Width + plusM + 2];
+                PointF[] temporaryPoint = new PointF[AreaPaint.Width + plusM + 2];
+                float x = -(AreaPaint.Width / 2 / plusM - GeneralRestrictions(CentralX)) - 1;
+                List<PointF[]> segments = new List<PointF[]>();
+                Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
+                for (int i = 0; i < temporaryPoint.Length; i++)
+                {
+                    temporaryPoint[i] = new PointF(x, translating.Translating(functionMain.Text, x));
+                    RemoveUnnecessary(temporaryPoint[i], ref allPoints, ref countAllPoint, limitationDownY, limitationUpY, segments, x);
+                    x += 1 / (float)plusM;
+                }
+                Array.Resize(ref allPoints, countAllPoint);
+                if (allPoints.Length > 1)
+                {
+                    segments.Add(allPoints);
+                }
+                SpeedDrawing(graphics, segments);
+                if(tableupdate)
+                {
+                    tableCompletion();
                 }
             }
         }
 
-
-        void EndsGraphMin(int i,ref int countPointsDraw, ref PointF[] pointsDraw)
+        void RemoveUnnecessary(PointF point, ref PointF[] allPoints, ref int countAllPoint, int limitationDownY, int limitationUpY, List<PointF[]> segments, float x)
         {
-            float checkedNumberX = (allPoints[i].X * plusM + centralX);
-            float checkedNumberY = (allPoints[i].Y * plusM + centralY);
-            if (checkedNumberY >= 0 && checkedNumberY <= AreaPaint.Height&& checkedNumberX>=0&&checkedNumberX<=AreaPaint.Width)
+            float checkedNumber = (point.Y);
+            if (checkedNumber <= limitationUpY && checkedNumber >= limitationDownY)
             {
-                if (countPointsDraw == 0 && i > 0 && !allPoints[i - 1].Y.Equals(float.NaN))
+                if(countAllPoint==0)
                 {
-                    pointsDraw[countPointsDraw] = allPoints[i - 1];
-                    pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
-                    pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
-                    countPointsDraw++;
+                    Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
+                    PointF pointF = new PointF(point.X-(float)1/2/(float)plusM, translating.Translating(functionMain.Text, point.X - (float)1/2/(float)plusM));
+                    if(!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
+                    {
+                        allPoints[countAllPoint] = pointF;
+                        allPoints[countAllPoint].X = allPoints[countAllPoint].X * plusM + centralX;
+                        allPoints[countAllPoint].Y = allPoints[countAllPoint].Y * plusM + centralY;
+                        countAllPoint++;
+                    }
                 }
-                pointsDraw[countPointsDraw] = allPoints[i];
-                pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
-                pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
-                countPointsDraw++;
-            }
-        }
-
-        void EndsGraphMax(ref int countPointsDraw, ref PointF[] pointsDraw)
-        {
-            foreach (PointF point in allPoints)
-            {
-                if (countPointsDraw > 0&&point.X == ((pointsDraw[countPointsDraw - 1].X-centralX)/ plusM+1))
+                if(countAllPoint< allPoints.Length)
                 {
-                    pointsDraw[countPointsDraw] = point;
-                    pointsDraw[countPointsDraw].X = pointsDraw[countPointsDraw].X * plusM + centralX;
-                    pointsDraw[countPointsDraw].Y = pointsDraw[countPointsDraw].Y * plusM + centralY;
-                    countPointsDraw++;
-                    break;
+                    if (!float.IsNaN(point.X) && !float.IsNaN(point.Y) && !float.IsInfinity(point.Y))
+                    {
+                        allPoints[countAllPoint] = point;
+                        allPoints[countAllPoint].X = allPoints[countAllPoint].X * plusM + centralX;
+                        allPoints[countAllPoint].Y = allPoints[countAllPoint].Y * plusM + centralY;
+                        countAllPoint++;
+                    }
                 }
             }
+            else
+            {
+                if (allPoints.Length > 1)
+                {
+                    Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
+                    PointF pointF = new PointF(x- (float)1/2 /(float)plusM + (float)1 / 2 / (float)plusM, translating.Translating(functionMain.Text, x - (float)1 / 2 / (float)plusM));
+                    if (!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
+                    {
+                        if (countAllPoint < allPoints.Length)
+                        {
+                            allPoints[countAllPoint] = pointF;
+                            allPoints[countAllPoint].X = allPoints[countAllPoint].X * plusM + centralX;
+                            allPoints[countAllPoint].Y = allPoints[countAllPoint].Y * plusM + centralY;
+                            countAllPoint++;
+                        }
+                    }
+                    Array.Resize(ref allPoints, countAllPoint);
+                    segments.Add(allPoints);
+                }
+                allPoints = new PointF[AreaPaint.Width + +plusM+2];
+                countAllPoint = 0;
+            }
         }
-
-        async void SpeedDrawing(PointF[] pointsDraw, Graphics graphics, List<PointF[]> segments)
+   
+        async void SpeedDrawing(Graphics graphics, List<PointF[]> segments)
         {
-            if (pointsDraw.Length > 1)
+            if (segments.Count > 0)
             {
                 Pen pen = new Pen(colorMainFunctoin, 2f);
                 if (!slow)
                 {
-                    foreach (PointF[] points in segments) 
-                    graphics.DrawLines(pen, points);
+                    foreach (PointF[] points in segments)
+                    {
+                        if(points.Length>1)
+                        {
+                            graphics.DrawLines(pen, points);
+                        }
+                    }
                 }
                 else
                 {
@@ -599,7 +535,10 @@ namespace Сharts
                     {
                         for(int i=0;i<points.Length-1;i++)
                         {
-                            if(!stopSlowDrawing)
+                            await Task.Delay(slowspeed);
+                            graphics = AreaPaint.CreateGraphics();
+                            graphics.DrawLine(pen, points[i], points[i + 1]);
+                            if (!stopSlowDrawing)
                             {
                                 await Task.Delay(slowspeed);
                                 graphics = AreaPaint.CreateGraphics();
@@ -613,11 +552,7 @@ namespace Сharts
                     }
                 }
             }
-            else if(pointsDraw.Length == 1)
-            {
-                graphics.FillEllipse(new SolidBrush(Color.Black), pointsDraw[0].X - 3, pointsDraw[0].Y - 3, 6, 6);
-            }
-            if (AdditionalFunctionMenuItem.Checked)
+            if (dopPoints.Length>0)
             {
                 PointF[] tempPoints = new PointF[dopPoints.Length];
                 int tempCount=0;
@@ -646,7 +581,27 @@ namespace Сharts
             AreaPaint.Focus();
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void functionMain_TextChanged(object sender, EventArgs e)
+        {
+            ForStopSlow();
+            if (!string.IsNullOrEmpty(functionMain.Text))
+            {
+                choice.Visible = true;
+            }
+            else
+            {
+                choice.Visible = false;
+            }
+            AreaPaint.Refresh();
+        }
+
+        private void slowMode_Click(object sender, EventArgs e)
+        {
+            slow = true;
+            AreaPaint.Refresh();
+        }
+
+        private void tableA_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             dopPoints = new PointF[tableA.Rows.Count - 1];
             for (int i = 0; i < tableA.Rows.Count - 1; i++)
@@ -654,51 +609,90 @@ namespace Сharts
                 dopPoints[i].X = float.Parse(tableA.Rows[i].Cells[0].Value.ToString());
                 dopPoints[i].Y = -float.Parse(tableA.Rows[i].Cells[1].Value.ToString());
             }
+            tableupdate = false;
             AreaPaint.Refresh();
+            tableupdate = true;
         }
 
-        private void AdditionalFunctionMenuItem_Click(object sender, EventArgs e)
+        void tableCompletion()
         {
-            AdditionalFunctionMenuItem.Checked = !AdditionalFunctionMenuItem.Checked;
-
-        }
-
-        void tableCompletion(PointF[] pointsDraw)
-        {
-            nowPoints.Clear();
+            List<PointF> nowPoints = new List<PointF>();
             nowTable.Rows.Clear();
-            for (int i = 0; i < pointsDraw.Length; i++)
+            int minY = -(AreaPaint.Height / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
+            int limitationDownY;
+            if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationDownY))
             {
-                pointsDraw[i].X = (pointsDraw[i].X - centralX) / plusM;
-                float t = (float)Math.Round(pointsDraw[i].X);
-                pointsDraw[i].X = pointsDraw[i].X;
-                if (pointsDraw[i].X == Math.Round(pointsDraw[i].X))
+                limitationDownY = -limitationDownY;
+                if (limitationDownY < minY)
                 {
-                    pointsDraw[i].Y = -(pointsDraw[i].Y - centralY) / plusM;
-                    if(pointsDraw[i].Y == Math.Round(pointsDraw[i].Y))
+                    limitationDownY = minY;
+                }
+            }
+            else
+            {
+                limitationDownY = minY;
+            }
+            int limitationUpY = 0;
+            int maxY = AreaPaint.Height / plusM + minY + 1;
+            if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+            {
+                limitationUpY = -limitationUpY;
+                if (-limitationUpY > maxY)
+                {
+                    limitationUpY = maxY;
+                }
+            }
+            else
+            {
+                limitationUpY = maxY;
+            }
+            int countAllPoint = 0;
+            PointF[] allPoints = new PointF[AreaPaint.Width + plusM + 2];
+            PointF[] temporaryPoint = new PointF[AreaPaint.Width + plusM + 2];
+            float x1 = -(AreaPaint.Width / 2 / plusM - GeneralRestrictions(CentralX));
+            float e1 = AreaPaint.Width / plusM + x1 + 1;
+            List<PointF[]> segments = new List<PointF[]>();
+            Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
+            for (int i = 0; x1<=e1; i++)
+            {
+                temporaryPoint[i] = new PointF(x1, translating.Translating(functionMain.Text, x1));
+                float checkedNumber = (temporaryPoint[i].Y);
+                if (checkedNumber <= limitationUpY && checkedNumber >= limitationDownY)
+                {
+                    if (countAllPoint < allPoints.Length)
                     {
-                        if (i > 0 && pointsDraw[i].Y != pointsDraw[i - 1].Y)
+                        if (!float.IsNaN(temporaryPoint[i].X) && !float.IsNaN(temporaryPoint[i].Y) && !float.IsInfinity(temporaryPoint[i].Y))
                         {
-                            nowPoints.Add(pointsDraw[i]);
-                        }
-                        else if (i == 0)
-                        {
-                            nowPoints.Add(pointsDraw[i]);
+                            allPoints[countAllPoint] = temporaryPoint[i];
+                            allPoints[countAllPoint].Y = -allPoints[countAllPoint].Y;
+                            countAllPoint++;
                         }
                     }
                 }
-            }
-            if (nowPoints.Count == 1)
-            {
-                if (nowPoints[0].X != pointsDraw[pointsDraw.Length - 1].X)
+                else
                 {
-                    nowPoints.Add(pointsDraw[pointsDraw.Length - 1]);
+                    if (allPoints.Length > 1)
+                    {
+                        Array.Resize(ref allPoints, countAllPoint);
+                        segments.Add(allPoints);
+                    }
+                    allPoints = new PointF[AreaPaint.Width + +plusM + 2];
+                    countAllPoint = 0;
                 }
+                x1 += 1;
+            }
+            Array.Resize(ref allPoints, countAllPoint);
+            if (allPoints.Length > 1)
+            {
+                segments.Add(allPoints);
             }
             nowTable.SuspendLayout();
-            foreach (PointF point in nowPoints)
+            foreach (PointF[] points in segments)
             {
-                nowTable.Rows.Add(point.X, point.Y);
+                foreach (PointF point in points)
+                {
+                    nowTable.Rows.Add(point.X, point.Y);
+                }
             }
             nowTable.ResumeLayout();
             PointsGraph.Text = (nowTable.Rows.Count - 1).ToString();

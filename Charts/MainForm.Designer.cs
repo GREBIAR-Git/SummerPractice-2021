@@ -44,7 +44,6 @@
             this.functionR = new System.Windows.Forms.RadioButton();
             this.functionsС = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.Draw = new System.Windows.Forms.Button();
             this.functionMain = new System.Windows.Forms.TextBox();
             this.LimitationUpY = new System.Windows.Forms.TextBox();
             this.LimitationUpX = new System.Windows.Forms.TextBox();
@@ -58,7 +57,6 @@
             this.tableA = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openTable = new System.Windows.Forms.Button();
@@ -86,7 +84,6 @@
             this.ColorMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GraphFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GraphAdditionalFunctionsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AdditionalFunctionMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BottomPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
@@ -143,8 +140,10 @@
             this.AreaPaint.TabIndex = 0;
             this.AreaPaint.TabStop = false;
             this.AreaPaint.Paint += new System.Windows.Forms.PaintEventHandler(this.AreaPaint_Paint);
+            this.AreaPaint.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AreaPaint_MouseDown);
             this.AreaPaint.MouseLeave += new System.EventHandler(this.AreaPaint_MouseLeave);
             this.AreaPaint.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AreaPaint_MouseMove);
+            this.AreaPaint.MouseUp += new System.Windows.Forms.MouseEventHandler(this.AreaPaint_MouseUp);
             // 
             // viewTable
             // 
@@ -275,7 +274,6 @@
             this.functionsС.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.functionsС.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.functionsС.Controls.Add(this.label2);
-            this.functionsС.Controls.Add(this.Draw);
             this.functionsС.Controls.Add(this.functionMain);
             this.functionsС.Controls.Add(this.LimitationUpY);
             this.functionsС.Controls.Add(this.LimitationUpX);
@@ -289,7 +287,7 @@
             this.functionsС.Location = new System.Drawing.Point(3, 49);
             this.functionsС.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.functionsС.Name = "functionsС";
-            this.functionsС.Size = new System.Drawing.Size(191, 163);
+            this.functionsС.Size = new System.Drawing.Size(191, 138);
             this.functionsС.TabIndex = 1;
             // 
             // label2
@@ -301,27 +299,17 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "y =";
             // 
-            // Draw
-            // 
-            this.Draw.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Draw.Location = new System.Drawing.Point(53, 133);
-            this.Draw.Name = "Draw";
-            this.Draw.Size = new System.Drawing.Size(79, 23);
-            this.Draw.TabIndex = 24;
-            this.Draw.Text = "Начертить";
-            this.Draw.UseVisualStyleBackColor = true;
-            this.Draw.Click += new System.EventHandler(this.Draw_Click);
-            // 
             // functionMain
             // 
             this.functionMain.Location = new System.Drawing.Point(21, 29);
             this.functionMain.Name = "functionMain";
             this.functionMain.Size = new System.Drawing.Size(162, 20);
             this.functionMain.TabIndex = 24;
+            this.functionMain.TextChanged += new System.EventHandler(this.functionMain_TextChanged);
             // 
             // LimitationUpY
             // 
-            this.LimitationUpY.Location = new System.Drawing.Point(96, 107);
+            this.LimitationUpY.Location = new System.Drawing.Point(99, 81);
             this.LimitationUpY.Name = "LimitationUpY";
             this.LimitationUpY.Size = new System.Drawing.Size(87, 20);
             this.LimitationUpY.TabIndex = 21;
@@ -337,7 +325,7 @@
             // 
             // LimitationDownY
             // 
-            this.LimitationDownY.Location = new System.Drawing.Point(96, 81);
+            this.LimitationDownY.Location = new System.Drawing.Point(99, 107);
             this.LimitationDownY.Name = "LimitationDownY";
             this.LimitationDownY.Size = new System.Drawing.Size(87, 20);
             this.LimitationDownY.TabIndex = 19;
@@ -394,15 +382,14 @@
             this.tableC.ColumnCount = 1;
             this.tableC.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableC.Controls.Add(this.tableA, 0, 0);
-            this.tableC.Controls.Add(this.button3, 0, 1);
             this.tableC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableC.Location = new System.Drawing.Point(3, 218);
+            this.tableC.Location = new System.Drawing.Point(3, 193);
             this.tableC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tableC.Name = "tableC";
-            this.tableC.RowCount = 2;
+            this.tableC.RowCount = 1;
             this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableC.Size = new System.Drawing.Size(191, 429);
+            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableC.Size = new System.Drawing.Size(191, 454);
             this.tableC.TabIndex = 5;
             this.tableC.Visible = false;
             // 
@@ -432,8 +419,9 @@
             this.tableA.Name = "tableA";
             this.tableA.RowHeadersWidth = 20;
             this.tableA.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.tableA.Size = new System.Drawing.Size(191, 389);
+            this.tableA.Size = new System.Drawing.Size(191, 454);
             this.tableA.TabIndex = 9;
+            this.tableA.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableA_CellValueChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -454,19 +442,6 @@
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 73;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(0, 394);
-            this.button3.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(191, 30);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Начертить";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button2
             // 
@@ -505,7 +480,7 @@
             this.openTable.TabIndex = 27;
             this.openTable.Text = "Открыть таблицу\r\nфункции";
             this.openTable.UseVisualStyleBackColor = false;
-            this.openTable.Click += new System.EventHandler(this.button3_Click);
+            this.openTable.Click += new System.EventHandler(this.OpenTable);
             // 
             // Percent
             // 
@@ -574,7 +549,7 @@
             // SlowDrawing
             // 
             this.SlowDrawing.AutoSize = true;
-            this.SlowDrawing.Location = new System.Drawing.Point(420, 14);
+            this.SlowDrawing.Location = new System.Drawing.Point(420, 15);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
             this.SlowDrawing.TabIndex = 31;
@@ -626,7 +601,7 @@
             // 
             this.SpeedSlow.AutoSize = false;
             this.SpeedSlow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.SpeedSlow.Location = new System.Drawing.Point(420, 37);
+            this.SpeedSlow.Location = new System.Drawing.Point(420, 36);
             this.SpeedSlow.Name = "SpeedSlow";
             this.SpeedSlow.Size = new System.Drawing.Size(169, 30);
             this.SpeedSlow.TabIndex = 39;
@@ -684,8 +659,7 @@
             this.ViewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BottomPanelMenuItem,
             this.TableMenuItem,
-            this.ColorMenuItem,
-            this.AdditionalFunctionMenuItem});
+            this.ColorMenuItem});
             this.ViewMenuItem.Name = "ViewMenuItem";
             this.ViewMenuItem.Size = new System.Drawing.Size(39, 20);
             this.ViewMenuItem.Text = "Вид";
@@ -696,7 +670,7 @@
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
-            this.BottomPanelMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.BottomPanelMenuItem.Size = new System.Drawing.Size(160, 22);
             this.BottomPanelMenuItem.Text = "Нижняя панель";
             this.BottomPanelMenuItem.Click += new System.EventHandler(this.BottomPanelMenuItem_Click);
             // 
@@ -704,9 +678,9 @@
             // 
             this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
-            this.TableMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.TableMenuItem.Size = new System.Drawing.Size(160, 22);
             this.TableMenuItem.Text = "Таблица";
-            this.TableMenuItem.Click += new System.EventHandler(this.TableMenuItem_Click);
+            this.TableMenuItem.Click += new System.EventHandler(this.OpenTable);
             // 
             // ColorMenuItem
             // 
@@ -715,7 +689,7 @@
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
             this.ColorMenuItem.Name = "ColorMenuItem";
-            this.ColorMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.ColorMenuItem.Size = new System.Drawing.Size(160, 22);
             this.ColorMenuItem.Text = "Цвета";
             // 
             // GraphFunctionMenuItem
@@ -733,16 +707,6 @@
             this.GraphAdditionalFunctionsMenuItem.Size = new System.Drawing.Size(274, 22);
             this.GraphAdditionalFunctionsMenuItem.Text = "График cкорректированой функции";
             this.GraphAdditionalFunctionsMenuItem.Click += new System.EventHandler(this.GraphAdditionalFunctionsMenuItem_Click);
-            // 
-            // AdditionalFunctionMenuItem
-            // 
-            this.AdditionalFunctionMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
-            this.AdditionalFunctionMenuItem.Checked = true;
-            this.AdditionalFunctionMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AdditionalFunctionMenuItem.Name = "AdditionalFunctionMenuItem";
-            this.AdditionalFunctionMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.AdditionalFunctionMenuItem.Text = "Скорректированная функция";
-            this.AdditionalFunctionMenuItem.Click += new System.EventHandler(this.AdditionalFunctionMenuItem_Click);
             // 
             // BottomPanel
             // 
@@ -845,7 +809,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox AreaPaint;
         private System.Windows.Forms.Panel functionsС;
-        private System.Windows.Forms.Button Draw;
         private System.Windows.Forms.TextBox LimitationUpY;
         private System.Windows.Forms.TextBox LimitationUpX;
         private System.Windows.Forms.TextBox LimitationDownY;
@@ -898,8 +861,6 @@
         private System.Windows.Forms.ToolStripMenuItem GraphFunctionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GraphAdditionalFunctionsMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableC;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.ToolStripMenuItem AdditionalFunctionMenuItem;
     }
 }
 
