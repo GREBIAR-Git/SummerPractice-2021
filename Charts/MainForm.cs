@@ -81,20 +81,6 @@ namespace Сharts
             AreaPaint.Refresh();
         }
 
-        private void BottomPanelMenuItem_Click(object sender, EventArgs e)
-        {
-            BottomPanelMenuItem.Checked = !BottomPanelMenuItem.Checked;
-            BottomPanel.Visible = BottomPanelMenuItem.Checked;
-            CentralXChanged();
-            CentralYChanged();
-            AreaPaint.Refresh();
-        }
-
-        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -146,6 +132,20 @@ namespace Сharts
                 }
                 reader.Close();
             }
+            AreaPaint.Refresh();
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BottomPanelMenuItem_Click(object sender, EventArgs e)
+        {
+            BottomPanelMenuItem.Checked = !BottomPanelMenuItem.Checked;
+            BottomPanel.Visible = BottomPanelMenuItem.Checked;
+            CentralXChanged();
+            CentralYChanged();
             AreaPaint.Refresh();
         }
 
@@ -217,21 +217,23 @@ namespace Сharts
         }
 
         private void radioButton_CheckedChanged(object sender, EventArgs e)
-        {   
-            tableA.Rows.Clear();
-            for(int i=0;i < nowTable.Rows.Count-1;i++)
-            {
-                tableA.Rows.Add(nowTable.Rows[i].Cells[0].Value, nowTable.Rows[i].Cells[1].Value); ;
-            }
+        {
             functionsС.Visible = functionR.Checked;
             tableC.Visible = tableR.Checked;
-            if(functionsС.Visible)
+            if (functionsС.Visible)
             {
                 dopPoints = new PointF[0];
+                tableupdate = false;
                 AreaPaint.Refresh();
+                tableupdate = true;
             }
             else
             {
+                tableA.Rows.Clear();
+                for (int i = 0; i < nowTable.Rows.Count - 1; i++)
+                {
+                    tableA.Rows.Add(nowTable.Rows[i].Cells[0].Value, nowTable.Rows[i].Cells[1].Value); ;
+                }
                 dopPoints = new PointF[tableA.Rows.Count - 1];
                 for (int i = 0; i < tableA.Rows.Count - 1; i++)
                 {
@@ -280,9 +282,10 @@ namespace Сharts
                     if (tableA.Rows[i].Cells[0].Value.ToString() == x.ToString() && tableA.Rows[i].Cells[1].Value.ToString() == y.ToString())
                     {
                         movingPoint = i;
-                        break;
+                        return;
                     }
                 }
+                movePoint = false;
             }
         }
 
@@ -326,14 +329,19 @@ namespace Сharts
 
         private void AreaPaint_MouseUp(object sender, MouseEventArgs e)
         {
-            float coorX = ((float)(e.X - centralX)) / plusM;
-            float coorY = ((float)(centralY - e.Y)) / plusM;
-            coorX = (float)Math.Round(coorX, 0);
-            coorY = (float)Math.Round(coorY, 0);
-            tableA.Rows[movingPoint].Cells[0].Value = coorX;
-            tableA.Rows[movingPoint].Cells[1].Value = coorY;
-            movePoint = false;
-            AreaPaint.Refresh();
+            if (movePoint)
+            {
+                float coorX = ((float)(e.X - centralX)) / plusM;
+                float coorY = ((float)(centralY - e.Y)) / plusM;
+                coorX = (float)Math.Round(coorX, 0);
+                coorY = (float)Math.Round(coorY, 0);
+                tableA.Rows[movingPoint].Cells[0].Value = coorX;
+                tableA.Rows[movingPoint].Cells[1].Value = coorY;
+                movePoint = false;
+                tableupdate = false;
+                AreaPaint.Refresh();
+                tableupdate = true;
+            }
         }
 
         private void AreaPaint_MouseLeave(object sender, EventArgs e)
@@ -409,11 +417,10 @@ namespace Сharts
         {
             if(!string.IsNullOrEmpty(functionMain.Text))
             {
-                int minY = -(AreaPaint.Height / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
+                int minY = -((AreaPaint.Height) / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
                 int limitationDownY;
-                if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationDownY))
+                if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationDownY))
                 {
-                    limitationDownY = -limitationDownY;
                     if (limitationDownY < minY)
                     {
                         limitationDownY = minY;
@@ -424,11 +431,10 @@ namespace Сharts
                     limitationDownY = minY;
                 }
                 int limitationUpY = 0;
-                int maxY = AreaPaint.Height / plusM + minY + 1;
-                if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+                int maxY = (AreaPaint.Height) / plusM + minY + 1;
+                if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationUpY))
                 {
-                    limitationUpY = -limitationUpY;
-                    if (-limitationUpY > maxY)
+                    if (limitationUpY > maxY)
                     {
                         limitationUpY = maxY;
                     }
@@ -451,7 +457,7 @@ namespace Сharts
                 }
                 else
                 {
-                    limitationDownY = (int)x;
+                    limitationDownX = (int)x;
                 }
                 int limitationUpX;
                 if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX)&&LimitationUpX.Text == "")
@@ -480,18 +486,49 @@ namespace Сharts
                 {
                     tableCompletion();
                 }
+                int count = int.Parse(PointsGraph.Text);
+                if(count>0)
+                {
+                    int countPoints;
+                    if(Int32.TryParse(CountPoints.Text, out countPoints))
+                    {
+                        if(count< countPoints)
+                        {
+                            CountPoints.Text = count.ToString();
+                            countPoints = count;
+                        }
+                        if(countPoints - 2>0)
+                        {
+                            int result = (int)Math.Ceiling((float)count / (countPoints));
+                            if(result==0)
+                            {
+                                result = 1;
+                            }
+                            float sizeСircle = 5 + plusM / 11;
+                            if (result > 0)
+                            {
+                                graphics.FillEllipse(new SolidBrush(Color.Black), centralX - sizeСircle / 2 + float.Parse(nowTable.Rows[0].Cells[0].Value.ToString()) * plusM, centralY - sizeСircle / 2 - float.Parse(nowTable.Rows[0].Cells[1].Value.ToString()) * plusM, sizeСircle, sizeСircle);
+                                for (int i = 0; i < nowTable.Rows.Count - 1; i += result)
+                                {
+                                    graphics.FillEllipse(new SolidBrush(Color.Black), centralX - sizeСircle / 2 + float.Parse(nowTable.Rows[(int)i].Cells[0].Value.ToString()) * plusM, centralY - sizeСircle / 2 - float.Parse(nowTable.Rows[(int)i].Cells[1].Value.ToString()) * plusM, sizeСircle, sizeСircle);
+                                }
+                                graphics.FillEllipse(new SolidBrush(Color.Black), centralX - sizeСircle / 2 + float.Parse(nowTable.Rows[nowTable.Rows.Count - 2].Cells[0].Value.ToString()) * plusM, centralY - sizeСircle / 2 - float.Parse(nowTable.Rows[nowTable.Rows.Count - 2].Cells[1].Value.ToString()) * plusM, sizeСircle, sizeСircle);
+                            }
+                        }
+                    }
+                }
             }
         }
 
         void RemoveUnnecessary(PointF point, ref PointF[] allPoints, ref int countAllPoint, int limitationDownY, int limitationUpY, List<PointF[]> segments, float x)
         {
             float checkedNumber = (point.Y);
-            if (checkedNumber <= limitationUpY && checkedNumber >= limitationDownY)
+            if (checkedNumber <= -limitationDownY && checkedNumber >= -limitationUpY)
             {
                 if(countAllPoint==0)
                 {
                     Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
-                    PointF pointF = new PointF(point.X-(float)1/2/(float)plusM, translating.Translating(functionMain.Text, point.X - (float)1/2/(float)plusM));
+                    PointF pointF = new PointF(point.X-1/(float)plusM, translating.Translating(functionMain.Text, point.X - 1/(float)plusM));
                     if(!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
                     {
                         allPoints[countAllPoint] = pointF;
@@ -516,7 +553,7 @@ namespace Сharts
                 if (allPoints.Length > 1)
                 {
                     Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
-                    PointF pointF = new PointF(x- (float)1/2 /(float)plusM + (float)1 / 2 / (float)plusM, translating.Translating(functionMain.Text, x - (float)1 / 2 / (float)plusM));
+                    PointF pointF = new PointF(x, translating.Translating(functionMain.Text, x));
                     if (!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
                     {
                         if (countAllPoint < allPoints.Length)
@@ -635,15 +672,19 @@ namespace Сharts
             tableupdate = true;
         }
 
+        private void CountPoints_TextChanged(object sender, EventArgs e)
+        {
+            AreaPaint.Refresh();
+        }
+
         void tableCompletion()
         {
             List<PointF> nowPoints = new List<PointF>();
             nowTable.Rows.Clear();
-            int minY = -(AreaPaint.Height / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
+            int minY = -(AreaPaint.Height / 2 / plusM + GeneralRestrictions(CentralY))-1;
             int limitationDownY;
-            if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationDownY))
+            if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationDownY))
             {
-                limitationDownY = -limitationDownY;
                 if (limitationDownY < minY)
                 {
                     limitationDownY = minY;
@@ -654,11 +695,10 @@ namespace Сharts
                 limitationDownY = minY;
             }
             int limitationUpY = 0;
-            int maxY = AreaPaint.Height / plusM + minY + 1;
-            if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationUpY))
+            int maxY = AreaPaint.Height / plusM + minY+1;
+            if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationUpY))
             {
-                limitationUpY = -limitationUpY;
-                if (-limitationUpY > maxY)
+                if (limitationUpY > maxY)
                 {
                     limitationUpY = maxY;
                 }
@@ -681,7 +721,7 @@ namespace Сharts
             }
             else
             {
-                limitationDownY = (int)x1;
+                limitationDownX = (int)x1;
             }
             int limitationUpX;
             if (!Int32.TryParse(LimitationUpX.Text, out limitationUpX) && LimitationUpX.Text == "")
@@ -689,14 +729,14 @@ namespace Сharts
                 limitationUpX = 10000;
             }
             
-            float e1 = AreaPaint.Width / plusM + x1 + 1;
+            float e1 = AreaPaint.Width / plusM + x1;
             List<PointF[]> segments = new List<PointF[]>();
             Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
             for (int i = 0; x1<=e1; i++)
             {
                 temporaryPoint[i] = new PointF(x1, translating.Translating(functionMain.Text, x1));
                 float checkedNumber = (temporaryPoint[i].Y);
-                if (checkedNumber <= limitationUpY && checkedNumber >= limitationDownY)
+                if (checkedNumber <= -limitationDownY && checkedNumber >= -limitationUpY)
                 {
                     if (countAllPoint < allPoints.Length)
                     {

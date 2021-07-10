@@ -43,6 +43,8 @@
             this.tableR = new System.Windows.Forms.RadioButton();
             this.functionR = new System.Windows.Forms.RadioButton();
             this.functionsС = new System.Windows.Forms.Panel();
+            this.CountPoints = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.functionMain = new System.Windows.Forms.TextBox();
             this.LimitationUpY = new System.Windows.Forms.TextBox();
@@ -249,7 +251,7 @@
             this.tableR.Location = new System.Drawing.Point(84, 5);
             this.tableR.Name = "tableR";
             this.tableR.Size = new System.Drawing.Size(99, 30);
-            this.tableR.TabIndex = 3;
+            this.tableR.TabIndex = 30;
             this.tableR.Text = "Изменить \r\nточки функции";
             this.tableR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tableR.UseVisualStyleBackColor = true;
@@ -263,7 +265,7 @@
             this.functionR.Location = new System.Drawing.Point(7, 12);
             this.functionR.Name = "functionR";
             this.functionR.Size = new System.Drawing.Size(71, 17);
-            this.functionR.TabIndex = 2;
+            this.functionR.TabIndex = 30;
             this.functionR.TabStop = true;
             this.functionR.Text = "Функция";
             this.functionR.UseVisualStyleBackColor = true;
@@ -273,6 +275,8 @@
             // 
             this.functionsС.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.functionsС.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.functionsС.Controls.Add(this.CountPoints);
+            this.functionsС.Controls.Add(this.label3);
             this.functionsС.Controls.Add(this.label2);
             this.functionsС.Controls.Add(this.functionMain);
             this.functionsС.Controls.Add(this.LimitationUpY);
@@ -283,12 +287,28 @@
             this.functionsС.Controls.Add(this.label9);
             this.functionsС.Controls.Add(this.label8);
             this.functionsС.Controls.Add(this.label1);
-            this.functionsС.Dock = System.Windows.Forms.DockStyle.Fill;
             this.functionsС.Location = new System.Drawing.Point(3, 49);
             this.functionsС.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.functionsС.Name = "functionsС";
-            this.functionsС.Size = new System.Drawing.Size(191, 138);
+            this.functionsС.Size = new System.Drawing.Size(191, 175);
             this.functionsС.TabIndex = 1;
+            // 
+            // CountPoints
+            // 
+            this.CountPoints.Location = new System.Drawing.Point(45, 146);
+            this.CountPoints.Name = "CountPoints";
+            this.CountPoints.Size = new System.Drawing.Size(87, 20);
+            this.CountPoints.TabIndex = 6;
+            this.CountPoints.TextChanged += new System.EventHandler(this.CountPoints_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 130);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Точек на графике";
             // 
             // label2
             // 
@@ -304,7 +324,7 @@
             this.functionMain.Location = new System.Drawing.Point(21, 29);
             this.functionMain.Name = "functionMain";
             this.functionMain.Size = new System.Drawing.Size(162, 20);
-            this.functionMain.TabIndex = 24;
+            this.functionMain.TabIndex = 1;
             this.functionMain.TextChanged += new System.EventHandler(this.functionMain_TextChanged);
             // 
             // LimitationUpY
@@ -312,7 +332,7 @@
             this.LimitationUpY.Location = new System.Drawing.Point(99, 81);
             this.LimitationUpY.Name = "LimitationUpY";
             this.LimitationUpY.Size = new System.Drawing.Size(87, 20);
-            this.LimitationUpY.TabIndex = 21;
+            this.LimitationUpY.TabIndex = 4;
             this.LimitationUpY.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationUpX
@@ -320,7 +340,7 @@
             this.LimitationUpX.Location = new System.Drawing.Point(3, 107);
             this.LimitationUpX.Name = "LimitationUpX";
             this.LimitationUpX.Size = new System.Drawing.Size(87, 20);
-            this.LimitationUpX.TabIndex = 20;
+            this.LimitationUpX.TabIndex = 3;
             this.LimitationUpX.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationDownY
@@ -328,7 +348,7 @@
             this.LimitationDownY.Location = new System.Drawing.Point(99, 107);
             this.LimitationDownY.Name = "LimitationDownY";
             this.LimitationDownY.Size = new System.Drawing.Size(87, 20);
-            this.LimitationDownY.TabIndex = 19;
+            this.LimitationDownY.TabIndex = 5;
             this.LimitationDownY.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // LimitationDownX
@@ -336,7 +356,7 @@
             this.LimitationDownX.Location = new System.Drawing.Point(3, 81);
             this.LimitationDownX.Name = "LimitationDownX";
             this.LimitationDownX.Size = new System.Drawing.Size(87, 20);
-            this.LimitationDownX.TabIndex = 18;
+            this.LimitationDownX.TabIndex = 2;
             this.LimitationDownX.TextChanged += new System.EventHandler(this.Limitation_TextChanged);
             // 
             // label10
@@ -360,7 +380,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(59, 52);
+            this.label8.Location = new System.Drawing.Point(59, 55);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(73, 13);
             this.label8.TabIndex = 15;
@@ -383,13 +403,13 @@
             this.tableC.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableC.Controls.Add(this.tableA, 0, 0);
             this.tableC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableC.Location = new System.Drawing.Point(3, 193);
+            this.tableC.Location = new System.Drawing.Point(3, 230);
             this.tableC.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.tableC.Name = "tableC";
             this.tableC.RowCount = 1;
             this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableC.Size = new System.Drawing.Size(191, 454);
+            this.tableC.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 417F));
+            this.tableC.Size = new System.Drawing.Size(191, 417);
             this.tableC.TabIndex = 5;
             this.tableC.Visible = false;
             // 
@@ -419,7 +439,7 @@
             this.tableA.Name = "tableA";
             this.tableA.RowHeadersWidth = 20;
             this.tableA.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.tableA.Size = new System.Drawing.Size(191, 454);
+            this.tableA.Size = new System.Drawing.Size(191, 417);
             this.tableA.TabIndex = 9;
             this.tableA.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableA_CellValueChanged);
             // 
@@ -450,7 +470,7 @@
             this.button2.Location = new System.Drawing.Point(218, 10);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(49, 49);
-            this.button2.TabIndex = 26;
+            this.button2.TabIndex = 9;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -462,7 +482,7 @@
             this.button1.Location = new System.Drawing.Point(12, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 50);
-            this.button1.TabIndex = 25;
+            this.button1.TabIndex = 7;
             this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -477,7 +497,7 @@
             this.openTable.Margin = new System.Windows.Forms.Padding(5, 3, 10, 3);
             this.openTable.Name = "openTable";
             this.openTable.Size = new System.Drawing.Size(169, 49);
-            this.openTable.TabIndex = 27;
+            this.openTable.TabIndex = 14;
             this.openTable.Text = "Открыть таблицу\r\nфункции";
             this.openTable.UseVisualStyleBackColor = false;
             this.openTable.Click += new System.EventHandler(this.OpenTable);
@@ -500,7 +520,7 @@
             this.PercentScrolling.Location = new System.Drawing.Point(66, 12);
             this.PercentScrolling.Name = "PercentScrolling";
             this.PercentScrolling.Size = new System.Drawing.Size(149, 30);
-            this.PercentScrolling.TabIndex = 10;
+            this.PercentScrolling.TabIndex = 8;
             this.PercentScrolling.Scroll += new System.EventHandler(this.PercentScrolling_Scroll);
             // 
             // CentralY
@@ -508,7 +528,7 @@
             this.CentralY.Location = new System.Drawing.Point(347, 46);
             this.CentralY.Name = "CentralY";
             this.CentralY.Size = new System.Drawing.Size(48, 20);
-            this.CentralY.TabIndex = 30;
+            this.CentralY.TabIndex = 11;
             this.CentralY.TextChanged += new System.EventHandler(this.CentralY_TextChanged);
             // 
             // CentralX
@@ -516,7 +536,7 @@
             this.CentralX.Location = new System.Drawing.Point(290, 46);
             this.CentralX.Name = "CentralX";
             this.CentralX.Size = new System.Drawing.Size(48, 20);
-            this.CentralX.TabIndex = 25;
+            this.CentralX.TabIndex = 10;
             this.CentralX.TextChanged += new System.EventHandler(this.CentralX_TextChanged);
             // 
             // label12
@@ -552,7 +572,7 @@
             this.SlowDrawing.Location = new System.Drawing.Point(420, 15);
             this.SlowDrawing.Name = "SlowDrawing";
             this.SlowDrawing.Size = new System.Drawing.Size(179, 17);
-            this.SlowDrawing.TabIndex = 31;
+            this.SlowDrawing.TabIndex = 12;
             this.SlowDrawing.Text = "Медленый режим прорисовки";
             this.SlowDrawing.UseVisualStyleBackColor = true;
             this.SlowDrawing.CheckedChanged += new System.EventHandler(this.SlowDrawing_CheckedChanged);
@@ -604,7 +624,7 @@
             this.SpeedSlow.Location = new System.Drawing.Point(420, 36);
             this.SpeedSlow.Name = "SpeedSlow";
             this.SpeedSlow.Size = new System.Drawing.Size(169, 30);
-            this.SpeedSlow.TabIndex = 39;
+            this.SpeedSlow.TabIndex = 13;
             this.SpeedSlow.Visible = false;
             this.SpeedSlow.Scroll += new System.EventHandler(this.SpeedSlow_Scroll);
             // 
@@ -809,6 +829,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.PictureBox AreaPaint;
         private System.Windows.Forms.Panel functionsС;
+        private System.Windows.Forms.TextBox functionMain;
         private System.Windows.Forms.TextBox LimitationUpY;
         private System.Windows.Forms.TextBox LimitationUpX;
         private System.Windows.Forms.TextBox LimitationDownY;
@@ -839,7 +860,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label PointsGraph;
         private System.Windows.Forms.TrackBar SpeedSlow;
-        private System.Windows.Forms.TextBox functionMain;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ToolStripMenuItem FileMenuItem;
@@ -861,6 +881,8 @@
         private System.Windows.Forms.ToolStripMenuItem GraphFunctionMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GraphAdditionalFunctionsMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableC;
+        private System.Windows.Forms.TextBox CountPoints;
+        private System.Windows.Forms.Label label3;
     }
 }
 
