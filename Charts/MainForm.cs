@@ -227,23 +227,6 @@ namespace Сharts
                 AreaPaint.Refresh();
                 tableupdate = true;
             }
-            else
-            {
-                tableA.Rows.Clear();
-                for (int i = 0; i < nowTable.Rows.Count - 1; i++)
-                {
-                    tableA.Rows.Add(nowTable.Rows[i].Cells[0].Value, nowTable.Rows[i].Cells[1].Value); ;
-                }
-                dopPoints = new PointF[tableA.Rows.Count - 1];
-                for (int i = 0; i < tableA.Rows.Count - 1; i++)
-                {
-                    dopPoints[i].X = float.Parse(tableA.Rows[i].Cells[0].Value.ToString());
-                    dopPoints[i].Y = -float.Parse(tableA.Rows[i].Cells[1].Value.ToString());
-                }
-                tableupdate = false;
-                AreaPaint.Refresh();
-                tableupdate = true;
-            }
         }
 
         private void SlowDrawing_CheckedChanged(object sender, EventArgs e)
@@ -419,8 +402,9 @@ namespace Сharts
             {
                 int minY = -((AreaPaint.Height) / 2 / plusM + GeneralRestrictions(CentralY)) - 1;
                 int limitationDownY;
-                if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationDownY))
+                if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationDownY))
                 {
+                    limitationDownY = -limitationDownY;
                     if (limitationDownY < minY)
                     {
                         limitationDownY = minY;
@@ -432,9 +416,9 @@ namespace Сharts
                 }
                 int limitationUpY = 0;
                 int maxY = (AreaPaint.Height) / plusM + minY + 1;
-                if (LimitationDownY.Text != "" && Int32.TryParse(LimitationDownY.Text, out limitationUpY))
+                if (LimitationUpY.Text != "" && Int32.TryParse(LimitationUpY.Text, out limitationUpY))
                 {
-                    if (limitationUpY > maxY)
+                    if (-limitationUpY > maxY)
                     {
                         limitationUpY = maxY;
                     }
@@ -523,13 +507,13 @@ namespace Сharts
         void RemoveUnnecessary(PointF point, ref PointF[] allPoints, ref int countAllPoint, int limitationDownY, int limitationUpY, List<PointF[]> segments, float x)
         {
             float checkedNumber = (point.Y);
-            if (checkedNumber <= -limitationDownY && checkedNumber >= -limitationUpY)
+            if (checkedNumber <= limitationUpY && checkedNumber >= limitationDownY)
             {
-                if(countAllPoint==0)
+                if (countAllPoint == 0)
                 {
                     Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
-                    PointF pointF = new PointF(point.X-1/(float)plusM, translating.Translating(functionMain.Text, point.X - 1/(float)plusM));
-                    if(!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
+                    PointF pointF = new PointF(point.X - (float)1 / (float)plusM, translating.Translating(functionMain.Text, point.X - (float)1 / (float)plusM));
+                    if (!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
                     {
                         allPoints[countAllPoint] = pointF;
                         allPoints[countAllPoint].X = allPoints[countAllPoint].X * plusM + centralX;
@@ -537,7 +521,7 @@ namespace Сharts
                         countAllPoint++;
                     }
                 }
-                if(countAllPoint< allPoints.Length)
+                if (countAllPoint < allPoints.Length)
                 {
                     if (!float.IsNaN(point.X) && !float.IsNaN(point.Y) && !float.IsInfinity(point.Y))
                     {
@@ -550,10 +534,10 @@ namespace Сharts
             }
             else
             {
-                if (allPoints.Length > 1)
+                if (countAllPoint > 1)
                 {
                     Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
-                    PointF pointF = new PointF(x, translating.Translating(functionMain.Text, x));
+                    PointF pointF = new PointF(x , translating.Translating(functionMain.Text, x));
                     if (!float.IsNaN(pointF.X) && !float.IsNaN(pointF.Y) && !float.IsInfinity(pointF.Y))
                     {
                         if (countAllPoint < allPoints.Length)
@@ -567,11 +551,11 @@ namespace Сharts
                     Array.Resize(ref allPoints, countAllPoint);
                     segments.Add(allPoints);
                 }
-                allPoints = new PointF[AreaPaint.Width + +plusM+2];
+                allPoints = new PointF[AreaPaint.Width + +plusM + 2];
                 countAllPoint = 0;
             }
         }
-   
+
         async void SpeedDrawing(Graphics graphics, List<PointF[]> segments)
         {
             if (segments.Count > 0)
@@ -677,6 +661,24 @@ namespace Сharts
             AreaPaint.Refresh();
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tableA.Rows.Clear();
+            for (int i = 0; i < nowTable.Rows.Count - 1; i++)
+            {
+                tableA.Rows.Add(nowTable.Rows[i].Cells[0].Value, nowTable.Rows[i].Cells[1].Value); ;
+            }
+            dopPoints = new PointF[tableA.Rows.Count - 1];
+            for (int i = 0; i < tableA.Rows.Count - 1; i++)
+            {
+                dopPoints[i].X = float.Parse(tableA.Rows[i].Cells[0].Value.ToString());
+                dopPoints[i].Y = -float.Parse(tableA.Rows[i].Cells[1].Value.ToString());
+            }
+            tableupdate = false;
+            AreaPaint.Refresh();
+            tableupdate = true;
+        }
+
         void tableCompletion()
         {
             List<PointF> nowPoints = new List<PointF>();
@@ -734,6 +736,10 @@ namespace Сharts
             Charts.TranslatingExpression translating = new Charts.TranslatingExpression();
             for (int i = 0; x1<=e1; i++)
             {
+                if(x1==-13)
+                {
+
+                }
                 temporaryPoint[i] = new PointF(x1, translating.Translating(functionMain.Text, x1));
                 float checkedNumber = (temporaryPoint[i].Y);
                 if (checkedNumber <= -limitationDownY && checkedNumber >= -limitationUpY)
@@ -750,7 +756,7 @@ namespace Сharts
                 }
                 else
                 {
-                    if (allPoints.Length > 1)
+                    if (countAllPoint > 1)
                     {
                         Array.Resize(ref allPoints, countAllPoint);
                         segments.Add(allPoints);
@@ -765,7 +771,7 @@ namespace Сharts
                 }
             }
             Array.Resize(ref allPoints, countAllPoint);
-            if (allPoints.Length > 1)
+            if (countAllPoint > 1)
             {
                 segments.Add(allPoints);
             }
