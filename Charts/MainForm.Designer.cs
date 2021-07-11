@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AreaPaint = new System.Windows.Forms.PictureBox();
             this.viewTable = new System.Windows.Forms.Panel();
@@ -57,6 +57,12 @@
             this.tableA = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.CountPoints = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.MaxPoints = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.openTable = new System.Windows.Forms.Button();
@@ -87,12 +93,9 @@
             this.BottomPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.CountPoints = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ChartsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AdditionalMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AreaPaint)).BeginInit();
             this.viewTable.SuspendLayout();
@@ -102,13 +105,13 @@
             this.functionsС.SuspendLayout();
             this.tableC.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableA)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.BottomPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -167,20 +170,20 @@
             // 
             // nowTable
             // 
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.nowTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.nowTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
             this.nowTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.nowTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.nowTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.nowTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -256,7 +259,7 @@
             this.tableR.Location = new System.Drawing.Point(84, 5);
             this.tableR.Name = "tableR";
             this.tableR.Size = new System.Drawing.Size(99, 30);
-            this.tableR.TabIndex = 30;
+            this.tableR.TabIndex = 1;
             this.tableR.Text = "Изменить \r\nточки функции";
             this.tableR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tableR.UseVisualStyleBackColor = true;
@@ -402,19 +405,19 @@
             // 
             // tableA
             // 
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
-            this.tableA.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(189)))), ((int)(((byte)(171)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.DarkTurquoise;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.WhiteSmoke;
+            this.tableA.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.tableA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(205)))), ((int)(((byte)(184)))));
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(168)))), ((int)(((byte)(148)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.tableA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -427,7 +430,7 @@
             this.tableA.RowHeadersWidth = 20;
             this.tableA.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableA.Size = new System.Drawing.Size(191, 378);
-            this.tableA.TabIndex = 9;
+            this.tableA.TabIndex = 100;
             this.tableA.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.tableA_CellValueChanged);
             // 
             // dataGridViewTextBoxColumn1
@@ -449,6 +452,67 @@
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 73;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.CountPoints);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.MaxPoints);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(191, 75);
+            this.panel1.TabIndex = 10;
+            // 
+            // button3
+            // 
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(45, 47);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(93, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Сформировать";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // CountPoints
+            // 
+            this.CountPoints.Location = new System.Drawing.Point(102, 24);
+            this.CountPoints.Name = "CountPoints";
+            this.CountPoints.Size = new System.Drawing.Size(85, 20);
+            this.CountPoints.TabIndex = 2;
+            this.CountPoints.TextChanged += new System.EventHandler(this.CountPoints_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(-1, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Точек на графике:";
+            // 
+            // MaxPoints
+            // 
+            this.MaxPoints.Location = new System.Drawing.Point(102, 7);
+            this.MaxPoints.Name = "MaxPoints";
+            this.MaxPoints.Size = new System.Drawing.Size(85, 14);
+            this.MaxPoints.TabIndex = 17;
+            this.MaxPoints.Text = "0";
+            this.MaxPoints.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.MaxPoints.TextChanged += new System.EventHandler(this.CountPoints_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(-1, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Максимум точек:";
             // 
             // button2
             // 
@@ -577,9 +641,9 @@
             // coordinates
             // 
             this.coordinates.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.coordinates.Location = new System.Drawing.Point(595, 39);
+            this.coordinates.Location = new System.Drawing.Point(586, 39);
             this.coordinates.Name = "coordinates";
-            this.coordinates.Size = new System.Drawing.Size(161, 20);
+            this.coordinates.Size = new System.Drawing.Size(176, 20);
             this.coordinates.TabIndex = 36;
             this.coordinates.Text = "Не в зоны действия";
             this.coordinates.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -654,7 +718,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
-            this.ViewMenuItem});
+            this.ViewMenuItem,
+            this.ChartsMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1084, 24);
@@ -677,7 +742,7 @@
             this.BottomPanelMenuItem.Checked = true;
             this.BottomPanelMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.BottomPanelMenuItem.Name = "BottomPanelMenuItem";
-            this.BottomPanelMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.BottomPanelMenuItem.Size = new System.Drawing.Size(180, 22);
             this.BottomPanelMenuItem.Text = "Нижняя панель";
             this.BottomPanelMenuItem.Click += new System.EventHandler(this.BottomPanelMenuItem_Click);
             // 
@@ -685,7 +750,7 @@
             // 
             this.TableMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
             this.TableMenuItem.Name = "TableMenuItem";
-            this.TableMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.TableMenuItem.Size = new System.Drawing.Size(180, 22);
             this.TableMenuItem.Text = "Таблица";
             this.TableMenuItem.Click += new System.EventHandler(this.OpenTable);
             // 
@@ -696,7 +761,7 @@
             this.GraphFunctionMenuItem,
             this.GraphAdditionalFunctionsMenuItem});
             this.ColorMenuItem.Name = "ColorMenuItem";
-            this.ColorMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.ColorMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ColorMenuItem.Text = "Цвета";
             // 
             // GraphFunctionMenuItem
@@ -770,64 +835,35 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(1084, 741);
             this.tableLayoutPanel4.TabIndex = 42;
             // 
-            // panel1
+            // ChartsMenuItem
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.CountPoints);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(191, 75);
-            this.panel1.TabIndex = 10;
+            this.ChartsMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MainMenuItem,
+            this.AdditionalMenuItem});
+            this.ChartsMenuItem.Name = "ChartsMenuItem";
+            this.ChartsMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.ChartsMenuItem.Text = "Графики";
+            this.ChartsMenuItem.Visible = false;
             // 
-            // label3
+            // MainMenuItem
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(-1, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 13);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Максимум точек:";
+            this.MainMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
+            this.MainMenuItem.Checked = true;
+            this.MainMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MainMenuItem.Name = "MainMenuItem";
+            this.MainMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.MainMenuItem.Text = "Основной";
+            this.MainMenuItem.Click += new System.EventHandler(this.MainMenuItem_Click);
             // 
-            // label4
+            // AdditionalMenuItem
             // 
-            this.label4.Location = new System.Drawing.Point(102, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(85, 14);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "0";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(-1, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Точек на графике:";
-            // 
-            // CountPoints
-            // 
-            this.CountPoints.Location = new System.Drawing.Point(102, 24);
-            this.CountPoints.Name = "CountPoints";
-            this.CountPoints.Size = new System.Drawing.Size(85, 20);
-            this.CountPoints.TabIndex = 19;
-            // 
-            // button3
-            // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(45, 47);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(93, 23);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Сформировать";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.AdditionalMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(232)))), ((int)(((byte)(201)))));
+            this.AdditionalMenuItem.Checked = true;
+            this.AdditionalMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AdditionalMenuItem.Name = "AdditionalMenuItem";
+            this.AdditionalMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AdditionalMenuItem.Text = "Дополнительный";
+            this.AdditionalMenuItem.Click += new System.EventHandler(this.AdditionalMenuItem_Click);
             // 
             // MainForm
             // 
@@ -857,6 +893,8 @@
             this.functionsС.PerformLayout();
             this.tableC.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableA)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PercentScrolling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SpeedSlow)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -865,8 +903,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -932,9 +968,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox CountPoints;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label MaxPoints;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem ChartsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MainMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AdditionalMenuItem;
     }
 }
 
